@@ -2,17 +2,25 @@ package org.proyectoBiblioteca.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 @Entity
-@Table(name="libro")
+@NamedQueries({
+	@NamedQuery(name = "Libro.findAll", query = "Select l From Libro l"),
+	@NamedQuery(name = "Libro.findByTitle", query = "Select l From Libro l Where l.titulo = :titulo")//TODO usar like para la query
+})
 public class Libro implements Serializable{
 	
 	//Campos
@@ -23,21 +31,27 @@ public class Libro implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	private boolean activo;
-	@Transient //AUTO sacar el transient!
-	private Autor autor;
-	@Transient //AUTO sacar el transient!
+	private boolean activo = true;
+	
+	@OneToMany(cascade = CascadeType.PERSIST)
+	@JoinColumn(name="id", referencedColumnName="id")
+	private List<Autor> autores;
+	
+	@OneToOne (cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "idEditorial")
 	private Editorial editorial;
 
 	private String etiquetas;
 
-	private int isbn;
+	private String isbn;
 
 	private String paisOrigen;
 
 	private int rango;
 
 	private String titulo;
+	
+	private String motivoBaja;
 
 	@Temporal(TemporalType.DATE)
 	private Date fechaBaja;
@@ -51,21 +65,30 @@ public class Libro implements Serializable{
 		
 	}
 	
-	public Libro(boolean activo, Autor autor, Editorial editorial,
-			String etiquetas, int isbn,
-			String paisOrigen, int rango, String titulo) {
+	public Libro(List<Autor> autores, Editorial editorial, String etiquetas,
+			String isbn, String paisOrigen, int rango, String titulo) {
 		super();
-		this.activo = activo;
-		this.autor = autor;
+		this.autores = autores;
 		this.editorial = editorial;
 		this.etiquetas = etiquetas;
 		this.isbn = isbn;
 		this.paisOrigen = paisOrigen;
 		this.rango = rango;
 		this.titulo = titulo;
+		this.fechaAlta = new Date();
 	}
-	
+
+
+
 	//Getters y Setters
+	
+	public String getMotivoBaja() {
+		return motivoBaja;
+	}
+
+	public void setMotivoBaja(String motivoBaja) {
+		this.motivoBaja = motivoBaja;
+	}
 	
 	public boolean isActivo() {
 		return activo;
@@ -74,12 +97,19 @@ public class Libro implements Serializable{
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
-	public Autor getAutor() {
-		return autor;
+	
+	public List<Autor> getAutores() {
+		return autores;
 	}
-	public void setAutor(Autor autor) {
-		this.autor = autor;
+
+	public void setAutores(List<Autor> autores) {
+		this.autores = autores;
 	}
+
+	public long getId() {
+		return id;
+	}
+
 	public Editorial getEditorial() {
 		return editorial;
 	}
@@ -92,10 +122,10 @@ public class Libro implements Serializable{
 	public void setEtiquetas(String etiquetas) {
 		this.etiquetas = etiquetas;
 	}
-	public int getIsbn() {
+	public String getIsbn() {
 		return isbn;
 	}
-	public void setIsbn(int isbn) {
+	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
 	public String getPaisOrigen() {

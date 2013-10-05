@@ -40,17 +40,17 @@ public class LoginService {
 		
 		if(user == null){
 			//no está en la base - Redirecciono al index agregando el atributo loginError para que el jsp lo sepa e informe
-			ret = "jsp/index.jsp";
+			ret = "index.jsp";
 			request.setAttribute("loginError","Error en inicio de sesión. Verifique su nombre de usuario e intente nuevamente.");
 			
 		}else{
 			//Existe, reviso pass
 			if (clave.equals(user.getClave())){
 				//Clave correcta - redirecciono a menu.jsp (el tipo de usuario está en el bean de usuario =) )
-					ret = "jsp/success.jsp";
+					ret = "menu.jsp";
 			}else{
 					//contraseña incorrecta - Redirecciono al index agregando el atributo loginError para que el jsp lo sepa e informe
-					ret = "jsp/index.jsp";
+					ret = "index.jsp";
 					request.setAttribute("loginError","Error en inicio de sesión. Contraseña incorrecta. Intente nuevamente.");
 			}
 		}

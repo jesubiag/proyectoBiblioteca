@@ -7,7 +7,10 @@ import javax.persistence.*;
 import org.proyectoBiblioteca.enums.EstadoSocio;
 
 @Entity
-@Table (name="socio")
+@NamedQueries({
+	@NamedQuery(name = "Socio.findAll", query = "Select s From Socio s"),
+	//@NamedQuery(name = "Socio.findByTitle", query = "Select s From Socios s Where s.") TODO ver si es necesaria la query
+})
 public class Socio implements Serializable {
 	
 	//Campos

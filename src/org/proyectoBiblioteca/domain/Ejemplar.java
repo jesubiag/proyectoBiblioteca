@@ -1,16 +1,29 @@
 package org.proyectoBiblioteca.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.proyectoBiblioteca.enums.EstadoEjemplar;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Ejemplar.findAll", query = "Select e From Ejemplar e"),
+	//@NamedQuery(name = "Ejemplar.findByTitle", query = "Select e From Ejemplar e Where e. ...") TODO armar la query - Join entre libro y ejemplar por idLibro
+})
 public class Ejemplar implements Serializable{
 
 	//Campos
@@ -21,7 +34,9 @@ public class Ejemplar implements Serializable{
 	@GeneratedValue (strategy=GenerationType.IDENTITY)
 	private long id;
 	
-	@Transient private Libro libro; //AUTO sacar transient
+	@OneToOne (cascade = CascadeType.MERGE)
+	@JoinColumn(name = "idLibro")
+	private Libro libro; //AUTO sacar transient
 	
 	private int anio;
 	
@@ -31,11 +46,18 @@ public class Ejemplar implements Serializable{
 	
 	private String pasillo;
 	
+	@Enumerated (EnumType.STRING)
 	private EstadoEjemplar estado;
 	
 	private long numeroEjemplar;
 	
-	private int precioDolares;
+	private double precioDolares;
+	
+	@Temporal(TemporalType.DATE)
+	private Date fechaAlta;
+	
+	@Temporal(TemporalType.DATE)
+	private Date fechaBaja;
 	
 	//Constructores
 	
@@ -44,17 +66,18 @@ public class Ejemplar implements Serializable{
 	}
 	
 	public Ejemplar(Libro libro, int anio, String estante, String mueble,
-			String pasillo, EstadoEjemplar estado, long numeroEjemplar,
-			int precioDolares) {
+			String pasillo, long numeroEjemplar,
+			double precioDolares) {
 		super();
 		this.libro = libro;
 		this.anio = anio;
 		this.estante = estante;
 		this.mueble = mueble;
 		this.pasillo = pasillo;
-		this.estado = estado;
+		this.estado = EstadoEjemplar.disponible;
 		this.numeroEjemplar = numeroEjemplar;
 		this.precioDolares = precioDolares;
+		this.fechaAlta = new Date();
 	}
 
 	public Libro getLibro() {
@@ -113,11 +136,11 @@ public class Ejemplar implements Serializable{
 		this.numeroEjemplar = numeroEjemplar;
 	}
 
-	public int getPrecioDolares() {
+	public double getPrecioDolares() {
 		return precioDolares;
 	}
 
-	public void setPrecioDolares(int precioDolares) {
+	public void setPrecioDolares(double precioDolares) {
 		this.precioDolares = precioDolares;
 	}
 

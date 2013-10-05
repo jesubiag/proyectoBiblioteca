@@ -6,12 +6,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="editoriales")
+@NamedQueries({
+	@NamedQuery(name = "Editorial.findAll", query = "Select e From Editorial e"),
+	@NamedQuery(name = "Editorial.findByName", query = "Select e From Editorial e Where e.nombre = :nombre")
+})
 public class Editorial implements Serializable{
 	
 	//Atributos
@@ -22,17 +26,19 @@ public class Editorial implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	private boolean activo;
+	private boolean activo = true;
 
 	private String nombre;
 
 	private String email;
-
+	
 	@Temporal(TemporalType.DATE)
 	private Date fechaAlta;
 
 	@Temporal(TemporalType.DATE)
 	private Date fechaBaja;
+	
+	//TODO agregar direcciones y teléfonos OneToMany
 	
 	//Constructores
 	
@@ -40,16 +46,11 @@ public class Editorial implements Serializable{
 		
 	}
 	
-	public Editorial(long id, boolean activo,
-			String nombre, String email,
-			Date fechaAlta, Date fechaBaja) {
+	public Editorial(String nombre, String email) {
 		super();
-		this.id = id;
-		this.activo = activo;
 		this.nombre = nombre;
 		this.email = email;
-		this.fechaAlta = fechaAlta;
-		this.fechaBaja = fechaBaja;
+		this.fechaAlta = new Date();
 	}
 
 	

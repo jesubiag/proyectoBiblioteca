@@ -69,23 +69,25 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`usuario` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE IF NOT EXISTS `biblioteca`.`editoriales` (
+CREATE TABLE IF NOT EXISTS `biblioteca`.`editorial` (
 `id` bigint NOT NULL AUTO_INCREMENT,
 `nombre` varchar(255) NOT NULL,
 `email` varchar(255) NOT NULL,
-`telefono` varchar(255) NOT NULL,
-`idDirección` bigint NOT NULL,
+/*`telefono` varchar(255),*/
+/*`idDirección` bigint,*/
 `activo` boolean NOT NULL,
 `fechaAlta` date NOT NULL,
 `fechaBaja` date,
  PRIMARY KEY (`id`),
-FULLTEXT(`nombre`,`email`, `telefono`)
+/*FULLTEXT(`nombre`,`email`, `telefono`)*/
+FULLTEXT(`nombre`,`email`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `biblioteca`.`autor` (
 `id` bigint NOT NULL AUTO_INCREMENT,
 `nombre` varchar(255) NOT NULL,
 `paisOrigen` varchar(255) NOT NULL,
+`activo` boolean NOT NULL,
 `fechaAlta` date NOT NULL,
 `fechaBaja` date,
  PRIMARY KEY (`id`),
@@ -121,18 +123,18 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`reserva` (
 CREATE TABLE IF NOT EXISTS `biblioteca`.`libro` (
 	`id` bigint NOT NULL AUTO_INCREMENT,
 	`activo` boolean NOT NULL,
-	`idAutor` bigint NOT NULL,
+	/*`idAutor` bigint NOT NULL,*/
 	`idEditorial` bigint NOT NULL,
-	`isbn` int NOT NULL,
+	`isbn` varchar(255) NOT NULL,
 	`paisOrigen` varchar(255) NOT NULL,
 	`titulo` varchar(255) NOT NULL,
 	`etiquetas` varchar(255) NOT NULL,
 	`rango` int(2) NOT NULL,
 	`fechaAlta` date NOT NULL,
 	`fechaBaja` date,
-	`motivoBaja` varchar(255) NOT NULL,
+	`motivoBaja` varchar(255),
 	PRIMARY KEY (`id`),
-	FULLTEXT(`paisOrigen`, `titulo`,`etiquetas`)
+	FULLTEXT(`paisOrigen`, `titulo`,`etiquetas`,`motivoBaja`,`isbn`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `biblioteca`.`prestamo` (

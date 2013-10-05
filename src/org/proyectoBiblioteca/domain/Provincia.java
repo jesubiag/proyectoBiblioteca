@@ -4,7 +4,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@Table (name="provincia")
+@NamedQueries({
+	@NamedQuery(name = "Provincia.findAll", query = "Select p From Provincia p"),
+})
 public class Provincia implements Serializable {
 	
 	//Campos

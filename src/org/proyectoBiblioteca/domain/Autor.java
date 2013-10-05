@@ -7,10 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Autor.findAll", query = "Select a From Autor a"),
+	@NamedQuery(name = "Autor.findByName", query = "Select a From Autor a Where a.nombre = :nombre") //TODO quizás usar like
+})
 public class Autor implements Serializable{
 
 	//Campos
@@ -20,6 +26,8 @@ public class Autor implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
+	private boolean activo = true;
 
 	private String nombre;
 
@@ -37,24 +45,27 @@ public class Autor implements Serializable{
 		
 	}
 	
-	public Autor(long id, String name, String paisOrigen, Date fechaBaja,
-			Date fechaAlta) {
+	public Autor(String name, String paisOrigen) {
 		super();
-		this.id = id;
 		this.nombre = name;
 		this.paisOrigen = paisOrigen;
-		this.fechaBaja = fechaBaja;
-		this.fechaAlta = fechaAlta;
+		this.fechaAlta = new Date();
 	}
 	
 	//Setters y getters
 	
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
+	
 	public long getId() {
 		return id;
 	}
-	public void setId(long id) {
-		this.id = id;
-	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -75,9 +86,6 @@ public class Autor implements Serializable{
 	}
 	public Date getFechaAlta() {
 		return fechaAlta;
-	}
-	public void setFechaAlta(Date fechaAlta) {
-		this.fechaAlta = fechaAlta;
 	}
 	
 }

@@ -6,6 +6,9 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Localidad.findAll", query = "Select l From Localidad l")
+})
 public class Localidad implements Serializable {
 	
 	//Campos

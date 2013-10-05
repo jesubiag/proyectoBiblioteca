@@ -1,6 +1,15 @@
+import java.util.ArrayList;
+import java.util.List;
+
+import org.proyectoBiblioteca.dao.EjemplarDAO;
+import org.proyectoBiblioteca.dao.LibroDAO;
 import org.proyectoBiblioteca.dao.SocioDAO;
 import org.proyectoBiblioteca.dao.UsuarioDAO;
+import org.proyectoBiblioteca.domain.Autor;
 import org.proyectoBiblioteca.domain.Direccion;
+import org.proyectoBiblioteca.domain.Editorial;
+import org.proyectoBiblioteca.domain.Ejemplar;
+import org.proyectoBiblioteca.domain.Libro;
 import org.proyectoBiblioteca.domain.Localidad;
 import org.proyectoBiblioteca.domain.Provincia;
 import org.proyectoBiblioteca.domain.Socio;
@@ -14,6 +23,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 
+		/*
 		Localidad localidad = new Localidad(new Provincia("Buenos Aires"),"Campana");
 		
 		Direccion direccion = new Direccion("Necochea","2804",690,localidad);
@@ -29,6 +39,36 @@ public class Main {
 		Usuario usuario = new Usuario("Juan","Perez","clave","administrador",TipoUsuario.administrador);
 		
 		UsuarioDAO.create(usuario);
+		*/
+		
+		/*
+		Autor autor = new Autor("Juan Pérez","Argentina");
+		
+		Editorial editorial = new Editorial("Editorial1","editorial1@bla.com");
+		
+		List<Autor> autores = new ArrayList<Autor>();
+		
+		autores.add(autor);
+		
+		Libro libro = new Libro(autores,editorial,"novela,drama","9783161484100","Argentina",5,"Libro 1");
+		
+		LibroDAO.create(libro);
+		
+		libro.setRango(4);
+		
+		LibroDAO.update(libro); 
+		*/
+		/*
+		Libro libro1 = LibroDAO.find(1);
+		
+		Ejemplar ejemplar = new Ejemplar(libro1,2013,"estante 1","mueble 1","pasillo 1",1,200.5);
+		
+		EjemplarDAO.create(ejemplar);
+		
+		ejemplar.setAnio(2012);
+		
+		EjemplarDAO.update(ejemplar);
+		*/
 		
 	}
 

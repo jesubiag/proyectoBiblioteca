@@ -6,12 +6,18 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.proyectoBiblioteca.enums.TipoUsuario;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Usuario.findAll", query = "Select u From Usuario u"),
+	@NamedQuery(name = "Usuario.findAllByType", query = "Select u From Usuario u Where u.tipoUsuario = :tipoUsuario")
+})
 public class Usuario implements Serializable{
 	
 	//Campos
