@@ -1,0 +1,169 @@
+package org.proyectoBiblioteca.domain;
+
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.*;
+
+import org.proyectoBiblioteca.enums.EstadoPrestamo;
+
+/**
+ * Entity implementation class for Entity: Prestamo
+ *
+ */
+@Entity
+public class Prestamo implements Serializable {
+
+	//Campos
+	
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	private long id;
+	
+	@OneToOne (cascade = CascadeType.MERGE)
+	@JoinColumn(name = "idSocio")
+	private Socio socio;
+	
+	@OneToOne (cascade = CascadeType.MERGE)
+	@JoinColumn(name = "idEjemplar")
+	private Ejemplar ejemplar;
+	
+	@OneToOne (cascade = CascadeType.MERGE)
+	@JoinColumn(name = "idUsuario")
+	private Usuario usuario; //Usuario que generó el préstamo
+	
+	@Temporal(TemporalType.DATE)
+	private Date fechaAcordada;
+	
+	@Temporal(TemporalType.DATE)
+	private Date fechaDevolucion;
+	
+	@Temporal(TemporalType.DATE)
+	private Date fechaPrestamo;
+	
+	private boolean prestamoLocal; //Indica si el préstamo es local o domiciliario (falso)
+	
+	@Enumerated (EnumType.STRING)
+	private EstadoPrestamo estado;
+	
+	private String nota; //Nota opcional para detalles de la devolución
+	
+	
+	//Constructores
+	
+	public Prestamo() {
+		super();
+	}
+
+
+	public Prestamo(Socio socio, Ejemplar ejemplar, Usuario usuario,
+			Date fechaAcordada, Date fechaDevolucion, boolean prestamoLocal) {
+		super();
+		this.socio = socio;
+		this.ejemplar = ejemplar;
+		this.usuario = usuario;
+		this.fechaAcordada = fechaAcordada;
+		this.fechaDevolucion = fechaDevolucion;
+		this.prestamoLocal = prestamoLocal;
+		this.estado = EstadoPrestamo.vigente;
+		this.fechaPrestamo = new Date();
+	}
+
+	//Getters y Setters
+	
+	public Socio getSocio() {
+		return socio;
+	}
+
+
+	public void setSocio(Socio socio) {
+		this.socio = socio;
+	}
+
+
+	public Ejemplar getEjemplar() {
+		return ejemplar;
+	}
+
+
+	public void setEjemplar(Ejemplar ejemplar) {
+		this.ejemplar = ejemplar;
+	}
+
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+
+	public Date getFechaAcordada() {
+		return fechaAcordada;
+	}
+
+
+	public void setFechaAcordada(Date fechaAcordada) {
+		this.fechaAcordada = fechaAcordada;
+	}
+
+
+	public Date getFechaDevolucion() {
+		return fechaDevolucion;
+	}
+
+
+	public void setFechaDevolucion(Date fechaDevolucion) {
+		this.fechaDevolucion = fechaDevolucion;
+	}
+
+
+	public Date getFechaPrestamo() {
+		return fechaPrestamo;
+	}
+
+
+	public void setFechaPrestamo(Date fechaPrestamo) {
+		this.fechaPrestamo = fechaPrestamo;
+	}
+
+
+	public boolean isPrestamoLocal() {
+		return prestamoLocal;
+	}
+
+
+	public void setPrestamoLocal(boolean prestamoLocal) {
+		this.prestamoLocal = prestamoLocal;
+	}
+
+
+	public EstadoPrestamo getEstado() {
+		return estado;
+	}
+
+
+	public void setEstado(EstadoPrestamo estado) {
+		this.estado = estado;
+	}
+
+
+	public String getNota() {
+		return nota;
+	}
+
+
+	public void setNota(String nota) {
+		this.nota = nota;
+	}
+
+
+	public long getId() {
+		return id;
+	}
+	
+}

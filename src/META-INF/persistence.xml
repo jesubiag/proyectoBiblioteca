@@ -10,6 +10,8 @@
 		<class>org.proyectoBiblioteca.domain.Localidad</class>
 		<class>org.proyectoBiblioteca.domain.Provincia</class>
 		<class>org.proyectoBiblioteca.domain.Socio</class>
+		<class>org.proyectoBiblioteca.domain.DiaNoHabil</class>
+		<class>org.proyectoBiblioteca.domain.Prestamo</class>
 	
 		 <properties>
 	        <property name="javax.persistence.jdbc.user" value="root"/>
