@@ -30,7 +30,7 @@ public class Prestamo implements Serializable {
 	private Ejemplar ejemplar;
 	
 	@OneToOne (cascade = CascadeType.MERGE)
-	@JoinColumn(name = "idUsuario")
+	@JoinColumn(name = "usuario")
 	private Usuario usuario; //Usuario que generó el préstamo
 	
 	@Temporal(TemporalType.DATE)
@@ -58,13 +58,12 @@ public class Prestamo implements Serializable {
 
 
 	public Prestamo(Socio socio, Ejemplar ejemplar, Usuario usuario,
-			Date fechaAcordada, Date fechaDevolucion, boolean prestamoLocal) {
+			Date fechaAcordada, boolean prestamoLocal) {
 		super();
 		this.socio = socio;
 		this.ejemplar = ejemplar;
 		this.usuario = usuario;
 		this.fechaAcordada = fechaAcordada;
-		this.fechaDevolucion = fechaDevolucion;
 		this.prestamoLocal = prestamoLocal;
 		this.estado = EstadoPrestamo.vigente;
 		this.fechaPrestamo = new Date();

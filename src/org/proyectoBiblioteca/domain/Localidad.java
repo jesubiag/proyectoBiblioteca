@@ -32,7 +32,7 @@ public class Localidad implements Serializable {
 	private String nombre;
 
 	//Constructores
-	
+
 	public Localidad() {
 	}
 	
@@ -71,6 +71,14 @@ public class Localidad implements Serializable {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public Provincia getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
 	}
 
 }

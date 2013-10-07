@@ -1,35 +1,34 @@
 package org.proyectoBiblioteca.dao;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import org.proyectoBiblioteca.domain.Usuario;
+import org.proyectoBiblioteca.domain.Suspension;
 
-public class UsuarioDAO {
-	
-	public static Usuario find(String nombreUsuario){
+public class SuspensionDAO {
+
+	public static Suspension find(long id){
 		
 		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
 		EntityManager em = emf.createEntityManager();
 		
-		Usuario usuario = null;
+		Suspension suspension = null;
 		
 		try{
-			usuario = em.find(Usuario.class, nombreUsuario);
+			suspension = em.find(Suspension.class, id);
 		}
 		catch(Exception ex){
-			System.out.println("Error en find(usuario) de UsuarioDAO");
+			System.out.println("Error en find(id) de SuspensionDAO");
 			ex.printStackTrace();
 		}
 		finally {
 			em.close();
 		}
 		
-		return usuario;
+		return suspension;
 		
 	}
 
-	public static void create(Usuario usuario){
+	public static void create(Suspension suspension){
 		
 		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
 		EntityManager em = emf.createEntityManager();
@@ -38,13 +37,13 @@ public class UsuarioDAO {
 		tr.begin();
 		
 		try{
-			em.persist(usuario);
+			em.persist(suspension);
 			tr.commit();
-			System.out.println("Creación de usuario " + usuario.getUsuario() + " exitosa");
+			System.out.println("Creación de suspension al socio:" + suspension.getSocio().getNombre() + " " + suspension.getSocio().getApellido() + ", de motivo: " + suspension.getMotivo() + " exitosa");
 		}
 		catch(Exception ex){
 			tr.rollback();
-			System.out.println("Error en create(usuario) de UsuarioDAO");
+			System.out.println("Error en create(suspension) de SuspensionDAO");
 			ex.printStackTrace();
 		}
 		finally {
@@ -53,7 +52,7 @@ public class UsuarioDAO {
 		
 	}
 	
-	public static void update(Usuario usuario){
+	public static void update(Suspension suspension){
 		
 		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
 		EntityManager em = emf.createEntityManager();
@@ -62,13 +61,13 @@ public class UsuarioDAO {
 		tr.begin();
 		
 		try{
-			em.merge(usuario);
+			em.merge(suspension);
 			tr.commit();
-			System.out.println("Actualización de usuario exitosa");
+			System.out.println("Actualización de suspension exitosa");
 		}
 		catch(Exception ex){
 			tr.rollback();
-			System.out.println("Error en update(usuario) de UsuarioDAO");
+			System.out.println("Error en update(suspension) de SuspensionDAO");
 			ex.printStackTrace();
 		}
 		finally {
@@ -77,7 +76,7 @@ public class UsuarioDAO {
 		
 	}
 	
-	public static void delete(String nombreUsuario){
+	public static void delete(long id){
 
 		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
 		EntityManager em = emf.createEntityManager();
@@ -86,13 +85,13 @@ public class UsuarioDAO {
 		tr.begin();
 		
 		try{
-			em.remove(UsuarioDAO.find(nombreUsuario));
+			em.remove(SuspensionDAO.find(id));
 			tr.commit();
-			System.out.println("Eliminación de usuario exitosa");
+			System.out.println("Eliminación de suspension exitosa");
 		}
 		catch(Exception ex){
 			tr.rollback();
-			System.out.println("Error en delete(id) de UsuarioDAO");
+			System.out.println("Error en delete(id) de SuspensionDAO");
 			ex.printStackTrace();
 		}
 		finally {

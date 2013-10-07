@@ -56,6 +56,10 @@ public class Editorial implements Serializable{
 	
 	//Getters y Setters
 	
+	public long getId() {
+		return id;
+	}
+	
 	public boolean isActivo() {
 		return activo;
 	}

@@ -1,35 +1,34 @@
 package org.proyectoBiblioteca.dao;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import org.proyectoBiblioteca.domain.Usuario;
+import org.proyectoBiblioteca.domain.Localidad;
 
-public class UsuarioDAO {
-	
-	public static Usuario find(String nombreUsuario){
+public class LocalidadDAO {
+
+	public static Localidad find(long id){
 		
 		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
 		EntityManager em = emf.createEntityManager();
 		
-		Usuario usuario = null;
+		Localidad localidad = null;
 		
 		try{
-			usuario = em.find(Usuario.class, nombreUsuario);
+			localidad = em.find(Localidad.class, id);
 		}
 		catch(Exception ex){
-			System.out.println("Error en find(usuario) de UsuarioDAO");
+			System.out.println("Error en find(id) de LocalidadDAO");
 			ex.printStackTrace();
 		}
 		finally {
 			em.close();
 		}
 		
-		return usuario;
+		return localidad;
 		
 	}
 
-	public static void create(Usuario usuario){
+	public static void create(Localidad localidad){
 		
 		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
 		EntityManager em = emf.createEntityManager();
@@ -38,13 +37,13 @@ public class UsuarioDAO {
 		tr.begin();
 		
 		try{
-			em.persist(usuario);
+			em.persist(localidad);
 			tr.commit();
-			System.out.println("Creación de usuario " + usuario.getUsuario() + " exitosa");
+			System.out.println("Creación de localidad:" + localidad.getNombre() + ", de la prov: " + localidad.getProvincia().getNombre() + " exitosa");
 		}
 		catch(Exception ex){
 			tr.rollback();
-			System.out.println("Error en create(usuario) de UsuarioDAO");
+			System.out.println("Error en create(localidad) de LocalidadDAO");
 			ex.printStackTrace();
 		}
 		finally {
@@ -53,7 +52,7 @@ public class UsuarioDAO {
 		
 	}
 	
-	public static void update(Usuario usuario){
+	public static void update(Localidad localidad){
 		
 		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
 		EntityManager em = emf.createEntityManager();
@@ -62,13 +61,13 @@ public class UsuarioDAO {
 		tr.begin();
 		
 		try{
-			em.merge(usuario);
+			em.merge(localidad);
 			tr.commit();
-			System.out.println("Actualización de usuario exitosa");
+			System.out.println("Actualización de localidad exitosa");
 		}
 		catch(Exception ex){
 			tr.rollback();
-			System.out.println("Error en update(usuario) de UsuarioDAO");
+			System.out.println("Error en update(localidad) de LocalidadDAO");
 			ex.printStackTrace();
 		}
 		finally {
@@ -77,7 +76,7 @@ public class UsuarioDAO {
 		
 	}
 	
-	public static void delete(String nombreUsuario){
+	public static void delete(long id){
 
 		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
 		EntityManager em = emf.createEntityManager();
@@ -86,13 +85,13 @@ public class UsuarioDAO {
 		tr.begin();
 		
 		try{
-			em.remove(UsuarioDAO.find(nombreUsuario));
+			em.remove(LocalidadDAO.find(id));
 			tr.commit();
-			System.out.println("Eliminación de usuario exitosa");
+			System.out.println("Eliminación de localidad exitosa");
 		}
 		catch(Exception ex){
 			tr.rollback();
-			System.out.println("Error en delete(id) de UsuarioDAO");
+			System.out.println("Error en delete(id) de LocalidadDAO");
 			ex.printStackTrace();
 		}
 		finally {

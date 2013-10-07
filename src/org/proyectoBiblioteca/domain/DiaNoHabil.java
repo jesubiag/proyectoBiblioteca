@@ -2,10 +2,15 @@ package org.proyectoBiblioteca.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import java.util.Date;
 
 @Entity
 @Table(name="diasnohabiles")
+@NamedQueries({
+	@NamedQuery(name = "DiaNoHabil.findAll", query = "Select d From DiaNoHabil d"),
+	//@NamedQuery(name = "DiaNoHabil.findByMonth", query = "Select l From Libro l Where l.titulo = :titulo")//TODO armar query para traer fechas para mes o año, ver bien
+})
 public class DiaNoHabil implements Serializable {
 
 	//Campos

@@ -1,8 +1,10 @@
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.proyectoBiblioteca.dao.EjemplarDAO;
 import org.proyectoBiblioteca.dao.LibroDAO;
+import org.proyectoBiblioteca.dao.PrestamoDAO;
 import org.proyectoBiblioteca.dao.SocioDAO;
 import org.proyectoBiblioteca.dao.UsuarioDAO;
 import org.proyectoBiblioteca.domain.Autor;
@@ -11,6 +13,7 @@ import org.proyectoBiblioteca.domain.Editorial;
 import org.proyectoBiblioteca.domain.Ejemplar;
 import org.proyectoBiblioteca.domain.Libro;
 import org.proyectoBiblioteca.domain.Localidad;
+import org.proyectoBiblioteca.domain.Prestamo;
 import org.proyectoBiblioteca.domain.Provincia;
 import org.proyectoBiblioteca.domain.Socio;
 import org.proyectoBiblioteca.domain.Usuario;
@@ -69,6 +72,20 @@ public class Main {
 		
 		EjemplarDAO.update(ejemplar);
 		*/
+		
+		Usuario usuario = UsuarioDAO.find("administrador");
+		
+		Socio socio = SocioDAO.find(1);
+		
+		Ejemplar ejemplar = EjemplarDAO.find(2);
+		
+		Date date = new Date();
+		
+		date.setDate(10); //cambiar por uno no deprecated
+		
+		Prestamo prestamo = new Prestamo(socio,ejemplar,usuario,date,false);
+		
+		PrestamoDAO.create(prestamo);
 		
 	}
 
