@@ -105,5 +105,12 @@ public class Direccion implements Serializable {
 	public void setLocalidad(Localidad localidad) {
 		this.localidad = localidad;
 	}
+	
+	//métodos
+	
+	public String toString(){
+		//TODO modificar para el caso de que sea un depto
+		return this.calle + " " + this.numero + ", " + this.localidad.getNombre() + ", " + this.localidad.getProvincia().getNombre();
+	}
 
 }

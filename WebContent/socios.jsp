@@ -60,8 +60,18 @@
               </ul>
             </li>
           </ul>
-       
-	          Bienvenido, ${user.usuario}
+          
+          <ul class="nav navbar-nav navbar-right">
+          	<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">${user.usuario}<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Perfil</a></li>
+                <li><a href="#">Otra Cosa</a></li>
+                <li class="divider"></li>
+				<li><a href="Login?action=terminate">Cerrar Sesión</a></li>
+              </ul>
+            </li>
+          </ul>
           
         </div><!--/.navbar-collapse -->
       </div>
@@ -70,29 +80,49 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h1>Hello, world! En esta página van a ir los botones principales de acceso a todas las funciones del sistema</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+        <h1>Administración de Socios</h1>
+        
+        <!--  Tabla de socios -->
+        
+		<div class="panel panel-primary">
+	  		<!-- Default panel contents -->
+	  		<div class="panel-heading">Socios Registrados</div>
+	
+		    <table class="table">
+		    
+		    	<tr>
+		    		<th>Nombre</th>
+		    		<th>Apellido</th>
+		    		<th>Email</th>
+		    		<th>Teléfono</th>
+		    		<th>Rango</th>
+		    		<th>Dirección</th>
+		    		<th colspan=2>Acción</th>
+		    	</tr>
+		    	
+		    	<c:forEach var="member" items="${members}">
+			    	<tr>
+			    		<td><c:out value="${member.nombre}" /></td>
+			    		<td><c:out value="${member.apellido}" /></td>
+			    		<td><c:out value="${member.email}" /></td>
+			    		<td><c:out value="${member.telefono}" /></td>
+			    		<td><c:out value="${member.rango}" /></td>
+			    		<td><c:out value="${member.direccion}" /></td>
+			    		<td><a href="Member?action=edit&id=<c:out value="${member.id}"/>">Modificar</a></td>
+		                <td><a href="Member?action=delete&id=<c:out value="${member.id}"/>">Eliminar</a></td>
+			    	</tr>
+		    	</c:forEach>
+		    
+		    </table>
+		</div>
+		
+		<p><a href="Member?action=new" class="btn btn-primary btn-lg">Registrar Nuevo Socio &raquo;</a></p>
+        
       </div>
     </div>
+	
+	
     
-    <table class="table">
-    
-    	<tr>
-    		<th>header</th>
-    		<th>header</th>
-    		<th>header</th>
-    	</tr>
-    	
-    	<c:forEach var="socio" items="${socios}">
-	    	<tr>
-	    		<td>socio.nombre</td>
-	    		<td>socio.apellido</td>
-	    		<td>socio.email</td>
-	    	</tr>
-    	</c:forEach>
-    
-    </table>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

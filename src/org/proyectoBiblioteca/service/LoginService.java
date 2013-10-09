@@ -40,7 +40,7 @@ public class LoginService {
 			}
 			
 		}catch(Exception ex){
-			//Error en la query :/ TODO armar captura de excepciones
+			ex.printStackTrace();
 		}finally{
 			em.close();
 		}
