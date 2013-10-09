@@ -28,7 +28,7 @@
   <body>
   
   <!-- Veo si está logueado, si lo está entonces lo redirijo al menú principal -->   
-   <c:if test="${!empty use}">  
+   <c:if test="${!empty user}">  
    	<jsp:forward page="/menu.jsp" />
    </c:if>
 

@@ -11,17 +11,23 @@ import org.proyectoBiblioteca.domain.Usuario;
 
 public class LoginService {
 
-	public static String validateLoginData(String usuario,String clave, HttpSession session, HttpServletRequest request){
+	public static String validateLoginData(HttpServletRequest request, HttpSession session){
 		
 		String ret = null;
 		Usuario user = null;
+		
+		String usuario = request.getParameter("user");
+		String clave = request.getParameter("password");
 		
 		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
 		EntityManager em = emf.createEntityManager();
 		
 		try{
-			//TODO pasar esto al dao
-			TypedQuery<Usuario> query = em.createQuery("Select usr From Usuario adm Where usr.usuario = '" + usuario + "'",Usuario.class);
+			//query original : TypedQuery<Usuario> query = em.createQuery("Select usr From Usuario adm Where usr.usuario = '" + usuario + "'",Usuario.class);
+			
+			TypedQuery<Usuario> query = em.createNamedQuery("Usuario.findByUser",Usuario.class);
+			
+			query.setParameter("usuario", usuario);
 			
 			if(!query.getResultList().isEmpty()){
 				
@@ -31,11 +37,12 @@ public class LoginService {
 				}
 				
 				user = query.getResultList().get(0);
-				session.setAttribute("user", user);
 			}
 			
 		}catch(Exception ex){
 			//Error en la query :/ TODO armar captura de excepciones
+		}finally{
+			em.close();
 		}
 		
 		if(user == null){
@@ -46,7 +53,8 @@ public class LoginService {
 		}else{
 			//Existe, reviso pass
 			if (clave.equals(user.getClave())){
-				//Clave correcta - redirecciono a menu.jsp (el tipo de usuario está en el bean de usuario =) )
+				//Clave correcta - mando bean de usuario como atributo y redirecciono a menu.jsp (el tipo de usuario está en el bean de usuario =) )
+					session.setAttribute("user", user);	
 					ret = "menu.jsp";
 			}else{
 					//contraseña incorrecta - Redirecciono al index agregando el atributo loginError para que el jsp lo sepa e informe
@@ -57,6 +65,17 @@ public class LoginService {
 		
 		return ret;
 		
+	}
+
+	public static void closeSession(HttpServletRequest request) {
+
+		HttpSession session = request.getSession();
+		
+		if(session != null){
+			
+			session.invalidate();
+			
+		}
 	}
 
 }

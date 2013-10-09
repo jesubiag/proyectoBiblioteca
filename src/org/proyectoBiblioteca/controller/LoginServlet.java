@@ -18,17 +18,23 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		
+		String action = (String) request.getParameter("action");
+		
+		if (action.equals("terminate")){
+			//El usuario solicita desloguearse
+			LoginService.closeSession(request);
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
+		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String usuario = request.getParameter("user");
-		String clave = request.getParameter("password");
-		
 		HttpSession session = request.getSession();
 		
 		//la lógica de logueo está en el serivicio de login (LoginService) que devuelve un string con la pantalla para el forward
-		request.getRequestDispatcher(LoginService.validateLoginData(usuario,clave,session,request)).forward(request,response);
+		request.getRequestDispatcher(LoginService.validateLoginData(request,session)).forward(request,response);
 		
 	}
 

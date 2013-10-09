@@ -28,8 +28,8 @@
   <body>
   
   <!-- Veo si está logueado, si lo está entonces lo redirijo al menú principal -->   
-   <c:if test="${!empty use}">  
-   	<jsp:forward page="/menu.jsp" />
+      <c:if test="${empty user}">  
+   	<jsp:forward page="/index.jsp" />
    </c:if>
 
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -60,8 +60,20 @@
               </ul>
             </li>
           </ul>
-       
-	          Bienvenido, ${user.usuario}
+          
+          <ul class="nav navbar-nav navbar-right">
+          	<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">${user.usuario}<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Perfil</a></li>
+                <li><a href="#">Otra Cosa</a></li>
+                <li class="divider"></li>
+				<li><a href="Login?action=terminate">Cerrar Sesión</a></li>
+              </ul>
+            </li>
+          </ul>
+          
+         
           
         </div><!--/.navbar-collapse -->
       </div>
