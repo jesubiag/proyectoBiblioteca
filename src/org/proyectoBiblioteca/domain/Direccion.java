@@ -24,7 +24,7 @@ public class Direccion implements Serializable {
 
 	private int piso;
 
-	@OneToOne (cascade = CascadeType.PERSIST)
+	@ManyToOne //(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "idLocalidad")
 	private Localidad localidad;
 

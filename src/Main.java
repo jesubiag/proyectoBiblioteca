@@ -6,6 +6,7 @@ import org.proyectoBiblioteca.dao.EjemplarDAO;
 import org.proyectoBiblioteca.dao.LibroDAO;
 import org.proyectoBiblioteca.dao.LocalidadDAO;
 import org.proyectoBiblioteca.dao.PrestamoDAO;
+import org.proyectoBiblioteca.dao.ProvinciaDAO;
 import org.proyectoBiblioteca.dao.SocioDAO;
 import org.proyectoBiblioteca.dao.UsuarioDAO;
 import org.proyectoBiblioteca.domain.Autor;
@@ -27,8 +28,15 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 
+		/*
+		Provincia provincia = new Provincia("Buenos Aires");
 		
-		//Localidad localidad = new Localidad(new Provincia("Buenos Aires"),"Campana");
+		ProvinciaDAO.create(provincia);*/
+		
+		/*
+		Localidad localidad = new Localidad(provincia,"Campana");
+		
+		LocalidadDAO.create(localidad);*/
 		
 		Localidad localidad = LocalidadDAO.find(1);
 		
@@ -38,17 +46,23 @@ public class Main {
 		
 		SocioDAO.create(socio);
 		
-		/*
+		direccion = new Direccion("Necochea","2804",690,localidad);
 		
+		socio = new Socio(1123333, "Lucas", "Couchot", "lucas@gmail.com","3489666346",direccion);
+		
+		SocioDAO.create(socio);
+		
+
 		socio.setNombre("Lucas J.");
 		
 		SocioDAO.update(socio);
+		
+		/*
 		
 		Usuario usuario = new Usuario("Juan","Perez","clave","administrador",TipoUsuario.administrador);
 		
 		UsuarioDAO.create(usuario);
 		*/
-		
 		/*
 		Autor autor = new Autor("Juan Pérez","Argentina");
 		

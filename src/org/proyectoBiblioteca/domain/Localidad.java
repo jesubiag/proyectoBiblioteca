@@ -25,7 +25,7 @@ public class Localidad implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date fechaBaja;
 
-	@OneToOne (cascade = CascadeType.PERSIST)
+	@ManyToOne (cascade = CascadeType.MERGE)
 	@JoinColumn (name = "idProvincia")
 	private Provincia provincia;
 

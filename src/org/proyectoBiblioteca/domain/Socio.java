@@ -33,7 +33,7 @@ public class Socio implements Serializable {
 	
 	private int rango;
 	
-	@OneToOne (cascade = CascadeType.PERSIST)
+	@OneToOne (cascade = CascadeType.PERSIST, orphanRemoval = true)
 	@JoinColumn(name = "idDireccion")
 	private Direccion direccion;
 

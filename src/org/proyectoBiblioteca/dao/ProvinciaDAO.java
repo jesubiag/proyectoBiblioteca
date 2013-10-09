@@ -2,33 +2,33 @@ package org.proyectoBiblioteca.dao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import org.proyectoBiblioteca.domain.Socio;
+import org.proyectoBiblioteca.domain.Provincia;
 
-public class SocioDAO {
+public class ProvinciaDAO {
 
-	public static Socio find(long id){
+	public static Provincia find(long id){
 		
 		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
 		EntityManager em = emf.createEntityManager();
 		
-		Socio socio = null;
+		Provincia provincia = null;
 		
 		try{
-			socio = em.find(Socio.class, id);
+			provincia = em.find(Provincia.class, id);
 		}
 		catch(Exception ex){
-			System.out.println("Error en find(id) de SocioDAO");
+			System.out.println("Error en find(id) de ProvinciaDAO");
 			ex.printStackTrace();
 		}
 		finally {
 			em.close();
 		}
 		
-		return socio;
+		return provincia;
 		
 	}
 
-	public static void create(Socio socio){
+	public static void create(Provincia provincia){
 		
 		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
 		EntityManager em = emf.createEntityManager();
@@ -37,13 +37,13 @@ public class SocioDAO {
 		tr.begin();
 		
 		try{
-			em.persist(socio);
+			em.persist(provincia);
 			tr.commit();
-			System.out.println("Creación de socio " + socio.getNombre() + " " + socio.getApellido() + " exitosa");
+			System.out.println("Creación de provincia:" + provincia.getNombre() + " exitosa");
 		}
 		catch(Exception ex){
 			tr.rollback();
-			System.out.println("Error en create(socio) de SocioDAO");
+			System.out.println("Error en create(provincia) de ProvinciaDAO");
 			ex.printStackTrace();
 		}
 		finally {
@@ -52,7 +52,7 @@ public class SocioDAO {
 		
 	}
 	
-	public static void update(Socio socio){
+	public static void update(Provincia provincia){
 		
 		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
 		EntityManager em = emf.createEntityManager();
@@ -61,13 +61,13 @@ public class SocioDAO {
 		tr.begin();
 		
 		try{
-			em.merge(socio);
+			em.merge(provincia);
 			tr.commit();
-			System.out.println("Actualización de socio exitosa");
+			System.out.println("Actualización de provincia exitosa");
 		}
 		catch(Exception ex){
 			tr.rollback();
-			System.out.println("Error en update(socio) de SocioDAO");
+			System.out.println("Error en update(provincia) de ProvinciaDAO");
 			ex.printStackTrace();
 		}
 		finally {
@@ -82,17 +82,16 @@ public class SocioDAO {
 		EntityManager em = emf.createEntityManager();
 		
 		EntityTransaction tr = em.getTransaction();
-		
 		tr.begin();
 		
 		try{
-			em.remove(SocioDAO.find(id)); //TODO problema al intentar borrar la entidad, la encuentra bien pero no puede borrarla. Revisar relaciones!
+			em.remove(ProvinciaDAO.find(id));
 			tr.commit();
-			System.out.println("Eliminación de socio exitosa");
+			System.out.println("Eliminación de provincia exitosa");
 		}
 		catch(Exception ex){
 			tr.rollback();
-			System.out.println("Error en delete(id) de SocioDAO");
+			System.out.println("Error en delete(id) de ProvinciaDAO");
 			ex.printStackTrace();
 		}
 		finally {
