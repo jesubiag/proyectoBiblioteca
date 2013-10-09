@@ -22,19 +22,20 @@ public class SocioServlet extends HttpServlet {
 	
 		if (action == null && (request.getSession().getAttribute("user") != null) ){
 			//voy a pantalla de socios
+			//TODO ver cómo implementar paginación para no traer todo de una
+			//TODO hacer una búsqueda de socios en el jsp
 			SocioService.retrieveAll(request);
 			request.getRequestDispatcher("/socios.jsp").forward(request, response);
-		}else{
-			//Si no es null, veo si es una acción del abm
-			//TODO completar lógica del abm
-			switch(action){
-			case "new"://redirecciono a pantalla de mod. usuario con campos vacíos
-				break;
-			case "delete"://tomo par id e intento eliminar de la db
-				break;
-			case "update"://tomo par id y redirecciono a pantalla de mod. usuario con ese usuario cargado
-				break;
-			}
+			
+		}else if(action.equals("new")){
+			//redirecciono a pantalla de mod. socio con campos limpios
+		}else if(action.equals("delete")){
+			//intento eliminar el socio con el parámetro id
+			SocioService.delete(request);
+			response.sendRedirect("/proyectoBiblioteca/Socios");
+			
+		}else if(action.equals("update")){
+			//tomo par. id y redirecciono a mod. socio con los datos de ese socio
 		}
 		
 	}

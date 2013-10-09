@@ -82,10 +82,13 @@ public class SocioDAO {
 		EntityManager em = emf.createEntityManager();
 		
 		EntityTransaction tr = em.getTransaction();
+		
+		Socio socio = SocioDAO.find(id);
+		
 		tr.begin();
 		
 		try{
-			em.remove(SocioDAO.find(id));
+			em.remove(socio);
 			tr.commit();
 			System.out.println("Eliminación de socio exitosa");
 		}

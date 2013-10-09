@@ -100,23 +100,23 @@
 		    		<th colspan=2>Acción</th>
 		    	</tr>
 		    	
-		    	<c:forEach var="member" items="${members}">
+		    	<c:forEach var="socio" items="${socios}">
 			    	<tr>
-			    		<td><c:out value="${member.nombre}" /></td>
-			    		<td><c:out value="${member.apellido}" /></td>
-			    		<td><c:out value="${member.email}" /></td>
-			    		<td><c:out value="${member.telefono}" /></td>
-			    		<td><c:out value="${member.rango}" /></td>
-			    		<td><c:out value="${member.direccion}" /></td>
-			    		<td><a href="Member?action=edit&id=<c:out value="${member.id}"/>">Modificar</a></td>
-		                <td><a href="Member?action=delete&id=<c:out value="${member.id}"/>">Eliminar</a></td>
+			    		<td><c:out value="${socio.nombre}" /></td>
+			    		<td><c:out value="${socio.apellido}" /></td>
+			    		<td><c:out value="${socio.email}" /></td>
+			    		<td><c:out value="${socio.telefono}" /></td>
+			    		<td><c:out value="${socio.rango}" /></td>
+			    		<td><c:out value="${socio.direccion}" /></td>
+			    		<td><a href="Socios?action=edit&id=<c:out value="${socio.id}"/>">Modificar</a></td>
+		                <td><a href="Socios?action=delete&id=<c:out value="${socio.id}"/>">Eliminar</a></td>
 			    	</tr>
 		    	</c:forEach>
 		    
 		    </table>
 		</div>
 		
-		<p><a href="Member?action=new" class="btn btn-primary btn-lg">Registrar Nuevo Socio &raquo;</a></p>
+		<p><a href="Socios?action=new" class="btn btn-primary btn-lg">Registrar Nuevo Socio &raquo;</a></p>
         
       </div>
     </div>

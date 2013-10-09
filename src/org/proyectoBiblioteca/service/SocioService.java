@@ -6,6 +6,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
 import org.proyectoBiblioteca.dao.PersistenceManager;
+import org.proyectoBiblioteca.dao.SocioDAO;
 import org.proyectoBiblioteca.domain.Socio;
 
 public class SocioService {
@@ -32,8 +33,20 @@ public class SocioService {
 			em.close();
 		}
 		
-		request.setAttribute("members", socios);
+		request.setAttribute("socios", socios);
 		
+	}
+
+	public static void delete(HttpServletRequest request) {
+
+		try{
+			
+			SocioDAO.delete(Long.parseLong(request.getParameter("id")));
+			
+		}catch(NumberFormatException ex){
+			ex.printStackTrace();
+		}
+		//TODO revisar este método, ver si aviso o no cuando tengo éxito
 	}
 
 }

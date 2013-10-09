@@ -19,7 +19,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		
-		String action = (String) request.getParameter("action");
+		String action = request.getParameter("action");
 		
 		if (action.equals("terminate")){
 			//El usuario solicita desloguearse
