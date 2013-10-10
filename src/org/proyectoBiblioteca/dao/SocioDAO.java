@@ -85,8 +85,10 @@ public class SocioDAO {
 		
 		tr.begin();
 		
+		
+		
 		try{
-			em.remove(SocioDAO.find(id)); //TODO problema al intentar borrar la entidad, la encuentra bien pero no puede borrarla. Revisar relaciones!
+			em.remove(em.find(Socio.class, id)); //TODO problema al intentar borrar la entidad, la encuentra bien pero no puede borrarla. Revisar relaciones!
 			tr.commit();
 			System.out.println("Eliminación de socio exitosa");
 		}
