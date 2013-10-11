@@ -163,6 +163,25 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`suspensiones` (
 FULLTEXT(`motivo`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
+CREATE TABLE IF NOT EXISTS `biblioteca`.`relacionAutorLibro` (
+`idAutor` bigint NOT NULL,
+`idLibro` bigint NOT NULL,
+ PRIMARY KEY (`idLibro`,`idAutor`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `biblioteca`.`relacionEditorialDireccion` (
+`idEditorial` bigint NOT NULL,
+`idDireccion` bigint NOT NULL,
+ PRIMARY KEY (`idEditorial`,`idDireccion`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `biblioteca`.`telefonosDeEditorial` (
+`id` bigint NOT NULL AUTO_INCREMENT,
+`idEditorial` bigint NOT NULL,
+`telefono` varchar(255) NOT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+
 INSERT INTO `biblioteca`.`usuario`
 (`clave`,`usuario`,`nombre`,`apellido`,`activo`,`tipoUsuario`,`fechaAlta`)
 VALUES

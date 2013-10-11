@@ -3,16 +3,15 @@ package org.proyectoBiblioteca.domain;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -33,11 +32,11 @@ public class Libro implements Serializable{
 
 	private boolean activo = true;
 	
-	@OneToMany(cascade = CascadeType.PERSIST)
-	@JoinColumn(name="id", referencedColumnName="id")
+	@OneToMany
+	@JoinColumn(name = "id")
 	private List<Autor> autores;
 	
-	@OneToOne (cascade = CascadeType.PERSIST)
+	@ManyToOne
 	@JoinColumn(name = "idEditorial")
 	private Editorial editorial;
 

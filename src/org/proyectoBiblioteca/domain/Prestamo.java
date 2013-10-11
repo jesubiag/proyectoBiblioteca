@@ -21,15 +21,15 @@ public class Prestamo implements Serializable {
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@OneToOne (cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "idSocio")
 	private Socio socio;
 	
-	@OneToOne (cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "idEjemplar")
 	private Ejemplar ejemplar;
 	
-	@OneToOne (cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "usuario")
 	private Usuario usuario; //Usuario que generó el préstamo
 	

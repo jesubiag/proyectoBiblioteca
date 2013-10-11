@@ -2,10 +2,14 @@ package org.proyectoBiblioteca.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
@@ -38,7 +42,11 @@ public class Editorial implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date fechaBaja;
 	
-	//TODO agregar direcciones y teléfonos OneToMany
+	@ManyToMany //TODO revisar funcionamiento de esta relación
+	@JoinTable(name = "relacioneditorialdireccion", 
+	joinColumns = { @JoinColumn(name = "idEditorial") }, 
+	inverseJoinColumns = { @JoinColumn(name = "idDireccion") })
+	private List<Direccion> direcciones;
 	
 	//Constructores
 	
@@ -46,10 +54,11 @@ public class Editorial implements Serializable{
 		
 	}
 	
-	public Editorial(String nombre, String email) {
+	public Editorial(String nombre, String email, List<Direccion> direcciones) {
 		super();
 		this.nombre = nombre;
 		this.email = email;
+		this.direcciones = direcciones;
 		this.fechaAlta = new Date();
 	}
 
@@ -92,5 +101,10 @@ public class Editorial implements Serializable{
 	public void setFechaBaja(Date fechaBaja) {
 		this.fechaBaja = fechaBaja;
 	}
-	
+	public void setDirecciones(List<Direccion> direcciones){
+		this.direcciones = direcciones;
+	}
+	public List<Direccion> getDirecciones(){
+		return direcciones;
+	}
 }

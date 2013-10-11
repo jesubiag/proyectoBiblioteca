@@ -22,11 +22,11 @@ public class Suspension implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date fechaVencimiento;
 
-	@OneToOne (cascade = CascadeType.MERGE)
+	@OneToOne (cascade = CascadeType.MERGE) //TODO revisar relación
 	@JoinColumn(name = "idPrestamo")
 	private Prestamo prestamo;
 
-	@OneToOne (cascade = CascadeType.MERGE)
+	@ManyToOne (cascade = CascadeType.MERGE)
 	@JoinColumn(name = "idSocio")
 	private Socio socio;
 
