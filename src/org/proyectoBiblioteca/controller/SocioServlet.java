@@ -29,18 +29,27 @@ public class SocioServlet extends HttpServlet {
 			
 		}else if(action.equals("new")){
 			//redirecciono a pantalla de mod. socio con campos limpios
+			SocioService.retrieveStatesList(request);
+			request.getRequestDispatcher("/nuevoSocio.jsp").forward(request,response);
+			
 		}else if(action.equals("delete")){
 			//intento eliminar el socio con el parámetro id
 			SocioService.delete(request);
 			response.sendRedirect("/proyectoBiblioteca/Socios");
 			
-		}else if(action.equals("update")){
+		}else if(action.equals("edit")){
 			//tomo par. id y redirecciono a mod. socio con los datos de ese socio
+			SocioService.retrieveById(request);
+			SocioService.retrieveStatesList(request);
+			request.getRequestDispatcher("/nuevoSocio.jsp").forward(request,response);
 		}
 		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		SocioService.saveSocio(request);
+		response.sendRedirect("/proyectoBiblioteca/Socios");
 		
 	}
 

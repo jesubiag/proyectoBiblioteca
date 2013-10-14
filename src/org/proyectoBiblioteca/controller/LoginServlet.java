@@ -24,6 +24,7 @@ public class LoginServlet extends HttpServlet {
 		if (action.equals("terminate")){
 			//El usuario solicita desloguearse
 			LoginService.closeSession(request);
+			request.setAttribute("user", null);
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		}
 		
