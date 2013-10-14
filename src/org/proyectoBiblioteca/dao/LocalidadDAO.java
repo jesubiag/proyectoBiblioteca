@@ -99,5 +99,10 @@ public class LocalidadDAO {
 		}
 		
 	}
+
+	public static Localidad findByFields(String provincia, String localidad) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

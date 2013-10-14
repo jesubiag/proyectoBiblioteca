@@ -42,6 +42,8 @@ public class SocioServlet extends HttpServlet {
 			SocioService.retrieveById(request);
 			SocioService.retrieveStatesList(request);
 			request.getRequestDispatcher("/nuevoSocio.jsp").forward(request,response);
+		}else{
+			response.sendRedirect("/proyectoBiblioteca/Socios");
 		}
 		
 	}

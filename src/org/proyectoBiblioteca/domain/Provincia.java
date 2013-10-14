@@ -12,11 +12,11 @@ public class Provincia implements Serializable {
 	//Campos
 	
 	private static final long serialVersionUID = 1L;
-	
+	/*
 	@Id
 	@GeneratedValue (strategy=GenerationType.IDENTITY)
-	private long id;
-	
+	private long id;*/
+	@Id
 	private String nombre;
 
 	//Constructores
@@ -31,14 +31,14 @@ public class Provincia implements Serializable {
 	}
 
 	//Getters y Setters
-	
+	/*
 	public long getId() {
 		return id;
 	}
 
 	public void setId(long id) {
 		this.id = id;
-	}
+	}*/
 
 	public String getNombre() {
 		return nombre;

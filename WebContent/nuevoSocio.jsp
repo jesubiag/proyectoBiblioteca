@@ -40,10 +40,13 @@
         
 	        <h1>Alta/Modificación de Socio</h1>
 	        
-			<form action="Socios" method="post">
-				 
-			      <input type="hidden" class="form-control" name="id" value="${socio.id}">
-      
+			<form class="inputForm" action="Socios" method="post">
+ 
+ 				  <div class="form-group">
+			      Id: 
+			      <input type="text" readonly=readonly class="form-control" name="id" value="${socio.id}">
+			      </div>
+			      
 			      <div class="form-group">
 			      Nombre: 
 			      <input type="text" class="form-control" name="nombre" value="${socio.nombre}">
@@ -82,6 +85,48 @@
 					  	</c:forEach>
 					  </select>
 				  </div>
+				  
+				  <!--  hacer esto con js para poder cambiar las opciones del select al cambiar una provincia -->
+				  
+				  <div class="form-group">
+					  Provincia: 
+					  <select name="provincia" class="form-control">
+					  	<c:forEach var="provincia" items="${provincias}">
+					  		<option value="${provincia.nombre}">${provincia.nombre}</option>
+					  	</c:forEach>
+					  </select>
+				  </div>
+				  
+				  <div class="form-group">
+			     	 Localidad: 
+			     	 <input type="text" class="form-control" name="localidad" value="${socio.direccion.localidad.nombre}">
+			      </div>
+
+				  <div class="form-group">
+			     	 Calle: 
+			     	 <input type="text" class="form-control" name="calle" value="${socio.direccion.calle}">
+			      </div>
+			      
+			      <div class="form-group">
+			     	 Número: 
+			     	 <input type="text" class="form-control" name="numero" value="${socio.direccion.numero}">
+			      </div>		  				  
+				  
+				  <div class="form-group">
+			     	 Código Postal: 
+			     	 <input type="text" class="form-control" name="codigoPostal" value="${socio.direccion.codigoPostal}">
+			      </div>
+			      
+			      <div class="form-group">
+			     	 Piso: 
+			     	 <input type="text" class="form-control" name="piso" value="${socio.direccion.piso}">
+			      </div>
+			      
+			      <div class="form-group">
+			     	 Departamento: 
+			     	 <input type="text" class="form-control" name="departamento" value="${socio.direccion.departamento}">
+			      </div>  				  		  
+				  
 			    <button type="submit" class="btn btn-success">Aceptar</button>
 			    <a href="/proyectoBiblioteca/Socios" class="btn btn-danger">Cancelar</a>
 			</form> 

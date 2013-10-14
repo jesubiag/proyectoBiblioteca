@@ -6,8 +6,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
+
+import org.proyectoBiblioteca.dao.LocalidadDAO;
 import org.proyectoBiblioteca.dao.PersistenceManager;
+import org.proyectoBiblioteca.dao.ProvinciaDAO;
 import org.proyectoBiblioteca.dao.SocioDAO;
+import org.proyectoBiblioteca.domain.Direccion;
+import org.proyectoBiblioteca.domain.Localidad;
+import org.proyectoBiblioteca.domain.Provincia;
 import org.proyectoBiblioteca.domain.Socio;
 import org.proyectoBiblioteca.enums.EstadoSocio;
 
@@ -87,9 +93,27 @@ public class SocioService {
 	
 	public static void retrieveStatesList(HttpServletRequest request){
 
+		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
+		EntityManager em = emf.createEntityManager();
+		
 		try{
 			
 			request.setAttribute("estados", EstadoSocio.values());
+			
+			TypedQuery<Provincia> queryProvincias = em.createNamedQuery("Provincia.findAll",Provincia.class);
+			
+			if(!queryProvincias.getResultList().isEmpty()){
+	
+				request.setAttribute("provincias",queryProvincias.getResultList());
+			}
+			
+			TypedQuery<Localidad> queryLocalidades = em.createNamedQuery("Localidad.findAllActive",Localidad.class);
+			
+			if(!queryLocalidades.getResultList().isEmpty()){
+				
+				request.setAttribute("localidades", queryLocalidades.getResultList());
+			}
+			
 			
 		}catch(NumberFormatException ex){
 			ex.printStackTrace();
@@ -100,16 +124,21 @@ public class SocioService {
 	public static void saveSocio(HttpServletRequest request) {
 
 		Socio socio = null;
+		Localidad localidad = null;
 		
 		//Si es nuevo lo creo, sino lo obtengo
 		
-		if (request.getParameter("id") == null){
+		String parameterId = request.getParameter("id");
+		
+		if ((parameterId.equals("")) || (parameterId == null)){
 			
 			socio = new Socio();
+			Direccion direccion = new Direccion();
+			socio.setDireccion(direccion);
 			socio.setFechaAlta(new Date());
 		}else{
 			
-			socio = SocioDAO.find(Integer.parseInt(request.getParameter("id")));
+			socio = SocioDAO.find(Integer.parseInt(parameterId));
 		}
 		
 		//seteo atributos con los parámetros
@@ -121,10 +150,33 @@ public class SocioService {
 		socio.setTelefono(request.getParameter("telefono"));
 		socio.setRango(Integer.parseInt(request.getParameter("rango")));
 		socio.setEstado(EstadoSocio.valueOf(request.getParameter("estado")));
-		//TODO agregar tema de dirección acá
+		
+		socio.getDireccion().setCalle(request.getParameter("calle"));
+		socio.getDireccion().setNumero(Integer.parseInt(request.getParameter("numero")));
+		socio.getDireccion().setCodigoPostal(request.getParameter("codigoPostal"));
+				
+		String parameterPiso = request.getParameter("piso");
+		
+		String parameterDepartamento = request.getParameter("departamento");
+		 
+		if(!parameterPiso.equals("")){
+			socio.getDireccion().setPiso(Integer.parseInt(parameterPiso));
+		}
+		
+		if(!parameterDepartamento.equals("")){
+			socio.getDireccion().setDepartamento(parameterDepartamento);
+		}
+		
+		localidad = LocalidadDAO.findByFields(request.getParameter("provincia"),request.getParameter("localidad"));
+		
+		if (localidad == null){ //Si es nula es porque no existe, la creo
+			localidad = new Localidad(ProvinciaDAO.find(request.getParameter("provincia")),request.getParameter("localidad"));
+		}
+		
+		socio.getDireccion().setLocalidad(localidad);
+
 		
 		try{
-			
 			SocioDAO.update(socio);
 			
 		}catch(NumberFormatException ex){

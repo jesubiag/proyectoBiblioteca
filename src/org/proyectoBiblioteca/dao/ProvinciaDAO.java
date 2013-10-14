@@ -6,7 +6,7 @@ import org.proyectoBiblioteca.domain.Provincia;
 
 public class ProvinciaDAO {
 
-	public static Provincia find(long id){
+	public static Provincia find(String nombre){
 		
 		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
 		EntityManager em = emf.createEntityManager();
@@ -14,7 +14,7 @@ public class ProvinciaDAO {
 		Provincia provincia = null;
 		
 		try{
-			provincia = em.find(Provincia.class, id);
+			provincia = em.find(Provincia.class, nombre);
 		}
 		catch(Exception ex){
 			System.out.println("Error en find(id) de ProvinciaDAO");
@@ -76,7 +76,7 @@ public class ProvinciaDAO {
 		
 	}
 	
-	public static void delete(long id){
+	public static void delete(String nombre){
 
 		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
 		EntityManager em = emf.createEntityManager();
@@ -85,7 +85,7 @@ public class ProvinciaDAO {
 		tr.begin();
 		
 		try{
-			em.remove(ProvinciaDAO.find(id));
+			em.remove(ProvinciaDAO.find(nombre));
 			tr.commit();
 			System.out.println("Eliminación de provincia exitosa");
 		}

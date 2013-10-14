@@ -61,7 +61,8 @@
 			    		<th>Teléfono</th>
 			    		<th>Rango</th>
 			    		<th>Dirección</th>
-			    		<th >Acción</th>
+			    		<th>Estado</th>
+			    		<th colspan=2 >Acción</th>
 			    	</tr>
 			    	
 			    	<c:forEach var="socio" items="${socios}">
@@ -73,6 +74,7 @@
 				    		<td><c:out value="${socio.telefono}" /></td>
 				    		<td><c:out value="${socio.rango}" /></td>
 				    		<td><c:out value="${socio.direccion}" /></td>
+				    		<td><c:out value="${socio.estado}" /></td>
 				    		<td><a href=${"Socios?action=edit&id="}${socio.id}>Modificar</a></td>
 				    		<td><a href=${"Socios?action=delete&id="}${socio.id}>Inhabilitar</a></td>
 				    	</tr>

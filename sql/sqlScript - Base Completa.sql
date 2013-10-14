@@ -29,20 +29,20 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`direccion` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `biblioteca`.`provincia` (
-`id` bigint NOT NULL AUTO_INCREMENT,
-`nombre` varchar(255) NOT NULL,
- PRIMARY KEY (`id`),
-FULLTEXT(`nombre`)
+	`nombre` varchar(255) NOT NULL,
+	 PRIMARY KEY (`nombre`),
+	FULLTEXT(`nombre`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `biblioteca`.`localidad` (
-`id` bigint NOT NULL AUTO_INCREMENT,
-`nombre` varchar(255) NOT NULL,
-`fechaAlta` date NOT NULL,
-`fechaBaja` date,
-`idProvincia` bigint NOT NULL,
- PRIMARY KEY (`id`),
-FULLTEXT(`nombre`)
+	`id` bigint NOT NULL AUTO_INCREMENT,
+	`nombre` varchar(255) NOT NULL,
+	`fechaAlta` date NOT NULL,
+	`fechaBaja` date,
+	`idProvincia` varchar(255) NOT NULL,
+	`activo` boolean NOT NULL,
+	 PRIMARY KEY (`id`),
+	FULLTEXT(`nombre`,`idProvincia`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `biblioteca`.`diasNoHabiles` (
@@ -70,17 +70,17 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`usuario` (
 
 
 CREATE TABLE IF NOT EXISTS `biblioteca`.`editorial` (
-`id` bigint NOT NULL AUTO_INCREMENT,
-`nombre` varchar(255) NOT NULL,
-`email` varchar(255) NOT NULL,
-/*`telefono` varchar(255),*/
-/*`idDirección` bigint,*/
-`activo` boolean NOT NULL,
-`fechaAlta` date NOT NULL,
-`fechaBaja` date,
- PRIMARY KEY (`id`),
-/*FULLTEXT(`nombre`,`email`, `telefono`)*/
-FULLTEXT(`nombre`,`email`)
+	`id` bigint NOT NULL AUTO_INCREMENT,
+	`nombre` varchar(255) NOT NULL,
+	`email` varchar(255) NOT NULL,
+	/*`telefono` varchar(255),*/
+	/*`idDirección` bigint,*/
+	`activo` boolean NOT NULL,
+	`fechaAlta` date NOT NULL,
+	`fechaBaja` date,
+	 PRIMARY KEY (`id`),
+	/*FULLTEXT(`nombre`,`email`, `telefono`)*/
+	FULLTEXT(`nombre`,`email`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `biblioteca`.`autor` (

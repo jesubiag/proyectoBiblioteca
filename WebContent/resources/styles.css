@@ -2,12 +2,8 @@ tr,th {
 	text-align:center;
 }
 
-form {
+.inputForm {
 	max-width:400px;
-}
-
-form button {
-
 }
 
 #main {
