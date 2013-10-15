@@ -45,7 +45,7 @@ public class Socio implements Serializable {
 	private Date fechaBaja;
 	
 	@Enumerated (EnumType.STRING)
-	private EstadoSocio estado;
+	private EstadoSocio estado = EstadoSocio.habilitado;
 
 	//Constructores
 	
@@ -62,7 +62,6 @@ public class Socio implements Serializable {
 		this.email = email;
 		this.telefono = telefono;
 		this.fechaAlta = new Date();
-		this.estado = EstadoSocio.habilitado;
 		this.rango = 5; //TODO plantear esto para ver si es correcto
 		this.direccion = direccion;
 	}

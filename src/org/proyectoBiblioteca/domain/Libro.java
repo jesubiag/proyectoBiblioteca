@@ -3,21 +3,31 @@ package org.proyectoBiblioteca.domain;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.TypedQuery;
+
+import org.proyectoBiblioteca.dao.PersistenceManager;
+import org.proyectoBiblioteca.utils.Utilidades;
 
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "Libro.findAll", query = "Select l From Libro l"),
+	@NamedQuery(name = "Libro.findAllActive", query = "Select l From Libro l Where l.activo = true"),
 	@NamedQuery(name = "Libro.findByTitle", query = "Select l From Libro l Where l.titulo = :titulo")//TODO usar like para la query
 })
 public class Libro implements Serializable{
@@ -32,8 +42,12 @@ public class Libro implements Serializable{
 
 	private boolean activo = true;
 	
-	@OneToMany
-	@JoinColumn(name = "id")
+	@OneToMany (cascade = CascadeType.PERSIST, orphanRemoval = true)
+	@JoinTable(name = "relacionautorlibro", joinColumns = {
+	        @JoinColumn(name = "idLibro", referencedColumnName = "id")
+	    }, inverseJoinColumns = {
+	        @JoinColumn(name = "idAutor", referencedColumnName = "id")
+	    })
 	private List<Autor> autores;
 	
 	@ManyToOne
@@ -60,7 +74,7 @@ public class Libro implements Serializable{
 	
 	//Constructores
 	
-	Libro(){
+	public Libro(){
 		
 	}
 	
@@ -159,6 +173,63 @@ public class Libro implements Serializable{
 
 	public void setFechaAlta(Date fechaAlta) {
 		this.fechaAlta = fechaAlta;
+	}
+	
+	//Métodos
+	
+	public String getStringFechaAlta(){
+		return Utilidades.getSimpleDate(this.fechaAlta);
+	}
+	
+	public String getStringFechaBaja(){
+		return Utilidades.getSimpleDate(this.fechaBaja);
+	}
+	
+	public String getListaAutores(){
+		
+		String ret = null;
+
+		if (this.autores.size() > 1){
+			
+			for(Autor autor : this.autores){
+				
+				ret = autor.getNombre() + ", " + ret;
+			}			
+			
+		}else{
+			ret = this.autores.get(0).getNombre();
+		}
+		
+		return ret;
+	}
+	
+	//TODO revisar si es correcto hacerlo de esta manera o hay una mejor
+	
+	public List<Ejemplar> getEjemplares(){
+		
+		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
+		EntityManager em = emf.createEntityManager();
+		
+		List<Ejemplar> ejemplares = null;
+		
+		try{
+			
+			TypedQuery<Ejemplar> query = em.createNamedQuery("Ejemplar.findByBookId",Ejemplar.class);
+			
+			query.setParameter("idLibro", this.id);
+			
+			if(!query.getResultList().isEmpty()){
+	
+				ejemplares = query.getResultList();
+			}
+			
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}finally{
+			em.close();
+		}
+		
+		return ejemplares;
 	}
 	
 }

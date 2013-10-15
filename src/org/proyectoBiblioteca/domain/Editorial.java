@@ -18,6 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 import org.proyectoBiblioteca.dao.PersistenceManager;
+import org.proyectoBiblioteca.utils.Utilidades;
 
 @Entity
 @NamedQueries({
@@ -112,12 +113,28 @@ public class Editorial implements Serializable{
 	public List<Direccion> getDirecciones(){
 		return direcciones;
 	}
+	
+	//Métodos
+	
+	public String getStringFechaAlta(){
+		return Utilidades.getSimpleDate(this.fechaAlta);
+	}
+	
+	public String getStringFechaBaja(){
+		return Utilidades.getSimpleDate(this.fechaBaja);
+	}
+	
 	public String getListaDirecciones(){
 		
 		String ret = null;
 		
-		for(Direccion direccion : this.direcciones){
-			ret = direccion + "; " + ret;
+		if(this.direcciones.size() > 1){
+			
+			for(Direccion direccion : this.direcciones){
+				ret = direccion + "; " + ret;
+			}	
+		}else{
+			ret = this.direcciones.get(0).toString();
 		}
 		
 		return ret;
@@ -146,12 +163,14 @@ public class Editorial implements Serializable{
 			ex.printStackTrace();
 		}
 		
-		if (telefonos != null){
+		if (telefonos.size() > 1){
 			
 			for(TelefonoDeEditorial telefono : telefonos ){
 				ret = telefono.getTelefono() + "; " + ret;
 			}
 			
+		}else{
+			ret = telefonos.get(1).getTelefono();
 		}
 		
 		return ret;

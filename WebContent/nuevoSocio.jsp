@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="resources/bootstrap/assets/ico/favicon.png">
 
-    <title>Administración de Socios - Biblioteca</title>
+    <title>Alta/Modificación de Socio - Biblioteca</title>
 
     <!-- CSS -->
     <link href="resources/bootstrap/dist/css/bootstrap.css" rel="stylesheet">

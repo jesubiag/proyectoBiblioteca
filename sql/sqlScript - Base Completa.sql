@@ -101,11 +101,12 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`ejemplar` (
 	`pasillo` varchar(255) NOT NULL,
 	`estado` varchar(255) NOT NULL,
 	`fechaBaja` date,
+	`motivoBaja` varchar(255),
 	`fechaAlta`date NOT NULL,
 	`numeroEjemplar` int NOT NULL,
 	`precioDolares` int NOT NULL,
 	PRIMARY KEY (`id`),
-	FULLTEXT(`estante`, `mueble`, `pasillo`, `estado`)
+	FULLTEXT(`estante`, `mueble`, `pasillo`, `estado`, `motivoBaja`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `biblioteca`.`reserva` (

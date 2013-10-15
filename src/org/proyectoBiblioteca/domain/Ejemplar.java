@@ -16,11 +16,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.proyectoBiblioteca.enums.EstadoEjemplar;
+import org.proyectoBiblioteca.utils.Utilidades;
 
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "Ejemplar.findAll", query = "Select e From Ejemplar e"),
-	//@NamedQuery(name = "Ejemplar.findByTitle", query = "Select e From Ejemplar e Where e. ...") TODO armar la query - Join entre libro y ejemplar por idLibro
+	@NamedQuery(name = "Ejemplar.findAllActive", query = "Select e From Ejemplar e Where e.estado <> org.proyectoBiblioteca.enums.EstadoEjemplar.inhabilitado"),
+	@NamedQuery(name = "Ejemplar.findByBookId", query = "Select e From Ejemplar e Where e.libro.id = :idLibro")
 })
 public class Ejemplar implements Serializable{
 
@@ -45,7 +47,7 @@ public class Ejemplar implements Serializable{
 	private String pasillo;
 	
 	@Enumerated (EnumType.STRING)
-	private EstadoEjemplar estado;
+	private EstadoEjemplar estado = EstadoEjemplar.disponible;
 	
 	private long numeroEjemplar;
 	
@@ -57,9 +59,11 @@ public class Ejemplar implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date fechaBaja;
 	
-	//Constructores
+	private String motivoBaja;
 	
-	Ejemplar(){
+	//Constructores
+
+	public Ejemplar(){
 		
 	}
 	
@@ -72,7 +76,6 @@ public class Ejemplar implements Serializable{
 		this.estante = estante;
 		this.mueble = mueble;
 		this.pasillo = pasillo;
-		this.estado = EstadoEjemplar.disponible;
 		this.numeroEjemplar = numeroEjemplar;
 		this.precioDolares = precioDolares;
 		this.fechaAlta = new Date();
@@ -146,8 +149,37 @@ public class Ejemplar implements Serializable{
 		return id;
 	}
 	
+	public Date getFechaAlta() {
+		return fechaAlta;
+	}
+
+	public void setFechaAlta(Date fechaAlta) {
+		this.fechaAlta = fechaAlta;
+	}
+
+	public Date getFechaBaja() {
+		return fechaBaja;
+	}
+
+	public void setFechaBaja(Date fechaBaja) {
+		this.fechaBaja = fechaBaja;
+	}
+
+	public String getMotivoBaja() {
+		return motivoBaja;
+	}
+
+	public void setMotivoBaja(String motivoBaja) {
+		this.motivoBaja = motivoBaja;
+	}
 	
+	//Métodos
 	
+	public String getStringFechaAlta(){
+		return Utilidades.getSimpleDate(this.fechaAlta);
+	}
 	
-	
+	public String getStringFechaBaja(){
+		return Utilidades.getSimpleDate(this.fechaBaja);
+	}
 }

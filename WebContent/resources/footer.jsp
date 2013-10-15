@@ -8,4 +8,4 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="resources/bootstrap/assets/js/jquery.js"></script>
     <script src="resources/bootstrap/dist/js/bootstrap.min.js"></script>
-
+  

@@ -70,7 +70,7 @@ public class SocioService {
 			
 			SocioDAO.update(socio);
 			
-		}catch(NumberFormatException ex){
+		}catch(Exception ex){
 			ex.printStackTrace();
 		}
 		//TODO revisar este método, ver si aviso o no cuando tengo éxito
@@ -85,7 +85,7 @@ public class SocioService {
 			
 			request.setAttribute("socio", socio);
 			
-		}catch(NumberFormatException ex){
+		}catch(Exception ex){
 			ex.printStackTrace();
 		}
 		
@@ -115,7 +115,7 @@ public class SocioService {
 			}
 			
 			
-		}catch(NumberFormatException ex){
+		}catch(Exception ex){
 			ex.printStackTrace();
 		}
 		

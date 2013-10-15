@@ -64,4 +64,24 @@
     <servlet-name>DiaNoHabilServlet</servlet-name>
     <url-pattern>/DiasNoHabiles</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LibroServlet</display-name>
+    <servlet-name>LibroServlet</servlet-name>
+    <servlet-class>org.proyectoBiblioteca.controller.LibroServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LibroServlet</servlet-name>
+    <url-pattern>/Libros</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EjemplarServlet</display-name>
+    <servlet-name>EjemplarServlet</servlet-name>
+    <servlet-class>org.proyectoBiblioteca.controller.EjemplarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EjemplarServlet</servlet-name>
+    <url-pattern>/Ejemplares</url-pattern>
+  </servlet-mapping>
 </web-app>
