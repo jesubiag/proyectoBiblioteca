@@ -62,6 +62,7 @@
 			    		<th>Rango</th>
 			    		<th>Dirección</th>
 			    		<th>Estado</th>
+			    		<th>Fecha Alta</th>
 			    		<th colspan=2 >Acción</th>
 			    	</tr>
 			    	
@@ -75,6 +76,7 @@
 				    		<td><c:out value="${socio.rango}" /></td>
 				    		<td><c:out value="${socio.direccion}" /></td>
 				    		<td><c:out value="${socio.estado}" /></td>
+				    		<!--  <td><c:out value="${socio.stringFechaAlta}" /></td> -->
 				    		<td><a href=${"Socios?action=edit&id="}${socio.id}><span class="glyphicon glyphicon-pencil"></span></a></td>
 				    		<td><a href=${"Socios?action=delete&id="}${socio.id}><span class="glyphicon glyphicon-remove"></span></a></td>
 				    	</tr>

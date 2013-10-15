@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 import org.proyectoBiblioteca.enums.EstadoSocio;
+import org.proyectoBiblioteca.utils.Utilidades;
 
 @Entity
 @NamedQueries({
@@ -156,5 +157,13 @@ public class Socio implements Serializable {
 		this.direccion = direccion;
 	}
 
+	//Métodos
 	
+	public String getStringFechaAlta(){
+		return Utilidades.getSimpleDate(this.fechaAlta);
+	}
+	
+	public String getStringFechaBaja(){
+		return Utilidades.getSimpleDate(this.fechaBaja);
+	}
 }

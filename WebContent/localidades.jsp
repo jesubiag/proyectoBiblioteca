@@ -64,7 +64,7 @@
 				    	<tr>
 				    		<td><c:out value="${localidad.nombre}" /></td>
 				    		<td><c:out value="${localidad.provincia.nombre}" /></td>
-				    		<td><c:out value="${localidad.fechaAlta}" /></td>
+				    		<td><c:out value="${localidad.stringFechaAlta}" /></td>
 				    		<td><a href=${"Localidades?action=edit&id="}${localidad.id}><span class="glyphicon glyphicon-pencil"></span></a></td>
 				    		<td><a href=${"Localidades?action=delete&id="}${localidad.id}><span class="glyphicon glyphicon-remove"></span></a></td>
 				    	</tr>

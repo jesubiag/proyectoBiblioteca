@@ -65,7 +65,7 @@
 			    	<c:forEach var="editorial" items="${editoriales}">
 				    	<tr>
 				    		<td><c:out value="${editorial.nombre}" /></td>
-				    		<td><c:out value="${editorial.fechaAlta}" /></td>
+				    		<td><c:out value="${editorial.stringFechaAlta}" /></td>
 				    		<td><c:out value="${editorial.email}" /></td>				    		
 				    		<td><c:out value="${editorial.listaTelefonos}" /></td>
 				    		<td><c:out value="${editorial.listaDirecciones}" /></td>

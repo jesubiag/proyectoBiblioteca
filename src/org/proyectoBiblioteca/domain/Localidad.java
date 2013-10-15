@@ -3,6 +3,8 @@ package org.proyectoBiblioteca.domain;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.proyectoBiblioteca.utils.Utilidades;
+
 import java.util.Date;
 
 @Entity
@@ -95,6 +97,16 @@ public class Localidad implements Serializable {
 
 	public void setActivo(boolean activo) {
 		this.activo = activo;
+	}
+	
+	//Métodos
+	
+	public String getStringFechaAlta(){
+		return Utilidades.getSimpleDate(this.fechaAlta);
+	}
+	
+	public String getStringFechaBaja(){
+		return Utilidades.getSimpleDate(this.fechaBaja);
 	}
 
 }

@@ -10,6 +10,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.proyectoBiblioteca.utils.Utilidades;
+
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "Autor.findAll", query = "Select a From Autor a"),
@@ -88,5 +90,14 @@ public class Autor implements Serializable{
 		this.fechaAlta = fechaAlta;
 	}
 
+	//Métodos
+	
+	public String getStringFechaAlta(){
+		return Utilidades.getSimpleDate(this.fechaAlta);
+	}
+	
+	public String getStringFechaBaja(){
+		return Utilidades.getSimpleDate(this.fechaBaja);
+	}
 	
 }

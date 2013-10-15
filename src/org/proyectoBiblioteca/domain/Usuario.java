@@ -12,6 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.proyectoBiblioteca.enums.TipoUsuario;
+import org.proyectoBiblioteca.utils.Utilidades;
 
 @Entity
 @NamedQueries({
@@ -114,6 +115,16 @@ public class Usuario implements Serializable{
 
 	public void setFechaBaja(Date fechaBaja) {
 		this.fechaBaja = fechaBaja;
+	}
+	
+	//Métodos
+	
+	public String getStringFechaAlta(){
+		return Utilidades.getSimpleDate(this.fechaAlta);
+	}
+	
+	public String getStringFechaBaja(){
+		return Utilidades.getSimpleDate(this.fechaBaja);
 	}
 	
 }

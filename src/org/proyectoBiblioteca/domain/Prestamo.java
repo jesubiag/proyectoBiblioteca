@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 import org.proyectoBiblioteca.enums.EstadoPrestamo;
+import org.proyectoBiblioteca.utils.Utilidades;
 
 /**
  * Entity implementation class for Entity: Prestamo
@@ -163,6 +164,20 @@ public class Prestamo implements Serializable {
 
 	public long getId() {
 		return id;
+	}
+	
+	//Métodos
+	
+	public String getStringFechaAcordada(){
+		return Utilidades.getSimpleDate(this.fechaAcordada);
+	}
+	
+	public String getStringFechaPrestamo(){
+		return Utilidades.getSimpleDate(this.fechaPrestamo);
+	}
+	
+	public String getStringFechaDevolucion(){
+		return Utilidades.getSimpleDate(this.fechaDevolucion);
 	}
 	
 }

@@ -42,7 +42,7 @@ public class Libro implements Serializable{
 
 	private boolean activo = true;
 	
-	@OneToMany (cascade = CascadeType.PERSIST, orphanRemoval = true)
+	@OneToMany (cascade = CascadeType.PERSIST)
 	@JoinTable(name = "relacionautorlibro", joinColumns = {
 	        @JoinColumn(name = "idLibro", referencedColumnName = "id")
 	    }, inverseJoinColumns = {

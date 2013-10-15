@@ -63,7 +63,7 @@
 			    	<c:forEach var="autor" items="${autores}">
 				    	<tr>
 				    		<td><c:out value="${autor.nombre}" /></td>
-				    		<td><c:out value="${autor.fechaAlta}" /></td>
+				    		<td><c:out value="${autor.stringFechaAlta}" /></td>
 				    		<td><c:out value="${autor.paisOrigen}" /></td>				    		
 				    		<td><a href=${"Autores?action=edit&id="}${autor.id}><span class="glyphicon glyphicon-pencil"></span></a></td>
 				    		<td><a href=${"Autores?action=delete&id="}${autor.id}><span class="glyphicon glyphicon-remove"></span></a></td>

@@ -1,6 +1,7 @@
 package org.proyectoBiblioteca.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -134,7 +135,9 @@ public class Editorial implements Serializable{
 				ret = direccion + "; " + ret;
 			}	
 		}else{
-			ret = this.direcciones.get(0).toString();
+			if(this.direcciones.size()>0){
+				ret = this.direcciones.get(0).toString();
+			}
 		}
 		
 		return ret;
@@ -143,7 +146,7 @@ public class Editorial implements Serializable{
 	public String getListaTelefonos(){
 		
 		String ret = null;
-		List<TelefonoDeEditorial> telefonos = null;
+		List<TelefonoDeEditorial> telefonos = new ArrayList<TelefonoDeEditorial>();
 		
 		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
 		EntityManager em = emf.createEntityManager();
@@ -170,7 +173,9 @@ public class Editorial implements Serializable{
 			}
 			
 		}else{
-			ret = telefonos.get(1).getTelefono();
+			if(telefonos.size() > 0){
+				ret = telefonos.get(1).getTelefono();
+			}
 		}
 		
 		return ret;
