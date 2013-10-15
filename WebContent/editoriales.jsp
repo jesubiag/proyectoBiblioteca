@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="resources/bootstrap/assets/ico/favicon.png">
 
-    <title>Administración de Socios - Biblioteca</title>
+    <title>Administración de Editoriales - Biblioteca</title>
 
     <!-- CSS -->
     <link href="resources/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
@@ -37,46 +37,40 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h1>Administración de Socios</h1>
+        <h1>Administración de Editoriales</h1>
         
 		<p class="buttonGroup">
-			<a href="Socios?action=new" class="btn btn-success btn-lg">Registrar Socio  <span class="glyphicon glyphicon-plus"></span></a>
+			<a href="Editoriales?action=new" class="btn btn-success btn-lg">Registrar Editorial  <span class="glyphicon glyphicon-plus"></span></a>
 			<a href="menu.jsp" class="btn btn-warning btn-lg">Volver al Menú  <span class="glyphicon glyphicon-backward"></span></a>
 		</p>	        
         
-        <!--  Tabla de socios -->
+        <!--  Tabla -->
         
 		<div class="panel panel-primary">
 	  		<!-- Default panel contents -->
-	  		<div class="panel-heading">Socios Registrados</div>	
+	  		<div class="panel-heading">Editoriales Registradas</div>	
 			
 			<div class="table-responsive">
 			    <table class="table">
 			    
 			    	<tr>
 			    		<th>Nombre</th>
-			    		<th>Apellido</th>
-			    		<th>Dni</th>
+			    		<th>Fecha Alta</th>
 			    		<th>Email</th>
-			    		<th>Teléfono</th>
-			    		<th>Rango</th>
-			    		<th>Dirección</th>
-			    		<th>Estado</th>
+			    		<th>Teléfonos</th>
+			    		<th>Direcciones</th>
 			    		<th colspan=2 >Acción</th>
 			    	</tr>
 			    	
-			    	<c:forEach var="socio" items="${socios}">
+			    	<c:forEach var="editorial" items="${editoriales}">
 				    	<tr>
-				    		<td><c:out value="${socio.nombre}" /></td>
-				    		<td><c:out value="${socio.apellido}" /></td>
-				    		<td><c:out value="${socio.dni}" /></td>
-				    		<td><c:out value="${socio.email}" /></td>
-				    		<td><c:out value="${socio.telefono}" /></td>
-				    		<td><c:out value="${socio.rango}" /></td>
-				    		<td><c:out value="${socio.direccion}" /></td>
-				    		<td><c:out value="${socio.estado}" /></td>
-				    		<td><a href=${"Socios?action=edit&id="}${socio.id}><span class="glyphicon glyphicon-pencil"></span></a></td>
-				    		<td><a href=${"Socios?action=delete&id="}${socio.id}><span class="glyphicon glyphicon-remove"></span></a></td>
+				    		<td><c:out value="${editorial.nombre}" /></td>
+				    		<td><c:out value="${editorial.fechaAlta}" /></td>
+				    		<td><c:out value="${editorial.email}" /></td>				    		
+				    		<td><c:out value="${editorial.listaTelefonos}" /></td>
+				    		<td><c:out value="${editorial.listaDirecciones}" /></td>
+				    		<td><a href=${"Editoriales?action=edit&id="}${editorial.id}><span class="glyphicon glyphicon-pencil"></span></a></td>
+				    		<td><a href=${"Editoriales?action=delete&id="}${editorial.id}><span class="glyphicon glyphicon-remove"></span></a></td>
 				    	</tr>
 			    	</c:forEach>
 			    

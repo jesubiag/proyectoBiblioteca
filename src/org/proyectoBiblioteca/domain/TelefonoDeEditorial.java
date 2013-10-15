@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@NamedQuery(name = "TelefonoDeEditorial.findByEditorial", query = "Select t From TelefonoDeEditorial t Where t.editorial = :editorial")
+@NamedQuery(name = "TelefonoDeEditorial.findByEditorial", query = "Select t From TelefonoDeEditorial t Where t.editorial.id = :idEditorial")
 @Table (name="telefonosdeeditorial")
 public class TelefonoDeEditorial implements Serializable {
 	

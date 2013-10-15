@@ -138,10 +138,10 @@ public class SocioService {
 			socio.setFechaAlta(new Date());
 		}else{
 			
-			socio = SocioDAO.find(Integer.parseInt(parameterId));
+			socio = SocioDAO.find(Long.parseLong(parameterId));
 		}
 		
-		//seteo atributos con los parámetros
+		//seteo atributos del socio con los parámetros de la request
 
 		socio.setNombre(request.getParameter("nombre"));
 		socio.setApellido(request.getParameter("apellido"));

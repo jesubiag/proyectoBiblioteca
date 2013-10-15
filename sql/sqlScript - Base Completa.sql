@@ -73,8 +73,6 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`editorial` (
 	`id` bigint NOT NULL AUTO_INCREMENT,
 	`nombre` varchar(255) NOT NULL,
 	`email` varchar(255) NOT NULL,
-	/*`telefono` varchar(255),*/
-	/*`idDirección` bigint,*/
 	`activo` boolean NOT NULL,
 	`fechaAlta` date NOT NULL,
 	`fechaBaja` date,

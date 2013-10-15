@@ -1,8 +1,6 @@
 package org.proyectoBiblioteca.domain;
-
 import java.io.Serializable;
 import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +13,7 @@ import javax.persistence.TemporalType;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "Autor.findAll", query = "Select a From Autor a"),
+	@NamedQuery(name = "Autor.findAllActive", query = "Select a From Autor a Where a.activo = true"),
 	@NamedQuery(name = "Autor.findByName", query = "Select a From Autor a Where a.nombre = :nombre") //TODO quizás usar like
 })
 public class Autor implements Serializable{
@@ -41,7 +40,7 @@ public class Autor implements Serializable{
 	
 	//Constructores
 	
-	Autor(){
+	public Autor(){
 		
 	}
 	
@@ -61,11 +60,9 @@ public class Autor implements Serializable{
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
-	
 	public long getId() {
 		return id;
 	}
-
 	public String getNombre() {
 		return nombre;
 	}
@@ -87,5 +84,9 @@ public class Autor implements Serializable{
 	public Date getFechaAlta() {
 		return fechaAlta;
 	}
+	public void setFechaAlta(Date fechaAlta) {
+		this.fechaAlta = fechaAlta;
+	}
+
 	
 }

@@ -48,3 +48,9 @@ footer {
   	-webkit-box-shadow: 0 0 1px #4f4f4f;
   	box-shadow: 0 0 1px #4f4f4f;
 }
+
+.buttonGroup {
+	margin-top:20px;
+	margin-bottom:10px;
+	text-align:right;
+}

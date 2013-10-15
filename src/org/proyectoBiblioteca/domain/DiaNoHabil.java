@@ -2,13 +2,14 @@ package org.proyectoBiblioteca.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
+import org.proyectoBiblioteca.utils.Utilidades;
 import java.util.Date;
 
 @Entity
 @Table(name="diasnohabiles")
 @NamedQueries({
 	@NamedQuery(name = "DiaNoHabil.findAll", query = "Select d From DiaNoHabil d"),
+	@NamedQuery(name = "DiaNoHabil.findAllActive", query = "Select d From DiaNoHabil d Where d.activo = true")
 	//@NamedQuery(name = "DiaNoHabil.findByMonth", query = "Select l From Libro l Where l.titulo = :titulo")//TODO armar query para traer fechas para mes o año, ver bien
 })
 public class DiaNoHabil implements Serializable {
@@ -19,7 +20,7 @@ public class DiaNoHabil implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private String id;
+	private Long id;
 
 	private boolean activo = true;
 
@@ -45,7 +46,7 @@ public class DiaNoHabil implements Serializable {
 
 	//Getters y Setters
 	
-	public String getId() {
+	public Long getId() {
 		return this.id;
 	}
 
@@ -79,6 +80,16 @@ public class DiaNoHabil implements Serializable {
 
 	public void setMotivo(String motivo) {
 		this.motivo = motivo;
+	}
+		
+	//Métodos
+	
+	public String getStringFecha() {
+		return Utilidades.getSimpleDate(fecha);
+	}
+	
+	public String getStringFechaSiguiente() {
+		return Utilidades.getSimpleDate(fechaSiguiente);
 	}
 
 }

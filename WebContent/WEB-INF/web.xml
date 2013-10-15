@@ -24,4 +24,44 @@
     <servlet-name>SocioServlet</servlet-name>
     <url-pattern>/Socios</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AutorServlet</display-name>
+    <servlet-name>AutorServlet</servlet-name>
+    <servlet-class>org.proyectoBiblioteca.controller.AutorServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AutorServlet</servlet-name>
+    <url-pattern>/Autores</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditorialServlet</display-name>
+    <servlet-name>EditorialServlet</servlet-name>
+    <servlet-class>org.proyectoBiblioteca.controller.EditorialServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditorialServlet</servlet-name>
+    <url-pattern>/Editoriales</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LocalidadServlet</display-name>
+    <servlet-name>LocalidadServlet</servlet-name>
+    <servlet-class>org.proyectoBiblioteca.controller.LocalidadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LocalidadServlet</servlet-name>
+    <url-pattern>/Localidades</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DiaNoHabilServlet</display-name>
+    <servlet-name>DiaNoHabilServlet</servlet-name>
+    <servlet-class>org.proyectoBiblioteca.controller.DiaNoHabilServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DiaNoHabilServlet</servlet-name>
+    <url-pattern>/DiasNoHabiles</url-pattern>
+  </servlet-mapping>
 </web-app>

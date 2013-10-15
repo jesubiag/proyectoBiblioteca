@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,10 +16,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.TypedQuery;
+import org.proyectoBiblioteca.dao.PersistenceManager;
 
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "Editorial.findAll", query = "Select e From Editorial e"),
+	@NamedQuery(name = "Editorial.findAllActive", query = "Select e From Editorial e Where e.activo = true"),
 	@NamedQuery(name = "Editorial.findByName", query = "Select e From Editorial e Where e.nombre = :nombre")
 })
 public class Editorial implements Serializable{
@@ -50,7 +55,7 @@ public class Editorial implements Serializable{
 	
 	//Constructores
 	
-	Editorial(){
+	public Editorial(){
 		
 	}
 	
@@ -106,5 +111,49 @@ public class Editorial implements Serializable{
 	}
 	public List<Direccion> getDirecciones(){
 		return direcciones;
+	}
+	public String getListaDirecciones(){
+		
+		String ret = null;
+		
+		for(Direccion direccion : this.direcciones){
+			ret = direccion + "; " + ret;
+		}
+		
+		return ret;
+	}
+	
+	public String getListaTelefonos(){
+		
+		String ret = null;
+		List<TelefonoDeEditorial> telefonos = null;
+		
+		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
+		EntityManager em = emf.createEntityManager();
+		
+		TypedQuery<TelefonoDeEditorial> query = em.createNamedQuery("TelefonoDeEditorial.findByEditorial",TelefonoDeEditorial.class);
+		
+		query.setParameter("idEditorial",this.id);
+		
+		try{
+			
+			if(!query.getResultList().isEmpty()){
+
+				telefonos = query.getResultList();
+			}
+			
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		
+		if (telefonos != null){
+			
+			for(TelefonoDeEditorial telefono : telefonos ){
+				ret = telefono.getTelefono() + "; " + ret;
+			}
+			
+		}
+		
+		return ret;
 	}
 }

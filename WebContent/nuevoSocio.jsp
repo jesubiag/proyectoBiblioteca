@@ -28,7 +28,7 @@
   
   <!-- Veo si no está logueado, lo mando al login en caso de que no -->   
    <c:if test="${empty user}">  
-   	<jsp:forward page="/" />
+   	<jsp:forward page="index.jsp" />
    </c:if>
    
 <!-- Incluyo el header -->
@@ -127,8 +127,10 @@
 			     	 <input type="text" class="form-control" name="departamento" value="${socio.direccion.departamento}">
 			      </div>  				  		  
 				  
-			    <button type="submit" class="btn btn-success">Aceptar</button>
-			    <a href="/proyectoBiblioteca/Socios" class="btn btn-danger">Cancelar</a>
+				  <p class="buttonGroup">
+			    	<button type="submit" class="btn btn-success">Aceptar</button>
+			    	<a href="/proyectoBiblioteca/Socios" class="btn btn-danger">Cancelar</a>
+			      </p>
 			</form> 
 
 		</div>       
