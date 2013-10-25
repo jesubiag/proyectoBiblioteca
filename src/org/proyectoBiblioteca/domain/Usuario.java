@@ -39,7 +39,7 @@ public class Usuario implements Serializable{
 	
 	@Enumerated (EnumType.STRING)
 	private TipoUsuario tipoUsuario;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Date fechaAlta;
 	
@@ -116,6 +116,19 @@ public class Usuario implements Serializable{
 	public void setFechaBaja(Date fechaBaja) {
 		this.fechaBaja = fechaBaja;
 	}
+	
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+	
+	public TipoUsuario getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(TipoUsuario tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
+
 	
 	//Métodos
 	

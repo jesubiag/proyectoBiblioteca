@@ -1,7 +1,6 @@
 package org.proyectoBiblioteca.dao;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import org.proyectoBiblioteca.domain.Prestamo;
 
@@ -9,20 +8,19 @@ public class PrestamoDAO {
 	
 	public static Prestamo find(long id){
 		
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager entityManager = PersistenceManager.getEntityManager();
 		
 		Prestamo prestamo = null;
 		
 		try{
-			prestamo = em.find(Prestamo.class, id);
+			prestamo = entityManager.find(Prestamo.class, id);
 		}
 		catch(Exception ex){
 			System.out.println("Error en find(nombre) de PrestamoDAO");
 			ex.printStackTrace();
 		}
 		finally {
-			em.close();
+			entityManager.close();
 		}
 		
 		return prestamo;
@@ -31,14 +29,14 @@ public class PrestamoDAO {
 
 	public static void create(Prestamo prestamo){
 		
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager entityManager = PersistenceManager.getEntityManager();
 		
-		EntityTransaction tr = em.getTransaction();
+		EntityTransaction tr = entityManager.getTransaction();
+		
 		tr.begin();
 		
 		try{
-			em.persist(prestamo);
+			entityManager.persist(prestamo);
 			tr.commit();
 			System.out.println("Creación de prestamo " + prestamo.getId() + " exitosa");
 		}
@@ -48,21 +46,21 @@ public class PrestamoDAO {
 			ex.printStackTrace();
 		}
 		finally {
-			em.close();
+			entityManager.close();
 		}
 		
 	}
 	
 	public static void update(Prestamo prestamo){
 		
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager entityManager = PersistenceManager.getEntityManager();
 
-		EntityTransaction tr = em.getTransaction();
+		EntityTransaction tr = entityManager.getTransaction();
+		
 		tr.begin();
 		
 		try{
-			em.merge(prestamo);
+			entityManager.merge(prestamo);
 			tr.commit();
 			System.out.println("Actualización de prestamo exitosa");
 		}
@@ -72,21 +70,21 @@ public class PrestamoDAO {
 			ex.printStackTrace();
 		}
 		finally {
-			em.close();
+			entityManager.close();
 		}
 		
 	}
 	
 	public static void delete(long id){
 
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager entityManager = PersistenceManager.getEntityManager();
 		
-		EntityTransaction tr = em.getTransaction();
+		EntityTransaction tr = entityManager.getTransaction();
+		
 		tr.begin();
 		
 		try{
-			em.remove(PrestamoDAO.find(id));
+			entityManager.remove(PrestamoDAO.find(id));
 			tr.commit();
 			System.out.println("Eliminación de prestamo exitosa");
 		}
@@ -96,7 +94,7 @@ public class PrestamoDAO {
 			ex.printStackTrace();
 		}
 		finally {
-			em.close();
+			entityManager.close();
 		}
 		
 	}

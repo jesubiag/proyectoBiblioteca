@@ -80,7 +80,7 @@ public class DiaNoHabilService {
 		
 		String parameterId = request.getParameter("id");
 		
-		if ((parameterId.equals("")) || (parameterId == null)){
+		if ("".equals(parameterId) || null == parameterId){
 			
 			diaNoHabil = new DiaNoHabil();
 

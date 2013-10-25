@@ -81,7 +81,7 @@ public class EditorialService {
 		
 		String parameterId = request.getParameter("id");
 		
-		if ((parameterId.equals("")) || (parameterId == null)){
+		if ("".equals(parameterId) || null == parameterId){
 			
 			editorial = new Editorial();
 			editorial.setFechaAlta(new Date());

@@ -1,27 +1,27 @@
 package org.proyectoBiblioteca.dao;
+
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+
 import org.proyectoBiblioteca.domain.Localidad;
 
 public class LocalidadDAO {
 
 	public static Localidad find(long id){
 		
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager entityManager = PersistenceManager.getEntityManager();
 		
 		Localidad localidad = null;
 		
 		try{
-			localidad = em.find(Localidad.class, id);
+			localidad = entityManager.find(Localidad.class, id);
 		}
 		catch(Exception ex){
-			System.out.println("Error en find(id) de LocalidadDAO");
-			ex.printStackTrace();
+			System.err.println("Error en LocalidadDAO.find" + "(" + Thread.currentThread().getStackTrace()[1].getLineNumber() + "):" + ex.getLocalizedMessage());
 		}
 		finally {
-			em.close();
+			entityManager.close();
 		}
 		
 		return localidad;
@@ -30,79 +30,99 @@ public class LocalidadDAO {
 
 	public static void create(Localidad localidad){
 		
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager entityManager = PersistenceManager.getEntityManager();
 		
-		EntityTransaction tr = em.getTransaction();
+		EntityTransaction tr = entityManager.getTransaction();
+		
 		tr.begin();
 		
 		try{
-			em.persist(localidad);
+			entityManager.persist(localidad);
 			tr.commit();
 			System.out.println("Creación de localidad:" + localidad.getNombre() + ", de la prov: " + localidad.getProvincia().getNombre() + " exitosa");
 		}
 		catch(Exception ex){
 			tr.rollback();
-			System.out.println("Error en create(localidad) de LocalidadDAO");
-			ex.printStackTrace();
+			System.err.println("Error en LibroDAO.create" + "(" + Thread.currentThread().getStackTrace()[1].getLineNumber() + "):" + ex.getLocalizedMessage());
 		}
 		finally {
-			em.close();
+			entityManager.close();
 		}
 		
 	}
 	
 	public static void update(Localidad localidad){
 		
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager entityManager = PersistenceManager.getEntityManager();
 
-		EntityTransaction tr = em.getTransaction();
+		EntityTransaction tr = entityManager.getTransaction();
+		
 		tr.begin();
 		
 		try{
-			em.merge(localidad);
+			entityManager.merge(localidad);
 			tr.commit();
 			System.out.println("Actualización de localidad exitosa");
 		}
 		catch(Exception ex){
 			tr.rollback();
-			System.out.println("Error en update(localidad) de LocalidadDAO");
-			ex.printStackTrace();
+			System.err.println("Error en LibroDAO.update" + "(" + Thread.currentThread().getStackTrace()[1].getLineNumber() + "):" + ex.getLocalizedMessage());
 		}
 		finally {
-			em.close();
+			entityManager.close();
 		}
 		
 	}
 	
 	public static void delete(long id){
 
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager entityManager = PersistenceManager.getEntityManager();
 		
-		EntityTransaction tr = em.getTransaction();
+		EntityTransaction tr = entityManager.getTransaction();
+		
 		tr.begin();
 		
 		try{
-			em.remove(LocalidadDAO.find(id));
+			entityManager.remove(LocalidadDAO.find(id));
 			tr.commit();
 			System.out.println("Eliminación de localidad exitosa");
 		}
 		catch(Exception ex){
 			tr.rollback();
-			System.out.println("Error en delete(id) de LocalidadDAO");
-			ex.printStackTrace();
+			System.err.println("Error en LibroDAO.delete" + "(" + Thread.currentThread().getStackTrace()[1].getLineNumber() + "):" + ex.getLocalizedMessage());
 		}
 		finally {
-			em.close();
+			entityManager.close();
 		}
 		
 	}
 
-	public static Localidad findByFields(String provincia, String localidad) {
-		// TODO Auto-generated method stub
-		return null;
+	public static Localidad findByFields(String nombreProvincia, String nombreLocalidad) {
+		
+		EntityManager entityManager = PersistenceManager.getEntityManager();
+		
+		Localidad localidad = null;
+		
+		try{
+			
+			TypedQuery<Localidad> query = entityManager.createNamedQuery("Localidad.findByFields",Localidad.class);
+			
+			query.setParameter("localidad", nombreLocalidad);
+			query.setParameter("provincia", nombreProvincia);
+			
+			if( (!query.getResultList().isEmpty()) && (query.getResultList().size()<2)){
+	
+				localidad = query.getResultList().get(1);
+			}
+			
+		}catch(Exception ex){
+			System.err.println("Error en LibroDAO.findByFields" + "(" + Thread.currentThread().getStackTrace()[1].getLineNumber() + "):" + ex.getLocalizedMessage());
+			
+		}finally{
+			entityManager.close();
+		}
+		
+		return localidad;
 	}
 	
 }

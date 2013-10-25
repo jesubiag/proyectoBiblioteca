@@ -91,8 +91,6 @@ public class Libro implements Serializable{
 		this.fechaAlta = new Date();
 	}
 
-
-
 	//Getters y Setters
 	
 	public String getMotivoBaja() {
@@ -121,6 +119,10 @@ public class Libro implements Serializable{
 
 	public long getId() {
 		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public Editorial getEditorial() {

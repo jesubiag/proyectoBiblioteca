@@ -86,7 +86,7 @@ public class EjemplarService {
 		
 		String parameterId = request.getParameter("id");
 		
-		if ((parameterId.equals("")) || (parameterId == null)){
+		if ("".equals(parameterId) || null == parameterId){
 			
 			ejemplar = new Ejemplar();
 			ejemplar.setFechaAlta(new Date());

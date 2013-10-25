@@ -1,6 +1,6 @@
 package org.proyectoBiblioteca.dao;
+
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import org.proyectoBiblioteca.domain.Autor;
 
@@ -8,20 +8,18 @@ public class AutorDAO {
 
 	public static Autor find(long id){
 		
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager entityManager = PersistenceManager.getEntityManager();
 		
 		Autor autor = null;
 		
 		try{
-			autor = em.find(Autor.class, id);
+			autor = entityManager.find(Autor.class, id);
 		}
 		catch(Exception ex){
-			System.out.println("Error en find(id) de AutorDAO");
-			ex.printStackTrace();
+			System.err.println("Error en AutorDAO.create" + "(" + Thread.currentThread().getStackTrace()[1].getLineNumber() + "):" + ex.getLocalizedMessage());
 		}
 		finally {
-			em.close();
+			entityManager.close();
 		}
 		
 		return autor;
@@ -30,72 +28,68 @@ public class AutorDAO {
 
 	public static void create(Autor autor){
 		
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager entityManager = PersistenceManager.getEntityManager();
 		
-		EntityTransaction tr = em.getTransaction();
+		EntityTransaction tr = entityManager.getTransaction();
+		
 		tr.begin();
 		
 		try{
-			em.persist(autor);
+			entityManager.persist(autor);
 			tr.commit();
 			System.out.println("Creación de autor nro:" + autor.getId() + ", de nombre: " + autor.getNombre() + " exitosa");
 		}
 		catch(Exception ex){
-			tr.rollback();
-			System.out.println("Error en create(autor) de AutorDAO");
-			ex.printStackTrace();
+			System.err.println("Error en AutorDAO.create" + "(" + Thread.currentThread().getStackTrace()[1].getLineNumber() + "):" + ex.getLocalizedMessage());
 		}
 		finally {
-			em.close();
+			entityManager.close();
 		}
 		
 	}
 	
 	public static void update(Autor autor){
 		
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager entityManager = PersistenceManager.getEntityManager();
 
-		EntityTransaction tr = em.getTransaction();
+		EntityTransaction tr = entityManager.getTransaction();
+		
 		tr.begin();
 		
 		try{
-			em.merge(autor);
+			entityManager.merge(autor);
 			tr.commit();
 			System.out.println("Actualización de autor exitosa");
 		}
 		catch(Exception ex){
 			tr.rollback();
-			System.out.println("Error en update(autor) de AutorDAO");
-			ex.printStackTrace();
+			System.err.println("Error en AutorDAO.update" + "(" + Thread.currentThread().getStackTrace()[1].getLineNumber() + "):" + ex.getLocalizedMessage());
 		}
 		finally {
-			em.close();
+			entityManager.close();
 		}
 		
 	}
 	
 	public static void delete(long id){
 
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager entityManager = PersistenceManager.getEntityManager();
 		
-		EntityTransaction tr = em.getTransaction();
+		EntityTransaction tr = entityManager.getTransaction();
+		
 		tr.begin();
 		
 		try{
-			em.remove(AutorDAO.find(id));
+			entityManager.remove(AutorDAO.find(id));
 			tr.commit();
 			System.out.println("Eliminación de autor exitosa");
 		}
 		catch(Exception ex){
 			tr.rollback();
-			System.out.println("Error en delete(id) de AutorDAO");
-			ex.printStackTrace();
+			System.err.println("Error en AutorDAO.delete" + "(" + Thread.currentThread().getStackTrace()[1].getLineNumber() + "):" + ex.getLocalizedMessage());
 		}
 		finally {
-			em.close();
+			entityManager.close();
 		}
 		
 	}

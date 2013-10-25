@@ -1,16 +1,17 @@
 package org.proyectoBiblioteca.dao;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class PersistenceManager {
+public final class PersistenceManager {
 
-	private static final PersistenceManager singleton = new PersistenceManager();
+	private static final PersistenceManager SINGLETON = new PersistenceManager();
   
-	protected EntityManagerFactory entityManagerFactory;
+	private EntityManagerFactory entityManagerFactory;
   
 	public static PersistenceManager getInstance() {
-		return singleton;
+		return SINGLETON;
 	}
   
 	private PersistenceManager() {
@@ -35,6 +36,10 @@ public class PersistenceManager {
 	protected void createEntityManagerFactory() {
     
 		this.entityManagerFactory = Persistence.createEntityManagerFactory("persistenceUnit");
+	}
+	
+	public static EntityManager getEntityManager(){
+		return PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
 	}
 }
 

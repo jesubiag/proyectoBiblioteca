@@ -1,6 +1,6 @@
 package org.proyectoBiblioteca.dao;
+
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import org.proyectoBiblioteca.domain.Provincia;
 
@@ -8,20 +8,19 @@ public class ProvinciaDAO {
 
 	public static Provincia find(String nombre){
 		
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager entityManager = PersistenceManager.getEntityManager();
 		
 		Provincia provincia = null;
 		
 		try{
-			provincia = em.find(Provincia.class, nombre);
+			provincia = entityManager.find(Provincia.class, nombre);
 		}
 		catch(Exception ex){
 			System.out.println("Error en find(id) de ProvinciaDAO");
 			ex.printStackTrace();
 		}
 		finally {
-			em.close();
+			entityManager.close();
 		}
 		
 		return provincia;
@@ -30,14 +29,14 @@ public class ProvinciaDAO {
 
 	public static void create(Provincia provincia){
 		
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager entityManager = PersistenceManager.getEntityManager();
 		
-		EntityTransaction tr = em.getTransaction();
+		EntityTransaction tr = entityManager.getTransaction();
+		
 		tr.begin();
 		
 		try{
-			em.persist(provincia);
+			entityManager.persist(provincia);
 			tr.commit();
 			System.out.println("Creación de provincia:" + provincia.getNombre() + " exitosa");
 		}
@@ -47,21 +46,21 @@ public class ProvinciaDAO {
 			ex.printStackTrace();
 		}
 		finally {
-			em.close();
+			entityManager.close();
 		}
 		
 	}
 	
 	public static void update(Provincia provincia){
 		
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager entityManager = PersistenceManager.getEntityManager();
 
-		EntityTransaction tr = em.getTransaction();
+		EntityTransaction tr = entityManager.getTransaction();
+		
 		tr.begin();
 		
 		try{
-			em.merge(provincia);
+			entityManager.merge(provincia);
 			tr.commit();
 			System.out.println("Actualización de provincia exitosa");
 		}
@@ -71,21 +70,21 @@ public class ProvinciaDAO {
 			ex.printStackTrace();
 		}
 		finally {
-			em.close();
+			entityManager.close();
 		}
 		
 	}
 	
 	public static void delete(String nombre){
 
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager entityManager = PersistenceManager.getEntityManager();
 		
-		EntityTransaction tr = em.getTransaction();
+		EntityTransaction tr = entityManager.getTransaction();
+		
 		tr.begin();
 		
 		try{
-			em.remove(ProvinciaDAO.find(nombre));
+			entityManager.remove(ProvinciaDAO.find(nombre));
 			tr.commit();
 			System.out.println("Eliminación de provincia exitosa");
 		}
@@ -95,7 +94,7 @@ public class ProvinciaDAO {
 			ex.printStackTrace();
 		}
 		finally {
-			em.close();
+			entityManager.close();
 		}
 		
 	}

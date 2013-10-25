@@ -76,6 +76,10 @@ public class Editorial implements Serializable{
 		return id;
 	}
 	
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public boolean isActivo() {
 		return activo;
 	}
@@ -173,7 +177,7 @@ public class Editorial implements Serializable{
 			}
 			
 		}else{
-			if(telefonos.size() > 0){
+			if(!telefonos.isEmpty()){
 				ret = telefonos.get(1).getTelefono();
 			}
 		}

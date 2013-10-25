@@ -79,9 +79,9 @@ public class AutorService {
 		
 		//Si es nuevo lo creo, sino lo obtengo
 		
-		String parameterId = request.getParameter("id");
+		final String parameterId = request.getParameter("id");
 		
-		if ((parameterId.equals("")) || (parameterId == null)){
+		if ("".equals(parameterId) || null == parameterId){
 			
 			autor = new Autor();
 			autor.setFechaAlta(new Date());

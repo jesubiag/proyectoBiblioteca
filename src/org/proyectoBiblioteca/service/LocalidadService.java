@@ -83,7 +83,7 @@ public class LocalidadService {
 		
 		String parameterId = request.getParameter("id");
 		
-		if ((parameterId.equals("")) || (parameterId == null)){
+		if ("".equals(parameterId) || null == parameterId){
 			
 			localidad = new Localidad();
 			localidad.setFechaAlta(new Date());

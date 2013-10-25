@@ -86,7 +86,7 @@ public class LibroService {
 		
 		String parameterId = request.getParameter("id");
 		
-		if ((parameterId.equals("")) || (parameterId == null)){
+		if ("".equals(parameterId) || null == parameterId){
 			
 			libro = new Libro();
 			libro.setFechaAlta(new Date());

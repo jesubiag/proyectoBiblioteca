@@ -1,6 +1,6 @@
 package org.proyectoBiblioteca.dao;
+
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import org.proyectoBiblioteca.domain.Suspension;
 
@@ -8,20 +8,19 @@ public class SuspensionDAO {
 
 	public static Suspension find(long id){
 		
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager entityManager = PersistenceManager.getEntityManager();
 		
 		Suspension suspension = null;
 		
 		try{
-			suspension = em.find(Suspension.class, id);
+			suspension = entityManager.find(Suspension.class, id);
 		}
 		catch(Exception ex){
 			System.out.println("Error en find(id) de SuspensionDAO");
 			ex.printStackTrace();
 		}
 		finally {
-			em.close();
+			entityManager.close();
 		}
 		
 		return suspension;
@@ -30,14 +29,14 @@ public class SuspensionDAO {
 
 	public static void create(Suspension suspension){
 		
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager entityManager = PersistenceManager.getEntityManager();
 		
-		EntityTransaction tr = em.getTransaction();
+		EntityTransaction tr = entityManager.getTransaction();
+		
 		tr.begin();
 		
 		try{
-			em.persist(suspension);
+			entityManager.persist(suspension);
 			tr.commit();
 			System.out.println("Creación de suspension al socio:" + suspension.getSocio().getNombre() + " " + suspension.getSocio().getApellido() + ", de motivo: " + suspension.getMotivo() + " exitosa");
 		}
@@ -47,21 +46,21 @@ public class SuspensionDAO {
 			ex.printStackTrace();
 		}
 		finally {
-			em.close();
+			entityManager.close();
 		}
 		
 	}
 	
 	public static void update(Suspension suspension){
 		
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager entityManager = PersistenceManager.getEntityManager();
 
-		EntityTransaction tr = em.getTransaction();
+		EntityTransaction tr = entityManager.getTransaction();
+		
 		tr.begin();
 		
 		try{
-			em.merge(suspension);
+			entityManager.merge(suspension);
 			tr.commit();
 			System.out.println("Actualización de suspension exitosa");
 		}
@@ -71,21 +70,21 @@ public class SuspensionDAO {
 			ex.printStackTrace();
 		}
 		finally {
-			em.close();
+			entityManager.close();
 		}
 		
 	}
 	
 	public static void delete(long id){
 
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager entityManager = PersistenceManager.getEntityManager();
 		
-		EntityTransaction tr = em.getTransaction();
+		EntityTransaction tr = entityManager.getTransaction();
+		
 		tr.begin();
 		
 		try{
-			em.remove(SuspensionDAO.find(id));
+			entityManager.remove(SuspensionDAO.find(id));
 			tr.commit();
 			System.out.println("Eliminación de suspension exitosa");
 		}
@@ -95,7 +94,7 @@ public class SuspensionDAO {
 			ex.printStackTrace();
 		}
 		finally {
-			em.close();
+			entityManager.close();
 		}
 		
 	}

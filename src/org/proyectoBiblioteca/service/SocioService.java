@@ -91,7 +91,7 @@ public class SocioService {
 		
 	}
 	
-	public static void retrieveStatesList(HttpServletRequest request){
+	public static void retrieveData(HttpServletRequest request){
 
 		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
 		EntityManager em = emf.createEntityManager();
@@ -130,7 +130,7 @@ public class SocioService {
 		
 		String parameterId = request.getParameter("id");
 		
-		if ((parameterId.equals("")) || (parameterId == null)){
+		if ("".equals(parameterId) || null == parameterId){
 			
 			socio = new Socio();
 			Direccion direccion = new Direccion();
@@ -159,11 +159,11 @@ public class SocioService {
 		
 		String parameterDepartamento = request.getParameter("departamento");
 		 
-		if(!parameterPiso.equals("")){
+		if(!"".equals(parameterPiso)){
 			socio.getDireccion().setPiso(Integer.parseInt(parameterPiso));
 		}
 		
-		if(!parameterDepartamento.equals("")){
+		if(!"".equals(parameterDepartamento)){
 			socio.getDireccion().setDepartamento(parameterDepartamento);
 		}
 		

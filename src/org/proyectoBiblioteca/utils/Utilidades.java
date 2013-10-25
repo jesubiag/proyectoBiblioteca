@@ -1,14 +1,16 @@
 package org.proyectoBiblioteca.utils;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 
 public class Utilidades {
 
 	public static String getSimpleDate(Date fecha){
 			
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd",new Locale("es","AR"));
 		String ret = null;
 		 
 		ret = dateFormat.format(fecha);
@@ -19,7 +21,7 @@ public class Utilidades {
 
 	public static Date getSimpleDate(String fecha){
 	
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd",new Locale("es","AR"));
 		Date ret = null;
 		
 		try {

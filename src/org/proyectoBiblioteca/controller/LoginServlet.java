@@ -2,6 +2,7 @@ package org.proyectoBiblioteca.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.proyectoBiblioteca.service.LoginService;
 
+@WebServlet(name="LoginServlet", urlPatterns="/Login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -21,7 +23,7 @@ public class LoginServlet extends HttpServlet {
 		
 		String action = request.getParameter("action");
 		
-		if (action.equals("terminate")){
+		if ("terminate".equals(action)){
 			//El usuario solicita desloguearse
 			LoginService.closeSession(request);
 			request.setAttribute("user", null);
