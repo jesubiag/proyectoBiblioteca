@@ -30,9 +30,9 @@ public class Prestamo implements Serializable {
 	@JoinColumn(name = "idEjemplar")
 	private Ejemplar ejemplar;
 	
-	@ManyToOne
-	@JoinColumn(name = "usuario")
-	private Usuario usuario; //Usuario que generó el préstamo
+//	@ManyToOne
+//	@JoinColumn(name = "usuario")
+//	private Usuario usuario; //Usuario que generó el préstamo
 	
 	@Temporal(TemporalType.DATE)
 	private Date fechaAcordada;
@@ -58,12 +58,11 @@ public class Prestamo implements Serializable {
 	}
 
 
-	public Prestamo(Socio socio, Ejemplar ejemplar, Usuario usuario,
+	public Prestamo(Socio socio, Ejemplar ejemplar,
 			Date fechaAcordada, boolean prestamoLocal) {
 		super();
 		this.socio = socio;
 		this.ejemplar = ejemplar;
-		this.usuario = usuario;
 		this.fechaAcordada = fechaAcordada;
 		this.prestamoLocal = prestamoLocal;
 		this.estado = EstadoPrestamo.vigente;
@@ -90,17 +89,6 @@ public class Prestamo implements Serializable {
 	public void setEjemplar(Ejemplar ejemplar) {
 		this.ejemplar = ejemplar;
 	}
-
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
 
 	public Date getFechaAcordada() {
 		return fechaAcordada;

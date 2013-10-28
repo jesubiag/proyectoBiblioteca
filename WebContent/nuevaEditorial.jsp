@@ -61,7 +61,7 @@
 				
 				<p class="buttonGroup">
 			    <button type="submit" class="btn btn-success">Aceptar</button>
-			    <a href="/proyectoBiblioteca/Autores" class="btn btn-danger">Cancelar</a>
+			    <a href="/proyectoBiblioteca/Editoriales" class="btn btn-danger">Cancelar</a>
 				</p>
 				
 			</form> 

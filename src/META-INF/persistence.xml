@@ -14,6 +14,7 @@
 		<class>org.proyectoBiblioteca.domain.Prestamo</class>
 		<class>org.proyectoBiblioteca.domain.Suspension</class>
 		<class>org.proyectoBiblioteca.domain.TelefonoDeEditorial</class>
+		<class>org.proyectoBiblioteca.domain.Movimiento</class>
 	
 		 <properties>
 	        <property name="javax.persistence.jdbc.user" value="root"/>

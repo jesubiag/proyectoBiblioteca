@@ -140,7 +140,6 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`prestamo` (
 	`id` bigint NOT NULL AUTO_INCREMENT,
 	`idEjemplar` bigint NOT NULL,
 	`idSocio` bigint NOT NULL,
-	`usuario` varchar(255) NOT NULL,
 	`fechaAcordada` date NOT NULL,
 	`fechaDevolucion` date,
 	`fechaPrestamo` date NOT NULL,
@@ -178,6 +177,16 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`telefonosDeEditorial` (
 `id` bigint NOT NULL AUTO_INCREMENT,
 `idEditorial` bigint NOT NULL,
 `telefono` varchar(255) NOT NULL,
+FULLTEXT(`telefono`),
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `biblioteca`.`movimiento` (
+`id` bigint NOT NULL AUTO_INCREMENT,
+`idPrestamo` bigint NOT NULL,
+`tipoMovimiento` varchar(255) NOT NULL,
+`usuario` bigint NOT NULL,
+FULLTEXT(`tipoMovimiento`),
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
