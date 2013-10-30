@@ -28,7 +28,7 @@ import org.proyectoBiblioteca.utils.Utilidades;
 @NamedQueries({
 	@NamedQuery(name = "Libro.findAll", query = "Select l From Libro l"),
 	@NamedQuery(name = "Libro.findAllActive", query = "Select l From Libro l Where l.activo = true"),
-	@NamedQuery(name = "Libro.findByTitle", query = "Select l From Libro l Where l.titulo = :titulo")//TODO usar like para la query
+	@NamedQuery(name = "Libro.findByTitle", query = "Select l From Libro l Where l.titulo Like :titulo")
 })
 public class Libro implements Serializable{
 	

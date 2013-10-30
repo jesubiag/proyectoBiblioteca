@@ -50,6 +50,25 @@
         <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus</p>
         <!-- <p><a class="btn btn-primary btn-lg">Learn more &raquo;</a></p> -->
       </div>
+      
+      <div class="container">
+      	<form action="Busqueda" method="get">
+			<div class="form-group">
+				<select name=type class="form-control">
+					<option value="libro">Libro</option>
+					<option value="autor">Autor</option>
+					<option value="temas">Temas</option>
+					<option value="editorial">Editorial</option>
+					<option value="isbn">ISBN</option>
+				</select>
+			</div>
+      		<div class="form-group">
+		    	<input type="text" class="form-control" name="search" placeholder="Buscar">
+			</div>
+			<button type="submit" class="btn btn-default">Buscar</button>
+      	</form>
+      </div>
+      
     </div> <!-- jumbotron end -->
 
 	<section id="main">
