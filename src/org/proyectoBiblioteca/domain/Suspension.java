@@ -9,6 +9,12 @@ import java.util.Date;
 
 @Entity
 @Table(name="suspensiones")
+@NamedQueries({
+	@NamedQuery(name = "Suspension.findAll", query = "Select s From Suspension s"),
+	//recordar formato q.setParameter("today",todaysDateObject,TemporalType.DATE); para setear el parámetro
+	@NamedQuery(name = "Suspension.findAllActive", query = "Select s From Suspension s Where s.fechaVencimiento > :fecha"),
+	@NamedQuery(name = "Suspension.findByMemberId", query = "Select s From Suspension s Where s.socio.id = :idSocio")
+})
 public class Suspension implements Serializable {
 	
 	//Campos

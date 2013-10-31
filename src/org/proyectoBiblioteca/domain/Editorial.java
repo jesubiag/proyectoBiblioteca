@@ -25,7 +25,7 @@ import org.proyectoBiblioteca.utils.Utilidades;
 @NamedQueries({
 	@NamedQuery(name = "Editorial.findAll", query = "Select e From Editorial e"),
 	@NamedQuery(name = "Editorial.findAllActive", query = "Select e From Editorial e Where e.activo = true"),
-	@NamedQuery(name = "Editorial.findByName", query = "Select e From Editorial e Where e.nombre = :nombre")
+	@NamedQuery(name = "Editorial.findByName", query = "Select e From Editorial e Where e.nombre like :nombre")
 })
 public class Editorial implements Serializable{
 	

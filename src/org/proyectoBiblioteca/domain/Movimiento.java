@@ -10,9 +10,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
 import org.proyectoBiblioteca.enums.TipoMovimiento;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Movimiento.findAll", query = "Select m From Movimiento m"),
+	@NamedQuery(name = "Movimiento.findByType", query = "Select m From Movimiento m Where m.tipoMovimiento like :tipo"),
+	@NamedQuery(name = "Movimiento.findByLoanId", query = "Select m From Movimiento m Where m.prestamo.id = :idPrestamo")
+})
 public class Movimiento implements Serializable{
 
 	//Campos
@@ -28,7 +36,7 @@ public class Movimiento implements Serializable{
 	private Prestamo prestamo;
 	
 	@ManyToOne
-	@JoinColumn(name = "usuario")
+	@JoinColumn(name = "idUsuario")
 	private Usuario usuario;
 	
 	@Enumerated (EnumType.STRING)

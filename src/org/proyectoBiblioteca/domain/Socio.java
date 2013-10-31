@@ -10,8 +10,9 @@ import org.proyectoBiblioteca.utils.Utilidades;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "Socio.findAll", query = "Select s From Socio s"),
-	@NamedQuery(name = "Socio.findAllActive", query = "Select s From Socio s Where s.estado <> org.proyectoBiblioteca.enums.EstadoSocio.inhabilitado")
-	//@NamedQuery(name = "Socio.findByTitle", query = "Select s From Socios s Where s.") TODO ver si es necesaria la query
+	@NamedQuery(name = "Socio.findAllActive", query = "Select s From Socio s Where s.estado <> org.proyectoBiblioteca.enums.EstadoSocio.inhabilitado"),
+	@NamedQuery(name = "Socio.findByName", query = "Select s From Socio s Where CONCAT(s.nombre,' ',s.apellido) like :nombre"),
+	@NamedQuery(name = "Socio.findByDni", query = "Select s From Socio s Where s.dni = :dni")
 })
 public class Socio implements Serializable {
 	

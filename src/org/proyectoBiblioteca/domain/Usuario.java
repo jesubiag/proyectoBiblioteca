@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -18,13 +20,16 @@ import org.proyectoBiblioteca.utils.Utilidades;
 @NamedQueries({
 	@NamedQuery(name = "Usuario.findAll", query = "Select u From Usuario u"),
 	@NamedQuery(name = "Usuario.findAllByType", query = "Select u From Usuario u Where u.tipoUsuario = :tipoUsuario"),
-	@NamedQuery(name = "Usuario.findByUser", query = "Select u From Usuario u Where u.usuario = :usuario")
+	@NamedQuery(name = "Usuario.findByUser", query = "Select u From Usuario u Where u.usuario like :usuario")
 })
 public class Usuario implements Serializable{
 	
 	//Campos
 	
 	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	private long id;
+	
 	private String usuario;
 	
 	private String clave;
@@ -65,10 +70,18 @@ public class Usuario implements Serializable{
 
 	//Getters y setters
 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public boolean isActivo() {
 		return activo;
 	}
-
+	
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}

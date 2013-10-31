@@ -28,7 +28,10 @@ import org.proyectoBiblioteca.utils.Utilidades;
 @NamedQueries({
 	@NamedQuery(name = "Libro.findAll", query = "Select l From Libro l"),
 	@NamedQuery(name = "Libro.findAllActive", query = "Select l From Libro l Where l.activo = true"),
-	@NamedQuery(name = "Libro.findByTitle", query = "Select l From Libro l Where l.titulo Like :titulo")
+	@NamedQuery(name = "Libro.findByTitle", query = "Select l From Libro l Where l.titulo Like :titulo"),
+	//Corregir la de autor
+	@NamedQuery(name = "Libro.findByAuthor", query = "Select l From Libro l Where l.titulo Like :autor"), //TODO ver si se puede hacer un elem in list
+	@NamedQuery(name = "Libro.findByEditorial", query = "Select l From Libro l Where l.editorial.nombre Like :editorial")
 })
 public class Libro implements Serializable{
 	

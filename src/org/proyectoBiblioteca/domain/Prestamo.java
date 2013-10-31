@@ -7,11 +7,13 @@ import javax.persistence.*;
 import org.proyectoBiblioteca.enums.EstadoPrestamo;
 import org.proyectoBiblioteca.utils.Utilidades;
 
-/**
- * Entity implementation class for Entity: Prestamo
- *
- */
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Prestamo.findAll", query = "Select p From Prestamo p"),
+	@NamedQuery(name = "Prestamo.findByState", query = "Select p From Prestamo p Where p.estado = :estado"),
+	@NamedQuery(name = "Prestamo.findByCopyId", query = "Select p From Prestamo p Where p.ejemplar.id = :idEjemplar"),
+	@NamedQuery(name = "Prestamo.findByMemberId", query = "Select p From Prestamo p Where p.socio.id = :idSocio")
+})
 public class Prestamo implements Serializable {
 
 	//Campos

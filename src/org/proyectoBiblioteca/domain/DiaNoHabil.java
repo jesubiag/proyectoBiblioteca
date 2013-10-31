@@ -9,8 +9,9 @@ import java.util.Date;
 @Table(name="diasnohabiles")
 @NamedQueries({
 	@NamedQuery(name = "DiaNoHabil.findAll", query = "Select d From DiaNoHabil d"),
-	@NamedQuery(name = "DiaNoHabil.findAllActive", query = "Select d From DiaNoHabil d Where d.activo = true")
-	//@NamedQuery(name = "DiaNoHabil.findByMonth", query = "Select l From Libro l Where l.titulo = :titulo")//TODO armar query para traer fechas para mes o año, ver bien
+	@NamedQuery(name = "DiaNoHabil.findAllActive", query = "Select d From DiaNoHabil d Where d.activo = true"),
+	//TODO buscar alternativa para obtener las del año!
+	@NamedQuery(name = "DiaNoHabil.findFollowing", query = "Select d From DiaNoHabil d Where d.fecha > CURRENT_DATE")
 })
 public class DiaNoHabil implements Serializable {
 

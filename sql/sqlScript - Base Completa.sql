@@ -56,6 +56,7 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`diasNoHabiles` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `biblioteca`.`usuario` (
+	`id` bigint NOT NULL AUTO_INCREMENT,	
 	`activo` boolean NOT NULL,
 	`nombre` varchar(255) NOT NULL,
 	`apellido` varchar(255) NOT NULL,
@@ -64,7 +65,8 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`usuario` (
 	`tipoUsuario` varchar (255),
 	`fechaAlta` date NOT NULL,
 	`fechaBaja` date,
-	PRIMARY KEY (`usuario`),
+	PRIMARY KEY (`id`),
+	UNIQUE INDEX `usuario` (`usuario` ASC),
 	FULLTEXT(`nombre`,`apellido`,`clave`,`usuario`,`tipoUsuario`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
@@ -185,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`movimiento` (
 `id` bigint NOT NULL AUTO_INCREMENT,
 `idPrestamo` bigint NOT NULL,
 `tipoMovimiento` varchar(255) NOT NULL,
-`usuario` bigint NOT NULL,
+`idUsuario` bigint NOT NULL,
 FULLTEXT(`tipoMovimiento`),
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;

@@ -16,7 +16,7 @@ import org.proyectoBiblioteca.utils.Utilidades;
 @NamedQueries({
 	@NamedQuery(name = "Autor.findAll", query = "Select a From Autor a"),
 	@NamedQuery(name = "Autor.findAllActive", query = "Select a From Autor a Where a.activo = true"),
-	@NamedQuery(name = "Autor.findByName", query = "Select a From Autor a Where a.nombre = :nombre") //TODO quizás usar like
+	@NamedQuery(name = "Autor.findByName", query = "Select a From Autor a Where a.nombre like :nombre")
 })
 public class Autor implements Serializable{
 

@@ -11,7 +11,7 @@ import java.util.Date;
 @NamedQueries({
 	@NamedQuery(name = "Localidad.findAll", query = "Select l From Localidad l"),
 	@NamedQuery(name = "Localidad.findAllActive", query = "Select l From Localidad l Where l.activo = true"),
-	@NamedQuery(name = "Localidad.findByFields", query = "Select l From Localidad l Where l.provincia.nombre = :provincia And l.nombre = :localidad")
+	@NamedQuery(name = "Localidad.findByFields", query = "Select l From Localidad l Where l.provincia.nombre = :provincia And l.nombre like :localidad")
 })
 public class Localidad implements Serializable {
 	
