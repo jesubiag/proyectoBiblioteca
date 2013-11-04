@@ -1,12 +1,12 @@
 package org.proyectoBiblioteca.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,8 +17,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.TypedQuery;
-import org.proyectoBiblioteca.dao.PersistenceManager;
 import org.proyectoBiblioteca.utils.Utilidades;
 
 @Entity
@@ -55,6 +53,14 @@ public class Editorial implements Serializable{
 	inverseJoinColumns = { @JoinColumn(name = "idDireccion") })
 	private List<Direccion> direcciones;
 	
+	@ElementCollection
+	  @CollectionTable(
+	        name="telefonoseditorial",
+	        joinColumns=@JoinColumn(name="idEditorial")
+	  )
+	 @Column(name="telefono")
+	 private List<String> telefonos;
+	
 	//Constructores
 	
 	public Editorial(){
@@ -71,6 +77,14 @@ public class Editorial implements Serializable{
 
 	
 	//Getters y Setters
+	
+	public List<String> getTelefonos() {
+		return telefonos;
+	}
+
+	public void setTelefonos(List<String> telefonos) {
+		this.telefonos = telefonos;
+	}
 	
 	public long getId() {
 		return id;
@@ -131,7 +145,7 @@ public class Editorial implements Serializable{
 	
 	public String getListaDirecciones(){
 		
-		String ret = null;
+/*		String ret = null;
 		
 		if(this.direcciones.size() > 1){
 			
@@ -144,44 +158,13 @@ public class Editorial implements Serializable{
 			}
 		}
 		
-		return ret;
+		return ret;*/
+		
+		return Utilidades.ListAsString(this.direcciones);
+		
 	}
 	
 	public String getListaTelefonos(){
-		
-		String ret = null;
-		List<TelefonoDeEditorial> telefonos = new ArrayList<TelefonoDeEditorial>();
-		
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
-		
-		TypedQuery<TelefonoDeEditorial> query = em.createNamedQuery("TelefonoDeEditorial.findByEditorial",TelefonoDeEditorial.class);
-		
-		query.setParameter("idEditorial",this.id);
-		
-		try{
-			
-			if(!query.getResultList().isEmpty()){
-
-				telefonos = query.getResultList();
-			}
-			
-		}catch(Exception ex){
-			ex.printStackTrace();
-		}
-		
-		if (telefonos.size() > 1){
-			
-			for(TelefonoDeEditorial telefono : telefonos ){
-				ret = telefono.getTelefono() + "; " + ret;
-			}
-			
-		}else{
-			if(!telefonos.isEmpty()){
-				ret = telefonos.get(1).getTelefono();
-			}
-		}
-		
-		return ret;
+		return Utilidades.stringListAsString(this.telefonos);
 	}
 }

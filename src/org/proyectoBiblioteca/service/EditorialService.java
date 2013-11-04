@@ -1,5 +1,7 @@
 package org.proyectoBiblioteca.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -96,12 +98,16 @@ public class EditorialService {
 		editorial.setNombre(request.getParameter("nombre"));
 		editorial.setEmail(request.getParameter("email"));
 		
+		String[] telefonos = request.getParameterValues("telefonos[]");
+		
+		editorial.setTelefonos(new ArrayList<String>(Arrays.asList(telefonos)));
+		
 		//TODO implementar direcciones y telefonos
 		
 		
 		try{
 			EditorialDAO.update(editorial);
-			
+
 		}catch(NumberFormatException ex){
 			ex.printStackTrace();
 		}

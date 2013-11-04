@@ -3,8 +3,8 @@ package org.proyectoBiblioteca.utils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
-
 
 public class Utilidades {
 
@@ -35,5 +35,49 @@ public class Utilidades {
 		return ret;
 		
 		}
+
+	public static String stringListAsString(List<String> lista) {
+		
+		String ret = "";
+		
+		if (lista.size() > 1){
+			
+			for(String elemento : lista){
+			
+				if("".equals(ret)){
+					ret = elemento;
+				}else{
+					ret = elemento + ", " + ret;
+				}
+			}			
+			
+		}else if(lista.size() == 1){
+			ret = lista.get(0);
+		}
+		
+		return ret;
+	}
+	
+	public static <T> String ListAsString(List<T> lista) {
+		
+		String ret = "";
+		
+		if (lista.size() > 1){
+			
+			for(T elemento : lista){
+			
+				if("".equals(ret)){
+					ret = elemento.toString();
+				}else{
+					ret = elemento.toString() + ", " + ret;
+				}
+			}			
+			
+		}else if(lista.size() == 1){
+			ret = lista.get(0).toString();
+		}
+		
+		return ret;
+	}
 	
 }

@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`editorial` (
 	`email` varchar(255) NOT NULL,
 	`activo` boolean NOT NULL,
 	`fechaAlta` date NOT NULL,
-	`fechaBaja` date,
+	`fechaBaja` date
 	 PRIMARY KEY (`id`),
 	/*FULLTEXT(`nombre`,`email`, `telefono`)*/
 	FULLTEXT(`nombre`,`email`)
@@ -175,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`relacionEditorialDireccion` (
  PRIMARY KEY (`idEditorial`,`idDireccion`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
-CREATE TABLE IF NOT EXISTS `biblioteca`.`telefonosDeEditorial` (
+CREATE TABLE IF NOT EXISTS `biblioteca`.`telefonosEditorial` (
 `id` bigint NOT NULL AUTO_INCREMENT,
 `idEditorial` bigint NOT NULL,
 `telefono` varchar(255) NOT NULL,

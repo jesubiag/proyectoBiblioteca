@@ -31,7 +31,8 @@ import org.proyectoBiblioteca.utils.Utilidades;
 	@NamedQuery(name = "Libro.findByTitle", query = "Select l From Libro l Where l.titulo Like :titulo"),
 	//Corregir la de autor
 	@NamedQuery(name = "Libro.findByAuthor", query = "Select l From Libro l Where l.titulo Like :autor"), //TODO ver si se puede hacer un elem in list
-	@NamedQuery(name = "Libro.findByEditorial", query = "Select l From Libro l Where l.editorial.nombre Like :editorial")
+	@NamedQuery(name = "Libro.findByEditorial", query = "Select l From Libro l Where l.editorial.nombre Like :editorial"),
+	@NamedQuery(name = "Libro.findByIsbn", query = "Select l From Libro l Where l.isbn Like :isbn")
 })
 public class Libro implements Serializable{
 	
@@ -192,16 +193,21 @@ public class Libro implements Serializable{
 	
 	public String getListaAutores(){
 		
-		String ret = null;
+		String ret = "";
 
 		if (this.autores.size() > 1){
 			
 			for(Autor autor : this.autores){
 				
-				ret = autor.getNombre() + ", " + ret;
+				if("".equals(ret)){
+					ret = autor.getNombre();
+				}else{
+					ret = autor.getNombre() + ", " + ret;
+				}
+
 			}			
 			
-		}else{
+		}else if(this.autores.size() == 1){
 			ret = this.autores.get(0).getNombre();
 		}
 		

@@ -57,6 +57,32 @@
 					<input type="text" class="form-control" name="email" value="${editorial.email}">
 				</div>
 				
+				<div class="form-group">
+			     	 Teléfonos: 
+			     	 
+			     	 <ul id="telefonos" class="stylelessList">
+				     	 <c:forEach var="telefono" items="${editorial.telefonos}">
+				     	 	<li><input type="text" class="form-control" name="telefonos[]" value="${telefono}"></li>
+				     	 </c:forEach>
+			     	 </ul>
+			     	 <p class="buttonGroup">
+			     	 	<a href='javascript:addTelField()' class="btn btn-default">Agregar Teléfono</a>
+			      	 </p>
+			      	 <p>(Preguntar cómo hacer para eliminar campos cuando están en blanco)</p>
+			      </div>
+			      
+			      <div class="form-group">
+			     	 Direcciones: 
+			     	 
+			     	 <ul id="direcciones" class="stylelessList">
+				     	 <c:forEach var="direccion" items="${editorial.direcciones}">
+				     	 	<li><input type="text" class="form-control" name="direcciones[]" value="${direccion}"></li>
+				     	 </c:forEach>
+			     	 </ul>
+			     	 <p class="buttonGroup"><a href='javascript:addDirField()' class="btn btn-default">Agregar Dirección</a></p>
+			      	 <p>(Próximamente)</p>
+			      </div>
+				
 				<!-- Falta Armar lo de Direcciones y Teléfonos -->	  		  
 				
 				<p class="buttonGroup">
@@ -72,6 +98,7 @@
 
 <!-- Incluyo el footer -->
 	<jsp:include page="resources/footer.jsp" />
+	<script src="resources/editorialUtils.js"></script>
 
   </body>
 </html>
