@@ -22,6 +22,10 @@
       <script src="resources/bootstrap/assets/js/html5shiv.js"></script>
       <script src="resources/bootstrap/assets/js/respond.min.js"></script>
     <![endif]-->
+  <script src="resources/SpryAssets/SpryValidationSelect.js" type="text/javascript"></script>
+  <script src="resources/SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+  <link href="resources/SpryAssets/SpryValidationSelect.css" rel="stylesheet" type="text/css">
+  <link href="resources/SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
   </head>
 
   <body>
@@ -49,51 +53,59 @@
 			      
 			      <div class="form-group">
 					  Libro: 
-					  <select name="libro" class="form-control">
-					  	<c:forEach var="libro" items="${libros}">
-					  		<option value="${libro.id}">${libro.titulo}</option>
-					  	</c:forEach>
-					  </select>
-				  </div>
+					    <span id="spryselect1">
+					    <select name="libro" class="form-control" onBlur="sacarclase('spryselect1');">
+					      <c:forEach var="libro" items="${libros}">
+					        <option value="${libro.id}">${libro.titulo}</option>
+				          </c:forEach>
+				        </select>
+			      <span class="selectRequiredMsg">Seleccione un libro.</span></span></div>
 			      
 			      <div class="form-group">
 				  	Año: 
-				  	<input type="text" class="form-control" name="anio" value="${ejemplar.anio}">
-			      </div>
+				  	  <span id="sprytextfield1">
+                      <input type="text" class="form-control" name="anio" value="${ejemplar.anio}" onBlur="sacarclase('sprytextfield1');">
+                  <span class="textfieldRequiredMsg">Se necesita un a&ntilde;o.</span><span class="textfieldInvalidFormatMsg">A&ntilde;o no v&aacute;lido.</span><span class="textfieldMaxCharsMsg">Incluya un a&ntilde;o v&aacute;lido. (M&aacute;ximo 2013.)</span><span class="textfieldMinCharsMsg">Incluya un a&ntilde;o v&aacute;lido. (M&iacute;nimo 1000)</span><span class="textfieldMinValueMsg">El valor introducido es inferior al mínimo permitido. (1000).</span><span class="textfieldMaxValueMsg">El valor introducido es superior al máximo permitido. (2013).</span></span></div>
 			      
 			      <div class="form-group">
 				  	Pasillo: 
-				  	<input type="text" class="form-control" name="pasillo" value="${ejemplar.pasillo}">
-			      </div>
+				  	  <span id="sprytextfield2">
+				  	  <input type="text" class="form-control" name="pasillo" value="${ejemplar.pasillo}" onBlur="sacarclase('sprytextfield2');">
+			  	  <span class="textfieldRequiredMsg">Se necesita un pasillo.</span></span></div>
 			      
 			      <div class="form-group">
 				  	Mueble: 
-				  	<input type="text" class="form-control" name="mueble" value="${ejemplar.mueble}">
-			      </div>
+				  	  <span id="sprytextfield3">
+				  	  <input type="text" class="form-control" name="mueble" value="${ejemplar.mueble}" onBlur="sacarclase('sprytextfield3');">
+			  	  <span class="textfieldRequiredMsg">Se necesita un mueble.</span></span></div>
 			      
 			      <div class="form-group">
 			      	Estante: 
-			      	<input type="text" class="form-control" name="estante" value="${ejemplar.estante}">
-			      </div>
+			      	  <span id="sprytextfield4">
+			      	  <input type="text" class="form-control" name="estante" value="${ejemplar.estante}" onBlur="sacarclase('sprytextfield4');">
+		      	  <span class="textfieldRequiredMsg">Se necesita un estante.</span></span></div>
 
 			      <div class="form-group">
 					  Estado: 
-					  <select name="estado" class="form-control">
-					  	<c:forEach var="estado" items="${estados}">
-					  		<option value="${estado}">${estado}</option>
-					  	</c:forEach>
-					  </select>
-				  </div>
+					    <span id="spryselect2">
+					    <select name="estado" class="form-control" onBlur="sacarclase('spryselect2');">
+					      <c:forEach var="estado" items="${estados}">
+					        <option value="${estado}">${estado}</option>
+				          </c:forEach>
+				        </select>
+			      <span class="selectRequiredMsg">Seleccione un estado.</span></span></div>
 
 				  <div class="form-group">
 			      	Número de Ejemplar: 
-			      	<input type="text" class="form-control" name="numeroEjemplar" value="${ejemplar.numeroEjemplar}">
-			      </div>
+			      	  <span id="sprytextfield5">
+                      <input type="text" class="form-control" name="numeroEjemplar" value="${ejemplar.numeroEjemplar}" onBlur="sacarclase('sprytextfield5');">
+                  <span class="textfieldRequiredMsg">Se necesita un valor num&eacute;rico.</span><span class="textfieldInvalidFormatMsg">Formato no válido.</span><span class="textfieldMinCharsMsg">No se cumple el mínimo de caracteres requerido.</span><span class="textfieldMinValueMsg">El valor introducido es inferior al mínimo permitido.</span><span class="textfieldMaxCharsMsg">Se ha superado el número máximo de caracteres.</span><span class="textfieldMaxValueMsg">El valor introducido es superior al máximo permitido.</span></span></div>
 
 				  <div class="form-group">
 			      	Precio en Dólares: 
-			      	<input type="text" class="form-control" name="precioDolares" value="${ejemplar.precioDolares}">
-			      </div>  		  
+			      	  <span id="sprytextfield6">
+                      <input type="text" class="form-control" name="precioDolares" value="${ejemplar.precioDolares}" onBlur="sacarclase('sprytextfield6');">
+                  <span class="textfieldRequiredMsg">Se necesita un valor en d&oacute;lares.</span><span class="textfieldInvalidFormatMsg">Formato no válido. Debe ser 0000,00</span></span></div>  		  
 				  
 				  <p class="buttonGroup">
 			    	<button type="submit" class="btn btn-success">Aceptar</button>
@@ -107,6 +119,18 @@
 
 <!-- Incluyo el footer -->
 	<jsp:include page="resources/footer.jsp" />
-
+  <script type="text/javascript">
+	function sacarclase(id){
+		document.getElementById(id).className = "";
+		}
+	var spryselect1 = new Spry.Widget.ValidationSelect("spryselect1");
+	var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "integer", {validateOn:["change"], maxChars:4, minChars:4, minValue:1000, maxValue:2013});
+	var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
+	var sprytextfield3 = new Spry.Widget.ValidationTextField("sprytextfield3");
+	var sprytextfield4 = new Spry.Widget.ValidationTextField("sprytextfield4");
+	var spryselect2 = new Spry.Widget.ValidationSelect("spryselect2");
+	var sprytextfield5 = new Spry.Widget.ValidationTextField("sprytextfield5", "integer", {validateOn:["change"], minChars:1, minValue:1, maxChars:3, maxValue:500});
+	var sprytextfield6 = new Spry.Widget.ValidationTextField("sprytextfield6", "currency", {format:"dot_comma", validateOn:["change"]});
+  </script>
   </body>
 </html>

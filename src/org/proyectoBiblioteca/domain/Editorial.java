@@ -160,7 +160,7 @@ public class Editorial implements Serializable{
 		
 		return ret;*/
 		
-		return Utilidades.ListAsString(this.direcciones);
+		return Utilidades.listAsString(this.direcciones);
 		
 	}
 	

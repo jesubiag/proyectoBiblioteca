@@ -22,6 +22,10 @@
       <script src="resources/bootstrap/assets/js/html5shiv.js"></script>
       <script src="resources/bootstrap/assets/js/respond.min.js"></script>
     <![endif]-->
+  <script src="resources/SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+  <script src="resources/SpryAssets/SpryValidationSelect.js" type="text/javascript"></script>
+  <link href="resources/SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
+  <link href="resources/SpryAssets/SpryValidationSelect.css" rel="stylesheet" type="text/css">
   </head>
 
   <body>
@@ -49,82 +53,95 @@
 			      
 			      <div class="form-group">
 			      Nombre: 
-			      <input type="text" class="form-control" name="nombre" value="${socio.nombre}">
-			      </div>
+			        <span id="sprytextfield1">
+			        <input type="text" class="form-control" name="nombre" value="${socio.nombre}" onBlur="sacarclase('sprytextfield1')">
+		          <span class="textfieldRequiredMsg">Se necesita un nombre.</span></span></div>
 			      
 			      <div class="form-group">
 				      Apellido: 
-				      <input type="text" class="form-control" name="apellido" value="${socio.apellido}">
-			      </div>
+				        <span id="sprytextfield2">
+				        <input type="text" class="form-control" name="apellido" value="${socio.apellido}" onBlur="sacarclase('sprytextfield2')">
+		          <span class="textfieldRequiredMsg">Se necesita un apellido.</span></span></div>
 			      
 			      <div class="form-group">
 				      DNI: 
-				      <input type="text" class="form-control" name="dni" value="${socio.dni}">
-			      </div>
+				        <span id="sprytextfield3">
+                        <input type="text" class="form-control" name="dni" value="${socio.dni}" onBlur="sacarclase('sprytextfield3')">
+                  <span class="textfieldRequiredMsg">Se necesita un DNI.</span><span class="textfieldInvalidFormatMsg">Formato no válido.</span><span class="textfieldMinCharsMsg">No se cumple el mínimo de caracteres requerido.</span><span class="textfieldMaxCharsMsg">Se ha superado el número máximo de caracteres.</span></span></div>
 			      
 			      <div class="form-group">
 				      Email: 
-				      <input type="text" class="form-control" name="email" value="${socio.email}">
-			      </div>
+				        <span id="sprytextfield4">
+                        <input type="text" class="form-control" name="email" value="${socio.email}" onBlur="sacarclase('sprytextfield4')">
+                  <span class="textfieldRequiredMsg">Se necesita un e-mail.</span><span class="textfieldInvalidFormatMsg">Formato no válido.</span></span></div>
 			      
 			      <div class="form-group">
 			     	 Teléfono: 
-			     	 <input type="text" class="form-control" name="telefono" value="${socio.telefono}">
-			      </div>
+			     	   <span id="sprytextfield5">
+			     	   <input type="text" class="form-control" name="telefono" value="${socio.telefono}" onBlur="sacarclase('sprytextfield5')">
+	     	      <span class="textfieldRequiredMsg">Se necesita un tel&eacute;fono.</span></span></div>
 			      
 			      <div class="form-group">
 				      Rango: 
-				      <input type="text" class="form-control" name="rango" value="${socio.rango}">
-				  </div>		
+				        <span id="sprytextfield6">
+				        <input type="text" class="form-control" name="rango" value="${socio.rango}" onBlur="sacarclase('sprytextfield6')">
+		          <span class="textfieldRequiredMsg">Se necesita un valor.</span></span></div>		
 			      
 			      <div class="form-group">
 					  Estado: 
-					  <select name="estado" class="form-control">
-					  	<c:forEach var="estado" items="${estados}">
-					  		<option value="${estado}">${estado}</option>
-					  	</c:forEach>
-					  </select>
-				  </div>
+					    <span id="spryselect1">
+					    <select name="estado" class="form-control" onBlur="sacarclase('spryselect1')">
+					      <c:forEach var="estado" items="${estados}">
+					        <option value="${estado}">${estado}</option>
+				          </c:forEach>
+				        </select>
+			      <span class="selectRequiredMsg">Seleccione un elemento.</span></span></div>
 				  
 				  <!--  hacer esto con js para poder cambiar las opciones del select al cambiar una provincia -->
 				  
 				  <div class="form-group">
 					  Provincia: 
-					  <select name="provincia" class="form-control">
-					  	<c:forEach var="provincia" items="${provincias}">
-					  		<option value="${provincia.nombre}">${provincia.nombre}</option>
-					  	</c:forEach>
-					  </select>
-				  </div>
+					    <span id="spryselect2">
+					    <select name="provincia" class="form-control" onBlur="sacarclase('spryselect2')">
+					      <c:forEach var="provincia" items="${provincias}">
+					        <option value="${provincia.nombre}">${provincia.nombre}</option>
+				          </c:forEach>
+				        </select>
+			      <span class="selectRequiredMsg">Seleccione una provincia.</span></span></div>
 				  
 				  <div class="form-group">
 			     	 Localidad: 
-			     	 <input type="text" class="form-control" name="localidad" value="${socio.direccion.localidad.nombre}">
-			      </div>
+			     	   <span id="sprytextfield7">
+			     	   <input type="text" class="form-control" name="localidad" value="${socio.direccion.localidad.nombre}" onBlur="sacarclase('spryselect2')">
+	     	      <span class="textfieldRequiredMsg">Se necesita una localidad.</span></span></div>
 
 				  <div class="form-group">
 			     	 Calle: 
-			     	 <input type="text" class="form-control" name="calle" value="${socio.direccion.calle}">
-			      </div>
+			     	   <span id="sprytextfield8">
+			     	   <input type="text" class="form-control" name="calle" value="${socio.direccion.calle}" onBlur="sacarclase('sprytextfield8')">
+	     	      <span class="textfieldRequiredMsg">Se necesita una calle.</span></span></div>
 			      
 			      <div class="form-group">
 			     	 Número: 
-			     	 <input type="text" class="form-control" name="numero" value="${socio.direccion.numero}">
-			      </div>		  				  
+			     	   <span id="sprytextfield9">
+                       <input type="text" class="form-control" name="numero" value="${socio.direccion.numero}" onBlur="sacarclase('sprytextfield9')">
+                  <span class="textfieldRequiredMsg">Se necesita un n&uacute;mero.</span><span class="textfieldInvalidFormatMsg">Formato no válido, debe ser un n&uacute;mero.</span></span></div>		  				  
 				  
 				  <div class="form-group">
 			     	 Código Postal: 
-			     	 <input type="text" class="form-control" name="codigoPostal" value="${socio.direccion.codigoPostal}">
-			      </div>
+			     	   <span id="sprytextfield10">
+			     	   <input type="text" class="form-control" name="codigoPostal" value="${socio.direccion.codigoPostal}" onBlur="sacarclase('sprytextfield10')">
+	     	      <span class="textfieldRequiredMsg">Se necesita un CP.</span></span></div>
 			      
 			      <div class="form-group">
 			     	 Piso: 
-			     	 <input type="text" class="form-control" name="piso" value="${socio.direccion.piso}">
-			      </div>
+			     	   
+			     	   <input type="text" class="form-control" name="piso" value="${socio.direccion.piso}">
+	     	      </div>
 			      
 			      <div class="form-group">
 			     	 Departamento: 
-			     	 <input type="text" class="form-control" name="departamento" value="${socio.direccion.departamento}">
+			     	 <input type="text" class="form-control" name="departamento" value="${socio.direccion.departamento}" >
 			      </div>  				  		  
 				  
 				  <p class="buttonGroup">
@@ -139,6 +156,22 @@
 
 <!-- Incluyo el footer -->
 	<jsp:include page="resources/footer.jsp" />
-
+  <script type="text/javascript">
+  	function sacarclase(id){
+			document.getElementById(id).className = "";
+			}
+	var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
+	var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
+	var sprytextfield3 = new Spry.Widget.ValidationTextField("sprytextfield3", "integer", {validateOn:["change"], minChars:6, maxChars:8});
+	var sprytextfield4 = new Spry.Widget.ValidationTextField("sprytextfield4", "email");
+	var sprytextfield5 = new Spry.Widget.ValidationTextField("sprytextfield5");
+	var sprytextfield6 = new Spry.Widget.ValidationTextField("sprytextfield6");
+	var spryselect1 = new Spry.Widget.ValidationSelect("spryselect1");
+	var spryselect2 = new Spry.Widget.ValidationSelect("spryselect2");
+	var sprytextfield7 = new Spry.Widget.ValidationTextField("sprytextfield7");
+	var sprytextfield8 = new Spry.Widget.ValidationTextField("sprytextfield8");
+	var sprytextfield9 = new Spry.Widget.ValidationTextField("sprytextfield9", "integer", {validateOn:["change"]});
+	var sprytextfield10 = new Spry.Widget.ValidationTextField("sprytextfield10");
+  </script>
   </body>
 </html>

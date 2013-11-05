@@ -22,6 +22,10 @@
       <script src="resources/bootstrap/assets/js/html5shiv.js"></script>
       <script src="resources/bootstrap/assets/js/respond.min.js"></script>
     <![endif]-->
+  <script src="resources/SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+  <script src="resources/SpryAssets/SpryValidationSelect.js" type="text/javascript"></script>
+  <link href="resources/SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
+  <link href="resources/SpryAssets/SpryValidationSelect.css" rel="stylesheet" type="text/css">
   </head>
 
   <body>
@@ -49,46 +53,53 @@
 			      
 			      <div class="form-group">
 			      	Título: 
-			      	<input type="text" class="form-control" name="titulo" value="${libro.titulo}">
-			      </div>
+			      	  <span id="sprytextfield1">
+			      	  <input type="text" class="form-control" name="titulo" value="${libro.titulo}" onBlur="sacarclase('sprytextfield1');">
+		      	  <span class="textfieldRequiredMsg">Se necesita un t&iacute;tulo.</span></span></div>
 			      
 			      <div class="form-group">
 					  Editorial: 
-					  <select name="editorial" class="form-control">
-					  	<c:forEach var="editorial" items="${editoriales}">
-					  		<option value="${editorial.id}">${editorial.nombre}</option>
-					  	</c:forEach>
-					  </select>
-				  </div>
+					    <span id="spryselect1">
+					    <select name="editorial" class="form-control" onBlur="sacarclase('spryselect1');">
+					      <c:forEach var="editorial" items="${editoriales}">
+					        <option value="${editorial.id}">${editorial.nombre}</option>
+				          </c:forEach>
+				        </select>
+			      <span class="selectRequiredMsg">Seleccione una editorial.</span></span></div>
 			      
 			      <div class="form-group">
 					  Autor: 
-					  <select name="autores" class="form-control">
-					  	<c:forEach var="autor" items="${autores}">
-					  		<option value="${autor.id}">${autor.nombre}</option>
-					  	</c:forEach>
-					  </select>
-				  </div>
+					    <span id="spryselect2">
+					    <select name="autores" class="form-control" onBlur="sacarclase('spryselect2');">
+					      <c:forEach var="autor" items="${autores}">
+					        <option value="${autor.id}">${autor.nombre}</option>
+				          </c:forEach>
+				        </select>
+			      <span class="selectRequiredMsg">Seleccione un autor.</span></span></div>
 			      
 			      <div class="form-group">
 				  	ISBN: 
-				  	<input type="text" class="form-control" name="isbn" value="${libro.isbn}">
-			      </div>
+				  	  <span id="sprytextfield2">
+				  	  <input type="text" class="form-control" name="isbn" value="${libro.isbn}" onBlur="sacarclase('sprytextfield2');">
+			  	  <span class="textfieldRequiredMsg">Se necesita un ISBN.</span></span></div>
 			      
 			      <div class="form-group">
 			      	Etiquetas: 
-			      	<input type="text" class="form-control" name="etiquetas" value="${libro.etiquetas}">
-			      </div>
+			      	  <span id="sprytextfield3">
+			      	  <input type="text" class="form-control" name="etiquetas" value="${libro.etiquetas}" onBlur="sacarclase('sprytextfield3');">
+		      	  <span class="textfieldRequiredMsg">Se necesita al menos una etiqueta.</span></span></div>
 
 				  <div class="form-group">
 			      	Rango: 
-			      	<input type="text" class="form-control" name="rango" value="${libro.rango}">
-			      </div>
+			      	  <span id="sprytextfield4">
+			      	  <input type="text" class="form-control" name="rango" value="${libro.rango}" onBlur="sacarclase('sprytextfield4');">
+		      	  <span class="textfieldRequiredMsg">Se necesita darle un rango al libro.</span></span></div>
 
 				  <div class="form-group">
 			      	País de Origen: 
-			      	<input type="text" class="form-control" name="paisOrigen" value="${libro.paisOrigen}">
-			      </div>  	  
+			      	  <span id="sprytextfield5">
+			      	  <input type="text" class="form-control" name="paisOrigen" value="${libro.paisOrigen}" onBlur="sacarclase('sprytextfield5');">
+		      	  <span class="textfieldRequiredMsg">Se necesita un pa&iacute;s.</span></span></div>  	  
 				  
 				  <p class="buttonGroup">
 			    	<button type="submit" class="btn btn-success">Aceptar</button>
@@ -102,6 +113,17 @@
 
 <!-- Incluyo el footer -->
 	<jsp:include page="resources/footer.jsp" />
-
+  <script type="text/javascript">
+	  function sacarclase(id){
+				document.getElementById(id).className = "";
+				}
+		var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
+		var spryselect1 = new Spry.Widget.ValidationSelect("spryselect1");
+		var spryselect2 = new Spry.Widget.ValidationSelect("spryselect2");
+		var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
+		var sprytextfield3 = new Spry.Widget.ValidationTextField("sprytextfield3");
+		var sprytextfield4 = new Spry.Widget.ValidationTextField("sprytextfield4");
+		var sprytextfield5 = new Spry.Widget.ValidationTextField("sprytextfield5");
+  </script>
   </body>
 </html>

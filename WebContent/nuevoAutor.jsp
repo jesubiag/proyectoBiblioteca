@@ -22,6 +22,8 @@
       <script src="resources/bootstrap/assets/js/html5shiv.js"></script>
       <script src="resources/bootstrap/assets/js/respond.min.js"></script>
     <![endif]-->
+  <script src="resources/SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+  <link href="resources/SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
   </head>
 
   <body>
@@ -49,13 +51,15 @@
 				
 				<div class="form-group">
 					Nombre: 
-					<input type="text" class="form-control" name="nombre" value="${autor.nombre}">
-				</div>
+					  <span id="sprytextfield1">
+					  <input type="text" class="form-control" name="nombre" value="${autor.nombre}" onBlur="sacarclase('sprytextfield1');">
+			    <span class="textfieldRequiredMsg">Se necesita un nombre.</span></span></div>
 				
 				<div class="form-group">
 					País de Origen: 
-					<input type="text" class="form-control" name="paisOrigen" value="${autor.paisOrigen}">
-				</div>	  		  
+					  <span id="sprytextfield2">
+					  <input type="text" class="form-control" name="paisOrigen" value="${autor.paisOrigen}" onBlur="sacarclase('sprytextfield2');">
+			    <span class="textfieldRequiredMsg">Se necesita un pa&iacute;s.</span></span></div>	  		  
 				<p class="buttonGroup">
 			    <button type="submit" class="btn btn-success">Aceptar</button>
 			    <a href="/proyectoBiblioteca/Autores" class="btn btn-danger">Cancelar</a>
@@ -68,6 +72,12 @@
 
 <!-- Incluyo el footer -->
 	<jsp:include page="resources/footer.jsp" />
-
+  <script type="text/javascript">
+	  function sacarclase(id){
+			document.getElementById(id).className = "";
+			}
+	var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
+	var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
+  </script>
   </body>
 </html>

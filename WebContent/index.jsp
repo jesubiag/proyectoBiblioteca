@@ -14,9 +14,17 @@
     <title>Página Principal - Biblioteca</title>
 
     <!-- CSS -->
+    <script src="resources/SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+	<script src="resources/SpryAssets/SpryValidationPassword.js" type="text/javascript"></script>
+    <script src="resources/SpryAssets/SpryValidationConfirm.js" type="text/javascript"></script>
+    <link href="resources/SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
+    <link href="resources/SpryAssets/SpryValidationPassword.css" rel="stylesheet" type="text/css" />
+    <link href="resources/SpryAssets/SpryValidationConfirm.css" rel="stylesheet" type="text/css" />
     <link href="resources/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="resources/jumbotron.css" rel="stylesheet">
     <link href="resources/styles.css" rel="stylesheet">
+    
+    
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -47,8 +55,6 @@
     
       <div class="container">
         <h1>Bienvenido a la biblioteca!</h1>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus</p>
-        <!-- <p><a class="btn btn-primary btn-lg">Learn more &raquo;</a></p> -->
       </div>
       
       <div class="container">
@@ -56,15 +62,15 @@
 			<div class="form-group">
 				<select name=type class="form-control">
 					<option value="libro">Libro</option>
-					<option value="autor">Autor</option>
-					<option value="temas">Temas</option>
+					<!--  <option value="autor">Autor</option>
+					<option value="temas">Temas</option> -->
 					<option value="editorial">Editorial</option>
 					<option value="isbn">ISBN</option>
 				</select>
 			</div>
-      		<div class="form-group">
-		    	<input type="text" class="form-control" name="search" placeholder="Buscar">
-			</div>
+      		<div class="form-group"><span id="sprytextfield1">
+            <input type="text" class="form-control" name="search" placeholder="Buscar"  onblur="sacarclase('sprytextfield1')">
+            <span class="textfieldRequiredMsg">Se necesita un valor.</span><span class="textfieldMinCharsMsg"> No se cumple el mínimo de caracteres requerido (3).</span></span></div>
 			<button type="submit" class="btn btn-default">Buscar</button>
       	</form>
       </div>
@@ -75,6 +81,7 @@
     
     <!-- Esto hay que automatizarlo para traer x cantidad de libros recientes-->
     
+    <!--  
       <h2>Libros agregados recientemente:</h2>
       <article>
     		<img style="float: left;" src="http://2.bp.blogspot.com/_McgfrVkIzjY/TNB8qAbrjdI/AAAAAAAAAQ4/Qrt-EhA830I/s320/CaperucitaRoja.jpg" /> 
@@ -93,11 +100,19 @@
 			Y es aquí donde la historia que conocíamos de Blancanieves tiene otro final… Una nueva, sobrecogedora y sorprendente versión del cuento clásico.
        		</p>
       </article>
-
+	-->
+	
     </section>
-
+	
+	
 <!-- Incluyo el footer -->
 	<jsp:include page="resources/footer.jsp" />
-	
+    <!-- Validaciones Javascript-->
+	<script type="text/javascript">
+		function sacarclase(id){
+			document.getElementById(id).className = "";
+			}
+    	var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "none", {minChars:3, validateOn:["change"]});
+    </script>
 </body>
 </html>

@@ -58,7 +58,7 @@ public class Utilidades {
 		return ret;
 	}
 	
-	public static <T> String ListAsString(List<T> lista) {
+	public static <T> String listAsString(List<T> lista) {
 		
 		String ret = "";
 		
