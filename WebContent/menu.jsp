@@ -48,42 +48,42 @@
 			
 			    <a href="Libros">
         		<div class="menuItem">
-		          <img src="http://g-ecx.images-amazon.com/images/G/01/editorial/bhp/5pack-kids-140px._V387805993_.jpg" alt="Imagen Editoriales">
+		          <img src="resources/images/book.png" alt="Imagen Libros">
 		          <h3>Libros y Ejemplares</h3>
 	        	</div>
 	        	</a>	
 	        	
 	        	<a href="Socios">
         		<div class="menuItem">
-		          <img src="http://g-ecx.images-amazon.com/images/G/01/editorial/bhp/5pack-kids-140px._V387805993_.jpg" alt="Imagen Editoriales">
+		          <img src="resources/images/user.png" alt="Imagen Socios">
 		          <h3>Socios</h3>
 	        	</div>
 	        	</a>
 	        	
 	        	<a href="Autores">
         		<div class="menuItem">
-		          <img src="http://g-ecx.images-amazon.com/images/G/01/editorial/bhp/5pack-kids-140px._V387805993_.jpg" alt="Imagen Editoriales">
+		          <img src="resources/images/edit.png" alt="Imagen Autores">
 		          <h3>Autores</h3>
 	        	</div>
 	        	</a>	        	
 
 	        	<a href="Editoriales">
         		<div class="menuItem">
-		          <img src="http://g-ecx.images-amazon.com/images/G/01/editorial/bhp/5pack-kids-140px._V387805993_.jpg" alt="Imagen Editoriales">
+		          <img src="resources/images/books.png" alt="Imagen Editoriales">
 		          <h3>Editoriales</h3>
 	        	</div>
 	        	</a>
 	        	
 	        	<a href="Localidades">
         		<div class="menuItem">
-		          <img src="http://g-ecx.images-amazon.com/images/G/01/editorial/bhp/5pack-kids-140px._V387805993_.jpg" alt="Imagen Editoriales">
+		          <img src="resources/images/globe.png" alt="Imagen Localidades">
 		          <h3>Localidades</h3>
 	        	</div>
 	        	</a>	        	
 
 	        	<a href="DiasNoHabiles">
         		<div class="menuItem">
-		          <img src="http://g-ecx.images-amazon.com/images/G/01/editorial/bhp/5pack-kids-140px._V387805993_.jpg" alt="Imagen Editoriales">
+		          <img src="resources/images/calendar.png" alt="Imagen Días No Hábiles">
 		          <h3>Días No Hábiles</h3>
 	        	</div>
 	        	</a>	

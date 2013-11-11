@@ -76,6 +76,10 @@ public class Libro implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date fechaAlta;
 	
+	private String linkImagen;
+
+	private String descripcion;
+	
 	//Constructores
 	
 	public Libro(){
@@ -96,6 +100,22 @@ public class Libro implements Serializable{
 	}
 
 	//Getters y Setters
+	
+	public String getLinkImagen() {
+		return linkImagen;
+	}
+
+	public void setLinkImagen(String linkImagen) {
+		this.linkImagen = linkImagen;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 	
 	public String getMotivoBaja() {
 		return motivoBaja;

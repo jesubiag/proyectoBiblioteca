@@ -3,7 +3,17 @@ tr,th {
 }
 
 .inputForm {
+	max-width:70%;
+	min-width:300px;
+	border: 1px solid lightgray;
+	margin:0 auto;
+	padding:20px;
+	background: white;
+}
+
+.inputForm .form-group{
 	max-width:400px;
+	margin:0 auto;
 }
 
 #main {
@@ -42,10 +52,6 @@ footer {
 
 .menuItem img {
 	max-width:140px;
-	border: 1px solid white;
-	-moz-box-shadow: 0 0 1px #4f4f4f;
-  	-webkit-box-shadow: 0 0 1px #4f4f4f;
-  	box-shadow: 0 0 1px #4f4f4f;
 }
 
 .buttonGroup {

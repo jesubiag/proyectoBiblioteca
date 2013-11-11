@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`editorial` (
 	`email` varchar(255) NOT NULL,
 	`activo` boolean NOT NULL,
 	`fechaAlta` date NOT NULL,
-	`fechaBaja` date
+	`fechaBaja` date,
 	 PRIMARY KEY (`id`),
 	/*FULLTEXT(`nombre`,`email`, `telefono`)*/
 	FULLTEXT(`nombre`,`email`)
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`ejemplar` (
 	`estado` varchar(255) NOT NULL,
 	`fechaBaja` date,
 	`fechaAlta`date NOT NULL,
-	`motivoBaja`varchar(255) NOT NULL,
+	`motivoBaja`varchar(255),
 	`numeroEjemplar` int NOT NULL,
 	`precioDolares` int NOT NULL,
 	PRIMARY KEY (`id`),
@@ -124,12 +124,13 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`reserva` (
 CREATE TABLE IF NOT EXISTS `biblioteca`.`libro` (
 	`id` bigint NOT NULL AUTO_INCREMENT,
 	`activo` boolean NOT NULL,
-	/*`idAutor` bigint NOT NULL,*/
 	`idEditorial` bigint NOT NULL,
 	`isbn` varchar(255) NOT NULL,
 	`paisOrigen` varchar(255) NOT NULL,
 	`titulo` varchar(255) NOT NULL,
 	`etiquetas` varchar(255) NOT NULL,
+	`descripcion` varchar(255) NOT NULL,
+	`linkImagen` varchar(255) NOT NULL,
 	`rango` int(2) NOT NULL,
 	`fechaAlta` date NOT NULL,
 	`fechaBaja` date,

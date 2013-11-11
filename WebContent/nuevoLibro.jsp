@@ -99,7 +99,7 @@
 			      	País de Origen: 
 			      	  <span id="sprytextfield5">
 			      	  <input type="text" class="form-control" name="paisOrigen" value="${libro.paisOrigen}" onBlur="sacarclase('sprytextfield5');">
-		      	  <span class="textfieldRequiredMsg">Se necesita un pa&iacute;s.</span></span></div>  	  
+		      	  <span class="textfieldRequiredMsg">Se necesita un país.</span></span></div>  	  
 				  
 				  <p class="buttonGroup">
 			    	<button type="submit" class="btn btn-success">Aceptar</button>
