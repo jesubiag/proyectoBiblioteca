@@ -109,13 +109,15 @@
 				  
 				  <div class="form-group">
 				  	Descripción:
-				  	<input type="text" class="form-control" name="descripcion" value="${libro.descripcion}">
-				  </div>
+				  	  <span id="sprytextfield7">
+				  	  <input type="text" class="form-control" name="descripcion" value="${libro.descripcion}" onBlur="sacarclase('sprytextfield7');">
+			  	  <span class="textfieldRequiredMsg">Se necesita una descripci&oacute;n.</span></span></div>
 				  
 				  <div class="form-group">
 				  	Link a Imagen:
-				  	<input type="text" class="form-control" name="linkImagen" value="${libro.linkImagen}">
-				  </div>
+				  	  <span id="sprytextfield6">
+				  	  <input type="text" class="form-control" name="linkImagen" value="${libro.linkImagen}" onBlur="sacarclase('sprytextfield6');">
+			  	  <span class="textfieldRequiredMsg">Se necesita un link a imagen.</span></span></div>
 				  
 				  <p class="buttonGroup">
 			    	<button type="submit" class="btn btn-success">Aceptar</button>
@@ -130,16 +132,18 @@
 <!-- Incluyo el footer -->
 	<jsp:include page="resources/footer.jsp" />
   <script type="text/javascript">
-	  function sacarclase(id){
+function sacarclase(id){
 				document.getElementById(id).className = "";
 				}
-		var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
-		var spryselect1 = new Spry.Widget.ValidationSelect("spryselect1");
-		var spryselect2 = new Spry.Widget.ValidationSelect("spryselect2");
-		var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
-		var sprytextfield3 = new Spry.Widget.ValidationTextField("sprytextfield3");
-		var sprytextfield4 = new Spry.Widget.ValidationTextField("sprytextfield4");
-		var sprytextfield5 = new Spry.Widget.ValidationTextField("sprytextfield5");
+		var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "none", {validateOn:["change"]});
+		var spryselect1 = new Spry.Widget.ValidationSelect("spryselect1", {validateOn:["change"]});
+		var spryselect2 = new Spry.Widget.ValidationSelect("spryselect2", {validateOn:["change"]});
+		var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2", "none", {validateOn:["change"]});
+		var sprytextfield3 = new Spry.Widget.ValidationTextField("sprytextfield3", "none", {validateOn:["change"]});
+		var sprytextfield4 = new Spry.Widget.ValidationTextField("sprytextfield4", "none", {validateOn:["change"]});
+		var sprytextfield5 = new Spry.Widget.ValidationTextField("sprytextfield5", "none", {validateOn:["change"]});
+		var sprytextfield6 = new Spry.Widget.ValidationTextField("sprytextfield6", "none", {validateOn:["change"]});
+		var sprytextfield7 = new Spry.Widget.ValidationTextField("sprytextfield7", "none", {validateOn:["change"]});
   </script>
   </body>
 </html>

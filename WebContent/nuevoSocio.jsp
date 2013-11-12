@@ -124,14 +124,15 @@
 					  
 					  <div class="form-group">
 				     	 Localidad: 
-					    <select name="localidad" class="form-control">
-					      <c:forEach var="localidad" items="${localidades}">
-					        <option value="${localidad.id}"
+					       <span id="spryselect3">
+					       <select name="localidad" class="form-control" onBlur="sacarclase('spryselect3')">
+					         <c:forEach var="localidad" items="${localidades}">
+					           <option value="${localidad.id}"
 				        		<c:if test="${localidad.nombre == socio.direccion.localidad.nombre}">${"selected='selected'"}</c:if>         
 					        >${localidad.nombre}</option>
-				          </c:forEach>
-				        </select>
-				      </div>
+				             </c:forEach>
+				           </select>
+			          <span class="selectRequiredMsg">Seleccione una localidad.</span></span></div>
 	
 					  <div class="form-group">
 				     	 Calle: 
@@ -177,21 +178,22 @@
 <!-- Incluyo el footer -->
 	<jsp:include page="resources/footer.jsp" />
   <script type="text/javascript">
-  	function sacarclase(id){
+function sacarclase(id){
 			document.getElementById(id).className = "";
 			}
-	var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
-	var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
+	var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "none", {validateOn:["change"]});
+	var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2", "none", {validateOn:["change"]});
 	var sprytextfield3 = new Spry.Widget.ValidationTextField("sprytextfield3", "integer", {validateOn:["change"], minChars:6, maxChars:8});
-	var sprytextfield4 = new Spry.Widget.ValidationTextField("sprytextfield4", "email");
-	var sprytextfield5 = new Spry.Widget.ValidationTextField("sprytextfield5");
-	var sprytextfield6 = new Spry.Widget.ValidationTextField("sprytextfield6");
-	var spryselect1 = new Spry.Widget.ValidationSelect("spryselect1");
-	var spryselect2 = new Spry.Widget.ValidationSelect("spryselect2");
+	var sprytextfield4 = new Spry.Widget.ValidationTextField("sprytextfield4", "email", {validateOn:["change"]});
+	var sprytextfield5 = new Spry.Widget.ValidationTextField("sprytextfield5", "none", {validateOn:["change"]});
+	var sprytextfield6 = new Spry.Widget.ValidationTextField("sprytextfield6", "none", {validateOn:["change"]});
+	var spryselect1 = new Spry.Widget.ValidationSelect("spryselect1", {validateOn:["change"]});
+	var spryselect2 = new Spry.Widget.ValidationSelect("spryselect2", {validateOn:["change"]});
 	var sprytextfield7 = new Spry.Widget.ValidationTextField("sprytextfield7");
-	var sprytextfield8 = new Spry.Widget.ValidationTextField("sprytextfield8");
+	var sprytextfield8 = new Spry.Widget.ValidationTextField("sprytextfield8", "none", {validateOn:["change"]});
 	var sprytextfield9 = new Spry.Widget.ValidationTextField("sprytextfield9", "integer", {validateOn:["change"]});
-	var sprytextfield10 = new Spry.Widget.ValidationTextField("sprytextfield10");
+	var sprytextfield10 = new Spry.Widget.ValidationTextField("sprytextfield10", "none", {validateOn:["change"]});
+var spryselect3 = new Spry.Widget.ValidationSelect("spryselect3", {validateOn:["change"]});
   </script>
   </body>
 </html>

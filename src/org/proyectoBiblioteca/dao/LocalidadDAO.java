@@ -110,7 +110,7 @@ public class LocalidadDAO {
 			query.setParameter("localidad", nombreLocalidad);
 			query.setParameter("provincia", nombreProvincia);
 			
-			if( (!query.getResultList().isEmpty()) && (query.getResultList().size()<2)){
+			if( !query.getResultList().isEmpty() && query.getResultList().size()<2){
 	
 				localidad = query.getResultList().get(1);
 			}

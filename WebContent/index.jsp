@@ -68,11 +68,11 @@
 				
 	      		<span id="sprytextfield1">
 	            <input type="text" class="form-control searchField" name="search" placeholder="Buscar"  onblur="sacarclase('sprytextfield1')">
-	            <span class="textfieldRequiredMsg">Se necesita un valor.</span>
+	            <button type="submit" class="btn btn-default searchButton">Buscar</button>
+                <br>
+                <span class="textfieldRequiredMsg">Se necesita un valor.</span>
 	            <span class="textfieldMinCharsMsg"> No se cumple el mínimo de caracteres requerido (3).</span>
 	            </span>
-	            
-				<button type="submit" class="btn btn-default searchButton">Buscar</button>
       	
       	</form>
       	<!-- fin barra de búsqueda -->

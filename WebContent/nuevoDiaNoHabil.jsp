@@ -62,13 +62,13 @@
 					Fecha: 
 					  <span id="sprytextfield1">
                       <input id=fecha type="text" class="form-control" name="fecha" value="${diaNoHabil.stringFecha}" onBlur="sacarclase('sprytextfield1');">
-                <span class="textfieldRequiredMsg">Se necesita una fecha.</span><span class="textfieldInvalidFormatMsg">Formato no válido. Intente DD/MM/AAAA</span></span></div>
+                <span class="textfieldRequiredMsg">Se necesita una fecha.</span><span class="textfieldInvalidFormatMsg">Formato no válido. Intente AAAA/MM/DD</span></span></div>
 				
 				<div class="form-group">
 					Fecha Siguiente: 
 					  <span id="sprytextfield2">
                       <input id=fechaSiguiente type="text" class="form-control" name="fechaSiguiente" value="${diaNoHabil.stringFechaSiguiente}" onBlur="sacarclase('sprytextfield2');">
-                <span class="textfieldRequiredMsg">Se necesita una fecha.</span><span class="textfieldInvalidFormatMsg">Formato no válido. Intente DD/MM/AAAA</span></span></div>
+                <span class="textfieldRequiredMsg">Se necesita una fecha.</span><span class="textfieldInvalidFormatMsg">Formato no válido. Intente AAAA/MM/DD</span></span></div>
 				
 				<div class="form-group">
 					Motivo: 
@@ -99,9 +99,9 @@
 	$(function() {
 			$( "#fecha,#fechaSiguiente" ).datepicker({ dateFormat: "yy-mm-dd" });
 			});
-	var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "date", {format:"dd/mm/yyyy"});
-	var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2", "date");
-	var sprytextfield3 = new Spry.Widget.ValidationTextField("sprytextfield3");
+	var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "date", {format:"yyyy/mm/dd", validateOn:["change"]});
+	var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2", "date", {format:"yyyy/mm/dd", validateOn:["change"]});
+	var sprytextfield3 = new Spry.Widget.ValidationTextField("sprytextfield3", "none", {validateOn:["change"]});
     </script>	
   </body>
 </html>

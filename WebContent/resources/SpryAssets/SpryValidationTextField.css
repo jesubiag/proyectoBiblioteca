@@ -15,7 +15,9 @@
 .textfieldMinCharsMsg,
 .textfieldMaxCharsMsg,
 .textfieldValidMsg {
-	display: none;
+	display:none;
+	margin-top:7px;
+	width:600px;
 }
 
 /* These selectors change the way messages look when the widget is in one of the error states.
@@ -30,14 +32,14 @@
 .textfieldMinCharsState .textfieldMinCharsMsg,
 .textfieldMaxCharsState .textfieldMaxCharsMsg
 {
-	padding: 15px;
+	padding: 5px;
 	margin-bottom: 20px;
 	border: 1px solid transparent;
 	border-radius: 4px;
 	color: #b94a48;
 	background-color: #f2dede;
 	border-color: #eed3d7;
-	display: block;
+	display: inline-block;
 }
 
 

@@ -111,8 +111,9 @@
                                 
                                 <div class="form-group">
                                 	Teléfono:
-                                	<input type="text" class="form-control" name="telefonos[]" value="${editorial.telefonos[0]}">
-                                </div>
+                                	  <span id="sprytextfield5">
+                                	  <input type="text" class="form-control" name="telefonos[]" value="${editorial.telefonos[0]}">
+                           	    <span class="textfieldRequiredMsg">Se necesita un teléfono.</span></span></div>
        
                         <!--  Fin borrar -->            
                                 <p class="buttonGroup">
@@ -130,13 +131,14 @@
   <jsp:include page="resources/footer.jsp" />
         <script src="resources/editorialUtils.js"></script>
         <script type="text/javascript">
-			function sacarclase(id){
+function sacarclase(id){
 								document.getElementById(id).className = "";
 								}
 			var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
 			var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2", "email", {validateOn:["change"]});
 			var sprytextfield3 = new Spry.Widget.ValidationTextField("sprytextfield3");
 			var sprytextfield4 = new Spry.Widget.ValidationTextField("sprytextfield4");
+var sprytextfield5 = new Spry.Widget.ValidationTextField("sprytextfield5", "none", {validateOn:["change"]});
         </script>
 
 </body>

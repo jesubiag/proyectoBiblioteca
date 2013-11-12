@@ -8,7 +8,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.jsp">Proyecto Biblioteca IDS</a>
+          <a class="navbar-brand" href="/proyectoBiblioteca">Proyecto Biblioteca IDS</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
