@@ -56,7 +56,8 @@
       
       <div class="container">
       	<!-- barra de búsqueda -->
-      	<form action="Busqueda" method="get">
+      	<form action="Busqueda" method="get">	
+      	
 				<select name=type class="form-control searchSelect">
 					<option value="libro">Libro</option>
 					<!--  <option value="autor">Autor</option>
@@ -64,10 +65,15 @@
 					<option value="editorial">Editorial</option>
 					<option value="isbn">ISBN</option>
 				</select>
-      		<span id="sprytextfield1">
-            <input type="text" class="form-control searchField" name="search" placeholder="Buscar"  onblur="sacarclase('sprytextfield1')">
-            <span class="textfieldRequiredMsg">Se necesita un valor.</span><span class="textfieldMinCharsMsg"> No se cumple el mínimo de caracteres requerido (3).</span></span>
-			<button type="submit" class="btn btn-default searchButton">Buscar</button>
+				
+	      		<span id="sprytextfield1">
+	            <input type="text" class="form-control searchField" name="search" placeholder="Buscar"  onblur="sacarclase('sprytextfield1')">
+	            <span class="textfieldRequiredMsg">Se necesita un valor.</span>
+	            <span class="textfieldMinCharsMsg"> No se cumple el mínimo de caracteres requerido (3).</span>
+	            </span>
+	            
+				<button type="submit" class="btn btn-default searchButton">Buscar</button>
+      	
       	</form>
       	<!-- fin barra de búsqueda -->
       </div>

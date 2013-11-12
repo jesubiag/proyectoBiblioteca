@@ -64,7 +64,7 @@ public class Socio implements Serializable {
 		this.email = email;
 		this.telefono = telefono;
 		this.fechaAlta = new Date();
-		this.rango = 5; //TODO plantear esto para ver si es correcto
+		this.rango = 5;
 		this.direccion = direccion;
 	}
 	

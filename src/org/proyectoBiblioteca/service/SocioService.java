@@ -42,19 +42,6 @@ public class SocioService {
 		request.setAttribute("socios", socios);
 		
 	}
-/* Método no usado ya que no hay que eliminar los datos de la db
-	public static void delete(HttpServletRequest request) {
-
-		try{
-			
-			SocioDAO.delete(Long.parseLong(request.getParameter("id")));
-			
-		}catch(NumberFormatException ex){
-			ex.printStackTrace();
-		}
-		//TODO revisar este método, ver si aviso o no cuando tengo éxito
-	}
-*/
 
 	public static void delete(HttpServletRequest request) {
 

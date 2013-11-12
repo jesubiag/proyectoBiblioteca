@@ -12,7 +12,7 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="index.jsp">Inicio</a></li>
+            <li><a href="/proyectoBiblioteca">Inicio</a></li>
             <li><a href="#about">Sobre la Biblioteca</a></li>
             <li><a href="#contact">Contactar</a></li>
           </ul>
@@ -36,7 +36,7 @@
 		        	<li class="dropdown">
 		        		<a href="#" class="dropdown-toggle" data-toggle="dropdown">${user.usuario}<b class="caret"></b></a>
 		        		<ul class="dropdown-menu">
-			              	<li><a href="#">Perfil</a></li>
+			              	<li><a href="#profile">Perfil</a></li>
 			              	<li class="divider"></li>
 							<li><a href="Login?action=terminate">Cerrar Sesión</a></li>
 		            	</ul>
