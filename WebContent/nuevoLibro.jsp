@@ -101,6 +101,16 @@
 			      	  <input type="text" class="form-control" name="paisOrigen" value="${libro.paisOrigen}" onBlur="sacarclase('sprytextfield5');">
 		      	  <span class="textfieldRequiredMsg">Se necesita un país.</span></span></div>  	  
 				  
+				  <div class="form-group">
+				  	Descripción:
+				  	<input type="text" class="form-control" name="descripcion" value="${libro.descripcion}">
+				  </div>
+				  
+				  <div class="form-group">
+				  	Link a Imagen:
+				  	<input type="text" class="form-control" name="linkImagen" value="${libro.linkImagen}">
+				  </div>
+				  
 				  <p class="buttonGroup">
 			    	<button type="submit" class="btn btn-success">Aceptar</button>
 			    	<a href="/proyectoBiblioteca/Libros" class="btn btn-danger">Cancelar</a>

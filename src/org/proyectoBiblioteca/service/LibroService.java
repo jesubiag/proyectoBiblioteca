@@ -104,6 +104,8 @@ public class LibroService {
 		libro.setPaisOrigen(request.getParameter("paisOrigen"));
 		libro.setRango(Integer.parseInt(request.getParameter("rango")));
 		libro.setEditorial(EditorialDAO.find(Long.parseLong(request.getParameter("editorial"))));
+		libro.setDescripcion(request.getParameter("descripcion"));
+		libro.setLinkImagen(request.getParameter("linkImagen"));
 		
 		//TODO cambiar para varios autores! También cambiar el jsp de nuevo libro
 		List<Autor> autores = new ArrayList<Autor>();

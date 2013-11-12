@@ -12,7 +12,7 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.jsp">Inicio</a></li>
+            <li><a href="index.jsp">Inicio</a></li>
             <li><a href="#about">Sobre la Biblioteca</a></li>
             <li><a href="#contact">Contactar</a></li>
           </ul>

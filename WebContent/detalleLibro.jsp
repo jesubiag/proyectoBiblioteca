@@ -33,62 +33,69 @@
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
-      <div class="container">
-        <h1>Página de detalle de "${libro.titulo}" </h1>
-    
-    	<ul>
-    		<li>ISBN: ${libro.isbn}</li>
-    		<li>Autores: ${libro.listaAutores}</li> <!-- Hacer un foreach para linkear a los libros de cada autor individualmente -->
-    		<li>Editorial: <a href=${"/Busqueda?type=editorial&search="}${libro.editorial.nombre}>${libro.editorial.nombre}</a></li>
-    		<li>País de Orgine: ${libro.paisOrigen}</li>
-    		<li>Etiquetas/Temas: ${libro.etiquetas}</li>
-    		<li>Rango: ${libro.rango}</li>
-    	</ul>
-    	        
-        
-        <!--  Tabla de ejemplares -->
-        
-		<div class="panel panel-primary">
-	  		<!-- Default panel contents -->
-	  		<div class="panel-heading">Ejemplares Registrados</div>	
+      	<div class="container">
+        	
+        	<h1>"${libro.titulo}" por ${libro.listaAutores} </h1>
 			
-			<div class="table-responsive">       			
-	            <table class="table">
-	                <thead>
-	                	<tr>
-	                     <th>Ejemplar Nro.</th>
-	                     <th>Año de Pub.</th>
-	                     <th>Estado</th>
-	                     <th>Estante</th>
-	                     <th>Mueble</th>
-	                     <th>Pasillo</th>
-	                	</tr>
-	                </thead>
-	                <tbody>
-	
-	                    <c:forEach var="ejemplar" items="${libro.ejemplares}"> <!-- For secundario -->
-	
-	                    <tr>
-	                        <td><c:out value="${ejemplar.numeroEjemplar}" /></td>
-	                        <td><c:out value="${ejemplar.anio}" /></td>
-	                        <td><c:out value="${ejemplar.estado}" /></td>
-	                        <td><c:out value="${ejemplar.estante}" /></td>
-	                        <td><c:out value="${ejemplar.mueble}" /></td>
-	                        <td><c:out value="${ejemplar.pasillo}" /></td>
-	                        <!--  hacer un if para poner botones de prestar o devolver en caso de ser bibliotecario y de resevar en caso de no estar logueado -->
-	                    </tr>
-	
-	                    </c:forEach>
-	
-	                </tbody>
-	            </table>
-
+			<img src="${libro.linkImagen}" alt="Foto de Libro" class="imgLibro">
+			
+			<div class="panel panel-primary">
+				<div class="container">
+					<ul class="stylelessList">
+			    		<li><strong>ISBN:</strong> ${libro.isbn}</li>
+			    		<li><strong>Autores:</strong> ${libro.listaAutores}</li> <!-- Hacer un foreach para linkear a los libros de cada autor individualmente -->
+			    		<li><strong>Editorial:</strong> <a href=${"Busqueda?type=editorial&search="}${libro.editorial.nombre}>${libro.editorial.nombre}</a></li>
+			    		<li><strong>País de Origen:</strong> ${libro.paisOrigen}</li>
+			    		<li><strong>Etiquetas/Temas:</strong> ${libro.etiquetas}</li>
+			    		<li><strong>Rango:</strong> ${libro.rango}</li>
+			    		<li><strong>Descripción:</strong> ${libro.descripcion}</li>
+		    		</ul>	
+	    		</div>	
 			</div>
 			
+	        <!--  Tabla de ejemplares -->
+	        
+			<div class="panel panel-primary">
+		  		<!-- Default panel contents -->
+		  		<div class="panel-heading">Ejemplares Registrados</div>	
+				
+				<div class="table-responsive">       			
+		            <table class="table">
+		                <thead>
+		                	<tr>
+		                     <th>Ejemplar Nro.</th>
+		                     <th>Año de Pub.</th>
+		                     <th>Estado</th>
+		                     <th>Estante</th>
+		                     <th>Mueble</th>
+		                     <th>Pasillo</th>
+		                	</tr>
+		                </thead>
+		                <tbody>
+		
+		                    <c:forEach var="ejemplar" items="${libro.ejemplares}"> <!-- For secundario -->
+		
+		                    <tr>
+		                        <td><c:out value="${ejemplar.numeroEjemplar}" /></td>
+		                        <td><c:out value="${ejemplar.anio}" /></td>
+		                        <td><c:out value="${ejemplar.estado}" /></td>
+		                        <td><c:out value="${ejemplar.estante}" /></td>
+		                        <td><c:out value="${ejemplar.mueble}" /></td>
+		                        <td><c:out value="${ejemplar.pasillo}" /></td>
+		                        <!--  hacer un if para poner botones de prestar o devolver en caso de ser bibliotecario y de resevar en caso de no estar logueado -->
+		                    </tr>
+		
+		                    </c:forEach>
+		
+		                </tbody>
+		            </table>
+	
+				</div>
+				
+			</div>			
+			
 		</div>
-       
-      </div>
-    </div>
+    </div>    	              
 
 <!-- Incluyo el footer -->
 	<jsp:include page="resources/footer.jsp" />
