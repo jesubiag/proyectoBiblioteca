@@ -32,7 +32,7 @@
   
   <!-- Veo si no está logueado, lo mando al login en caso de que no -->   
    <c:if test="${empty user}">  
-   	<jsp:forward page="index.jsp" />
+   	<jsp:forward page="/" />
    </c:if>
    
 <!-- Incluyo el header -->
@@ -41,6 +41,12 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
     	<div class="container">
+        
+			<ol class="breadcrumb">
+		  		<li><a href="/proyectoBiblioteca">Inicio</a></li>
+		  		<li><a href="Socios">Administración de Socios</a></li>
+		  		<li class="active">Alta/Modificación Socio</li>
+			</ol>
         
 	        <h1>Alta/Modificación de Socio</h1>
 	        
@@ -92,7 +98,9 @@
 					    <span id="spryselect1">
 					    <select name="estado" class="form-control" onBlur="sacarclase('spryselect1')">
 					      <c:forEach var="estado" items="${estados}">
-					        <option value="${estado}">${estado}</option>
+					        <option value="${estado}"
+					        	<c:if test="${estado == socio.estado}">${"selected='selected'"}</c:if>
+					        >${estado}</option>
 				          </c:forEach>
 				        </select>
 			      <span class="selectRequiredMsg">Seleccione un elemento.</span></span></div>
@@ -107,16 +115,23 @@
 						    <span id="spryselect2">
 						    <select name="provincia" class="form-control" onBlur="sacarclase('spryselect2')">
 						      <c:forEach var="provincia" items="${provincias}">
-						        <option value="${provincia.nombre}">${provincia.nombre}</option>
+						        <option value="${provincia.nombre}"
+					        		<c:if test="${provincia.nombre == socio.direccion.localidad.provincia.nombre}">${"selected='selected'"}</c:if>         
+						        >${provincia.nombre}</option>
 					          </c:forEach>
 					        </select>
 				      <span class="selectRequiredMsg">Seleccione una provincia.</span></span></div>
 					  
 					  <div class="form-group">
 				     	 Localidad: 
-				     	   <span id="sprytextfield7">
-				     	   <input type="text" class="form-control" name="localidad" value="${socio.direccion.localidad.nombre}" onBlur="sacarclase('spryselect2')">
-		     	      <span class="textfieldRequiredMsg">Se necesita una localidad.</span></span></div>
+					    <select name="localidad" class="form-control">
+					      <c:forEach var="localidad" items="${localidades}">
+					        <option value="${localidad.id}"
+				        		<c:if test="${localidad.nombre == socio.direccion.localidad.nombre}">${"selected='selected'"}</c:if>         
+					        >${localidad.nombre}</option>
+				          </c:forEach>
+				        </select>
+				      </div>
 	
 					  <div class="form-group">
 				     	 Calle: 

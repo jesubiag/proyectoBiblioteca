@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="f"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
  
 <!DOCTYPE html>
@@ -44,7 +45,7 @@
 		<div class="container">
 	      
 	      	<ol class="breadcrumb">
-			  <li><a href="#">Inicio</a></li>
+			  <li><a href="/proyectoBiblioteca">Inicio</a></li>
 			  <li class="active">Búsqueda</li>
 			</ol>
 	      
@@ -52,64 +53,69 @@
 	      
 			<section id="main">
 		    
-				<div class="panel panel-primary">
-			  		<!-- Default panel contents -->
-			  		<div class="panel-heading">Libros y Ejemplares Registrados</div>	
-					
-					<div class="table-responsive">
-		
-							<!-- Tabla Principal (Libros) -->
-							<table class="table table-condensed">
-							    <thead>
-							        <tr>
-							            <th>Título de Libro</th>
-							            <th>Editorial</th>
-							            <th>Autores</th>
-							            <th>ISBN</th>
-							            <th>Etiquetas</th>
-							            <th>Rango</th>
-							            <th>País de Origen</th>
-							            <th>Fecha Alta</th>
-							            <th colspan=2>Acción</th>
-							        </tr>
-							    </thead>
-							    <tbody>
-							        <!-- Fila de la tabla principal (Datos de un libro) -->
-							            <c:set var="count" value="0" scope="page" /> <!--defino var para contar -->
-							
-							        <c:forEach var="libro" items="${resultados}"> <!-- For principal -->
-							
-							            <c:set var="count" value="${count + 1}" scope="page"/> <!--aumento en 1 el contador -->
-							            <tr>
-							                <td><c:out value="${libro.titulo}" /></td>
-							                <td><c:out value="${libro.editorial.nombre}" /></td>
-							                <td><c:out value="${libro.listaAutores}" /></td>
-							                <td><c:out value="${libro.isbn}" /></td>
-							                <td><c:out value="${libro.etiquetas}" /></td>
-							                <td><c:out value="${libro.rango}" /></td>
-							                <td><c:out value="${libro.paisOrigen}" /></td>
-							                <td><c:out value="${libro.stringFechaAlta}" /></td>
-							                
-							                <c:if test="${!empty user}"><!-- Si está logueado entonces habilito opciones para prestar y devolver -->  
-							                	<td><a href=${"Libros?action=edit&id="}${libro.id}><span class="glyphicon glyphicon-log-out"></span></a></td>
-							                	<td><a href=${"Libros?action=edit&id="}${libro.id}><span class="glyphicon glyphicon-log-in"></span></a></td>
-							                </c:if>
-							                
-							                <c:if test="${empty user}"><!-- Si no está logueado entonces habilito opción para reservar -->  
-							                	<td><a href=${"Libros?action=edit&id="}${libro.id}><span class="glyphicon glyphicon-pushpin"></span></a></td>
-							                </c:if>
-							                
-							            </tr>
-							        
-							        </c:forEach> <!-- Fin del for principal -->
-							
-							    </tbody>
-							</table> <!-- Fin tabla principal -->
-		
-					</div>
-					
-				</div>	
+		    	<c:if test="${0 != (f:length(resultados))}"> 
+		    
+					<div class="panel panel-primary">
+				  		<!-- Default panel contents -->
+				  		<div class="panel-heading">Libros Encontrados</div>	
+						
+						<div class="table-responsive">
 			
+								<!-- Tabla Principal (Libros) -->
+								<table class="table table-condensed">
+								    <thead>
+								        <tr>
+								            <th>Título de Libro</th>
+								            <th>Editorial</th>
+								            <th>Autores</th>
+								            <th>ISBN</th>      
+								            <th>Rango</th>
+								            <th>País de Origen</th> 
+								            <th colspan=2>Acción</th>
+								        </tr>
+								    </thead>
+								    <tbody>
+								        <!-- Fila de la tabla principal (Datos de un libro) -->
+								            <c:set var="count" value="0" scope="page" /> <!--defino var para contar -->
+								
+								        <c:forEach var="libro" items="${resultados}"> <!-- For principal -->
+								
+								            <c:set var="count" value="${count + 1}" scope="page"/> <!--aumento en 1 el contador -->
+								            <tr>
+								                
+								                <td><a href=${"Busqueda?type=detalleLibro&id="}${libro.id}>${libro.titulo}</a></td>
+								                <td><a href=${"Busqueda?type=editorial&search="}${libro.editorial.nombre}>${libro.editorial.nombre}</a></td>
+								                <td>${libro.listaAutores}</td>
+								                <td>${libro.isbn}</td>       
+								                <td>${libro.rango}</td>
+								                <td>${libro.paisOrigen}</td>
+								                
+								                <c:if test="${!empty user}"><!-- Si está logueado entonces habilito opciones para prestar y devolver -->  
+								                	<td><a href=${"Prestamos?action=new&id="}${libro.id}><span class="glyphicon glyphicon-log-out"></span></a></td>
+								                	<td><a href=${"Prestamos?action=return&id="}${libro.id}><span class="glyphicon glyphicon-log-in"></span></a></td>
+								                </c:if>
+								                
+								                <c:if test="${empty user}"><!-- Si no está logueado entonces habilito opción para reservar -->  
+								                	<td><a href=${"Prestamos?action=reserve&id="}${libro.id}><span class="glyphicon glyphicon-pushpin"></span></a></td>
+								                </c:if>
+								                
+								            </tr>
+								        
+								        </c:forEach> <!-- Fin del for principal -->
+								
+								    </tbody>
+								</table> <!-- Fin tabla principal -->
+			
+						</div>
+						
+					</div>	
+				
+				</c:if>
+				
+				<c:if test="${0 == (f:length(resultados))}"> 
+					<div class="alert alert-info">No se encontraron resultados. Por favor intente nuevamente.</div>
+				</c:if>
+				
 		    </section>
 
 		</div>

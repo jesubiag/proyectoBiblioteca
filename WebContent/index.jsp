@@ -14,9 +14,6 @@
     <title>Página Principal - Biblioteca</title>
 
     <!-- CSS -->
-    <script src="resources/SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-	<script src="resources/SpryAssets/SpryValidationPassword.js" type="text/javascript"></script>
-    <script src="resources/SpryAssets/SpryValidationConfirm.js" type="text/javascript"></script>
     <link href="resources/SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
     <link href="resources/SpryAssets/SpryValidationPassword.css" rel="stylesheet" type="text/css" />
     <link href="resources/SpryAssets/SpryValidationConfirm.css" rel="stylesheet" type="text/css" />
@@ -58,21 +55,21 @@
       </div>
       
       <div class="container">
+      	<!-- barra de búsqueda -->
       	<form action="Busqueda" method="get">
-			<div class="form-group">
-				<select name=type class="form-control">
+				<select name=type class="form-control searchSelect">
 					<option value="libro">Libro</option>
 					<!--  <option value="autor">Autor</option>
 					<option value="temas">Temas</option> -->
 					<option value="editorial">Editorial</option>
 					<option value="isbn">ISBN</option>
 				</select>
-			</div>
-      		<div class="form-group"><span id="sprytextfield1">
-            <input type="text" class="form-control" name="search" placeholder="Buscar"  onblur="sacarclase('sprytextfield1')">
-            <span class="textfieldRequiredMsg">Se necesita un valor.</span><span class="textfieldMinCharsMsg"> No se cumple el mínimo de caracteres requerido (3).</span></span></div>
-			<button type="submit" class="btn btn-default">Buscar</button>
+      		<span id="sprytextfield1">
+            <input type="text" class="form-control searchField" name="search" placeholder="Buscar"  onblur="sacarclase('sprytextfield1')">
+            <span class="textfieldRequiredMsg">Se necesita un valor.</span><span class="textfieldMinCharsMsg"> No se cumple el mínimo de caracteres requerido (3).</span></span>
+			<button type="submit" class="btn btn-default searchButton">Buscar</button>
       	</form>
+      	<!-- fin barra de búsqueda -->
       </div>
       
     </div> <!-- jumbotron end -->
@@ -80,27 +77,6 @@
 	<section id="main">
     
     <!-- Esto hay que automatizarlo para traer x cantidad de libros recientes-->
-    
-    <!--  
-      <h2>Libros agregados recientemente:</h2>
-      <article>
-    		<img style="float: left;" src="http://2.bp.blogspot.com/_McgfrVkIzjY/TNB8qAbrjdI/AAAAAAAAAQ4/Qrt-EhA830I/s320/CaperucitaRoja.jpg" /> 
-			<h3><a href="#">Caperucita Roja</a></h3>
-			<p>
-			Una niña recibe de su madre el encargo de llevar una cesta a su abuela enferma que vive en el bosque, advirtiéndole que no hable con desconocidos. Pero por el camino se encuentra un lobo y se para a hablar con él, dándole detalles de lo que va a hacer.
-			El lobo aprovecha para engañar a caperucita y llegar antes a casa de la abuelita, a quien se come, y luego ocupa su lugar para engañar a caperucita y comérsela también. Afortunadamente, un leñador que andaba por allí descubre al lobo durmiendo tras su comida, y rescata a caperucita y su abuelita de la tripa del lobo, sustituyéndolas por piedras que hacen que el lobo se ahoge al ir a beber al río.
-        	</p>
-      </article>
-      
-      <article>
-			<img style="float: left;" src="http://cinemania.es/app/webroot/images/2011/concursos/blancanieves_libro.jpg" /> 
-			<h3><a href="#">Blancanieves y la Leyenda del Cazador</a></h3>
-			<p>
-			Blancanieves es la única persona en el mundo aún más bella que la malvada reina Ravenna, deseosa de acabar con ella. Pero lo que la reina no imagina es que la joven que amenaza su reinado ha sido entrenada en las artes de la guerra por el cazador que tenía la misión de asesinarla.
-			Y es aquí donde la historia que conocíamos de Blancanieves tiene otro final… Una nueva, sobrecogedora y sorprendente versión del cuento clásico.
-       		</p>
-      </article>
-	-->
 	
     </section>
 	
@@ -108,6 +84,9 @@
 <!-- Incluyo el footer -->
 	<jsp:include page="resources/footer.jsp" />
     <!-- Validaciones Javascript-->
+    <script src="resources/SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+	<script src="resources/SpryAssets/SpryValidationPassword.js" type="text/javascript"></script>
+    <script src="resources/SpryAssets/SpryValidationConfirm.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		function sacarclase(id){
 			document.getElementById(id).className = "";

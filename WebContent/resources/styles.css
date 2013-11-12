@@ -44,6 +44,10 @@ footer {
 	
 }
 
+.menuItems{
+	margin-bottom:50px;
+}
+
 .menuItem{
 	/*border:1px dashed lightgray;*/
 	max-width:150px;
@@ -90,5 +94,23 @@ footer {
   float:right;	
   margin-right:20px;
   margin-top:20px;
+}
+
+.searchSelect {
+	width:110px;
+	float:left;
+	text-align:center;
+}
+
+.searchField {
+	margin-left:10px;
+	width:60%;
+	min-width:200px;
+	float:left;
+}
+
+.searchButton {
+	margin-left:10px;
+	float:left;
 }
 

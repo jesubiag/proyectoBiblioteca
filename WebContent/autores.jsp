@@ -36,50 +36,51 @@
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
-      <div class="container">
-        <h1>Administración de Autores</h1>
-        
-		<p class="buttonGroup">
-			<a href="Autores?action=new" class="btn btn-success btn-lg">Registrar Autor  <span class="glyphicon glyphicon-plus"></span></a>
-			<a href="menu.jsp" class="btn btn-warning btn-lg">Volver al Menú  <span class="glyphicon glyphicon-backward"></span></a>
-		</p>	        
-        
-        <!--  Tabla -->
-        
-		<div class="panel panel-primary">
-	  		<!-- Default panel contents -->
-	  		<div class="panel-heading">Autores Registrados</div>	
-			
-			<div class="table-responsive">
-			    <table class="table">
-			    
-			    	<tr>
-			    		<th>Nombre Completo</th>
-			    		<th>Fecha Alta</th>
-			    		<th>País de Origen</th>
-			    		<th colspan=2 >Acción</th>
-			    	</tr>
-			    	
-			    	<c:forEach var="autor" items="${autores}">
+      	<div class="container">
+      
+	        <h1>Administración de Autores</h1>
+	        
+			<p class="buttonGroup">
+				<a href="Autores?action=new" class="btn btn-success btn-lg">Registrar Autor  <span class="glyphicon glyphicon-plus"></span></a>
+				<a href="menu.jsp" class="btn btn-warning btn-lg">Volver al Menú  <span class="glyphicon glyphicon-backward"></span></a>
+			</p>	        
+	        
+	        <!--  Tabla -->
+	        
+			<div class="panel panel-primary">
+		  		<!-- Default panel contents -->
+		  		<div class="panel-heading">Autores Registrados</div>	
+				
+				<div class="table-responsive">
+				    <table class="table">
+				    
 				    	<tr>
-				    		<td><c:out value="${autor.nombre}" /></td>
-				    		<td><c:out value="${autor.stringFechaAlta}" /></td>
-				    		<td><c:out value="${autor.paisOrigen}" /></td>				    		
-				    		<td><a href=${"Autores?action=edit&id="}${autor.id}><span class="glyphicon glyphicon-pencil"></span></a></td>
-				    		<td><a href=${"Autores?action=delete&id="}${autor.id}><span class="glyphicon glyphicon-remove"></span></a></td>
+				    		<th>Nombre Completo</th>
+				    		<th>Fecha Alta</th>
+				    		<th>País de Origen</th>
+				    		<th colspan=2 >Acción</th>
 				    	</tr>
-			    	</c:forEach>
-			    
-			    </table>
+				    	
+				    	<c:forEach var="autor" items="${autores}">
+					    	<tr>
+					    		<td><c:out value="${autor.nombre}" /></td>
+					    		<td><c:out value="${autor.stringFechaAlta}" /></td>
+					    		<td><c:out value="${autor.paisOrigen}" /></td>				    		
+					    		<td><a href=${"Autores?action=edit&id="}${autor.id}><span class="glyphicon glyphicon-pencil"></span></a></td>
+					    		<td><a href=${"Autores?action=delete&id="}${autor.id}><span class="glyphicon glyphicon-remove"></span></a></td>
+					    	</tr>
+				    	</c:forEach>
+				    
+				    </table>
+				</div>
+				
 			</div>
-			
-		</div>
-       
-      </div>
+	       
+	      </div>
     </div>
 
 <!-- Incluyo el footer -->
-	<jsp:include page="resources/footer.jsp" />
+		<jsp:include page="resources/footer.jsp" />
 
   </body>
 </html>

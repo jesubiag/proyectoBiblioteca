@@ -30,7 +30,7 @@
   
   <!-- Veo si no está logueado, lo mando al login en caso de que no -->   
    <c:if test="${empty user}">  
-   	<jsp:forward page="index.jsp" />
+   	<jsp:forward page="/" />
    </c:if>
    
 <!-- Incluyo el header -->
@@ -39,6 +39,12 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
     	<div class="container">
+        
+        	<ol class="breadcrumb">
+		  		<li><a href="/proyectoBiblioteca">Inicio</a></li>
+		  		<li><a href="Autores">Administración de Autores</a></li>
+		  		<li class="active">Alta/Modificación de Autor</li>
+			</ol>
         
 	        <h1>Alta/Modificación de Autor</h1>
 	        

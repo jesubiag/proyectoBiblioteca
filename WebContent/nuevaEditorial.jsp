@@ -32,7 +32,7 @@
   
   <!-- Veo si no está logueado, lo mando al login en caso de que no -->   
    <c:if test="${empty user}">  
-     <jsp:forward page="index.jsp" />
+     <jsp:forward page="/" />
    </c:if>
    
 <!-- Incluyo el header -->
@@ -41,6 +41,12 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
             <div class="container">
+        
+        		<ol class="breadcrumb">
+			  		<li><a href="/proyectoBiblioteca">Inicio</a></li>
+			  		<li><a href="Editoriales">Administración de Editoriales</a></li>
+			  		<li class="active">Alta/Modificación Editorial</li>
+				</ol>
         
                 <h1>Alta/Modificación de Editorial</h1>
                 
@@ -63,6 +69,9 @@
                                           <input type="text" class="form-control" name="email" value="${editorial.email}" onBlur="sacarclase('sprytextfield2');">
                                 <span class="textfieldRequiredMsg">Se necesita un email.</span><span class="textfieldInvalidFormatMsg">Formato no válido.</span></span></div>
                                 
+                                
+                                <!--  Falta arreglar esto para que funcione bien
+                                
                                 <div class="form-group">
                                       Teléfonos: 
                                       
@@ -77,7 +86,7 @@
                                               <a href='javascript:addTelField()' class="btn btn-default">Agregar Teléfono</a>
                                   </p>
                                        <p>(Preguntar cómo hacer para eliminar campos cuando están en blanco)</p>
-                          </div>
+                          		</div>
                               
                               <div class="form-group">
                                       Direcciones: 
@@ -93,8 +102,19 @@
                                        <p>(Próximamente)</p>
                               </div>
                                 
+                                -->
+                                
                                 <!-- Falta Armar lo de Direcciones y Teléfonos -->                            
                                 
+                                
+                       <!--  Borrar una vez arreglado lo de arriba -->         
+                                
+                                <div class="form-group">
+                                	Teléfono:
+                                	<input type="text" class="form-control" name="telefonos[]" value="${editorial.telefonos[0]}">
+                                </div>
+       
+                        <!--  Fin borrar -->            
                                 <p class="buttonGroup">
                             <button type="submit" class="btn btn-success">Aceptar</button>
                             <a href="/proyectoBiblioteca/Editoriales" class="btn btn-danger">Cancelar</a>

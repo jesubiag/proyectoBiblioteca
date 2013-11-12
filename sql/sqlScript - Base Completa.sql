@@ -29,8 +29,9 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`direccion` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `biblioteca`.`provincia` (
+	`id` bigint NOT NULL AUTO_INCREMENT,	
 	`nombre` varchar(255) NOT NULL,
-	 PRIMARY KEY (`nombre`),
+	 PRIMARY KEY (`id`),
 	FULLTEXT(`nombre`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
@@ -42,6 +43,7 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`localidad` (
 	`idProvincia` varchar(255) NOT NULL,
 	`activo` boolean NOT NULL,
 	 PRIMARY KEY (`id`),
+	UNIQUE INDEX `nombre` (`nombre` ASC),
 	FULLTEXT(`nombre`,`idProvincia`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
@@ -197,6 +199,31 @@ INSERT INTO `biblioteca`.`usuario`
 (`clave`,`usuario`,`nombre`,`apellido`,`activo`,`tipoUsuario`,`fechaAlta`)
 VALUES
 ("admin","admin","Lucas","Couchot",true,"administrador",CURDATE());
+
+INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('Buenos Aires');
+INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('Capital Federal');
+INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('Catamarca');
+INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('Chaco');
+INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('Chubut');
+INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('Córdoba');
+INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('Corrientes');
+INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('Entre Ríos');
+INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('Formosa');
+INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('Jujuy');
+INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('La Pampa');
+INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('La Rioja');
+INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('Mendoza');
+INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('Misiones');
+INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('Neuquén');
+INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('Río Negro');
+INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('Salta');
+INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('San Juan');
+INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('San Luis');
+INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('Santa Cruz');
+INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('Santa Fe');
+INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('Santiago del Estero');
+INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('Tierra del Fuego');
+INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('Tucumán');
 
 
 

@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="f"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
  
 <!DOCTYPE html>
@@ -93,7 +94,8 @@
 					                <td colspan="10" class="hiddenRow">
 					              
 					                        <!-- Tabla de ejemplares -->
-					
+						
+										<c:if test="${0 != (f:length(libro.ejemplares))}">  
 					                        <table class="subTable">
 					                            <thead>
 					                            	<tr>
@@ -129,6 +131,9 @@
 					
 					                            </tbody>
 					                        </table>
+
+					                	</c:if> 
+					                       
 					                </td>
 					            </tr>
 					        

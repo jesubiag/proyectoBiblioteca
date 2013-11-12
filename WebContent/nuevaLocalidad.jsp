@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="f"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
  
 <!DOCTYPE html>
@@ -32,7 +33,7 @@
   
   <!-- Veo si no está logueado, lo mando al login en caso de que no -->   
    <c:if test="${empty user}">  
-   	<jsp:forward page="index.jsp" />
+   	<jsp:forward page="/" />
    </c:if>
    
 <!-- Incluyo el header -->
@@ -41,6 +42,12 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
     	<div class="container">
+        
+        	<ol class="breadcrumb">
+		  		<li><a href="/proyectoBiblioteca">Inicio</a></li>
+		  		<li><a href="Localidades">Administración de Localidades</a></li>
+		  		<li class="active">Alta/Modificación Localidad</li>
+			</ol>
         
 	        <h1>Alta/Modificación de Localidad</h1>
 	        
@@ -62,11 +69,15 @@
 					    <span id="spryselect1">
 					    <select name="provincia" class="form-control" onBlur="sacarclase('spryselect1')">
 					      <c:forEach var="provincia" items="${provincias}">
-					        <option value="${provincia.nombre}">${provincia.nombre}</option>
+					        <option value="${provincia.nombre}"
+					        	<c:if test="${provincia.nombre == localidad.provincia.nombre}">${"selected='selected'"}</c:if> 
+					        >${provincia.nombre}</option>
+				        
 				          </c:forEach>
 				        </select>
+				        
 			    <span class="selectRequiredMsg">Seleccione un elemento.</span></span></div>
-				
+
 				<p class="buttonGroup">
 			    <button type="submit" class="btn btn-success">Aceptar</button>
 			    <a href="/proyectoBiblioteca/Localidades" class="btn btn-danger">Cancelar</a>

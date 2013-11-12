@@ -6,10 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
-
 import org.proyectoBiblioteca.dao.LocalidadDAO;
 import org.proyectoBiblioteca.dao.PersistenceManager;
-import org.proyectoBiblioteca.dao.ProvinciaDAO;
 import org.proyectoBiblioteca.dao.SocioDAO;
 import org.proyectoBiblioteca.domain.Direccion;
 import org.proyectoBiblioteca.domain.Localidad;
@@ -124,7 +122,6 @@ public class SocioService {
 	public static void saveSocio(HttpServletRequest request) {
 
 		Socio socio = null;
-		Localidad localidad = null;
 		
 		//Si es nuevo lo creo, sino lo obtengo
 		
@@ -167,11 +164,7 @@ public class SocioService {
 			socio.getDireccion().setDepartamento(parameterDepartamento);
 		}
 		
-		localidad = LocalidadDAO.findByFields(request.getParameter("provincia"),request.getParameter("localidad"));
-		
-		if (localidad == null){ //Si es nula es porque no existe, la creo
-			localidad = new Localidad(ProvinciaDAO.find(request.getParameter("provincia")),request.getParameter("localidad"));
-		}
+		Localidad localidad = LocalidadDAO.find(Long.parseLong(request.getParameter("localidad")));
 		
 		socio.getDireccion().setLocalidad(localidad);
 

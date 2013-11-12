@@ -27,7 +27,7 @@
 	            <div class="form-group">
 	              <input type="password" placeholder="Contraseña" class="form-control" name="password">
 	            </div>
-	            <button type="submit" class="btn btn-success">Ingresar</button>
+	            <button type="submit" class="btn btn-primary">Ingresar</button>
 	          </form>
           	</c:when>
           	
