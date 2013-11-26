@@ -92,7 +92,7 @@
 			      <div class="form-group">
 			      	Etiquetas: 
 			      	  <span id="sprytextfield3">
-			      	  <input type="text" class="form-control" name="etiquetas" value="${libro.etiquetas}" onBlur="sacarclase('sprytextfield3');">
+			      	  <input type="text" class="form-control" name="etiquetas" value="${libro.listaEtiquetas}" onBlur="sacarclase('sprytextfield3');">
 		      	  <span class="textfieldRequiredMsg">Se necesita al menos una etiqueta.</span></span></div>
 
 				  <div class="form-group">

@@ -46,7 +46,7 @@
 			    		<li><strong>Autores:</strong> ${libro.listaAutores}</li> <!-- Hacer un foreach para linkear a los libros de cada autor individualmente -->
 			    		<li><strong>Editorial:</strong> <a href=${"Busqueda?type=editorial&search="}${libro.editorial.nombre}>${libro.editorial.nombre}</a></li>
 			    		<li><strong>País de Origen:</strong> ${libro.paisOrigen}</li>
-			    		<li><strong>Etiquetas/Temas:</strong> ${libro.etiquetas}</li>
+			    		<li><strong>Etiquetas/Temas:</strong> ${libro.listaEtiquetas}</li>
 			    		<li><strong>Rango:</strong> ${libro.rango}</li>
 			    		<li><strong>Descripción:</strong> ${libro.descripcion}</li>
 		    		</ul>	

@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`provincia` (
 	`id` bigint NOT NULL AUTO_INCREMENT,	
 	`nombre` varchar(255) NOT NULL,
 	 PRIMARY KEY (`id`),
-	FULLTEXT(`nombre`)
+	 FULLTEXT(`nombre`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `biblioteca`.`localidad` (
@@ -53,8 +53,8 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`diasNoHabiles` (
 	`fechaSiguiente` date, /* fecha próxima habil*/
 	`motivo` char(255) NOT NULL,
 	`activo` boolean NOT NULL,
-  PRIMARY KEY (`id`),
-  FULLTEXT (`motivo`)
+	PRIMARY KEY (`id`),
+	FULLTEXT (`motivo`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `biblioteca`.`usuario` (
@@ -86,14 +86,14 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`editorial` (
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `biblioteca`.`autor` (
-`id` bigint NOT NULL AUTO_INCREMENT,
-`nombre` varchar(255) NOT NULL,
-`paisOrigen` varchar(255) NOT NULL,
-`activo` boolean NOT NULL,
-`fechaAlta` date NOT NULL,
-`fechaBaja` date,
- PRIMARY KEY (`id`),
-FULLTEXT(`nombre`, `paisOrigen`)
+	`id` bigint NOT NULL AUTO_INCREMENT,
+	`nombre` varchar(255) NOT NULL,
+	`paisOrigen` varchar(255) NOT NULL,
+	`activo` boolean NOT NULL,
+	`fechaAlta` date NOT NULL,
+	`fechaBaja` date,
+	 PRIMARY KEY (`id`),
+	 FULLTEXT(`nombre`, `paisOrigen`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `biblioteca`.`ejemplar` (
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`reserva` (
 	`fechaLimite` date NOT NULL,
 	`fechaAlta` date NOT NULL,
 	`activo` boolean NOT NULL,
-  PRIMARY KEY (`id`)
+	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `biblioteca`.`libro` (
@@ -130,7 +130,6 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`libro` (
 	`isbn` varchar(255) NOT NULL,
 	`paisOrigen` varchar(255) NOT NULL,
 	`titulo` varchar(255) NOT NULL,
-	`etiquetas` varchar(255) NOT NULL,
 	`descripcion` varchar(255) NOT NULL,
 	`linkImagen` varchar(255) NOT NULL,
 	`rango` int(2) NOT NULL,
@@ -138,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`libro` (
 	`fechaBaja` date,
 	`motivoBaja` varchar(255),
 	PRIMARY KEY (`id`),
-	FULLTEXT(`paisOrigen`, `titulo`,`etiquetas`,`motivoBaja`,`isbn`)
+	FULLTEXT(`paisOrigen`, `titulo`,`motivoBaja`,`isbn`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `biblioteca`.`prestamo` (
@@ -151,48 +150,56 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`prestamo` (
 	`estado` varchar(255) NOT NULL,
 	`nota` varchar(255),
 	`prestamoLocal` boolean NOT NULL,
-  PRIMARY KEY (`id`),
-  FULLTEXT (`nota`, `estado`)
+	PRIMARY KEY (`id`),
+	FULLTEXT (`nota`, `estado`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `biblioteca`.`suspensiones` (
-`id`bigint NOT NULL AUTO_INCREMENT,
-`idPrestamo` bigint NOT NULL,
-`idSocio` bigint NOT NULL,
-`fechaAlta` date NOT NULL,
-`fechaVencimiento` date NOT NULL,
-`motivo` varchar(255) NOT NULL,
- PRIMARY KEY (`id`),
-FULLTEXT(`motivo`)
+	`id`bigint NOT NULL AUTO_INCREMENT,
+	`idPrestamo` bigint NOT NULL,
+	`idSocio` bigint NOT NULL,
+	`fechaAlta` date NOT NULL,
+	`fechaVencimiento` date NOT NULL,
+	`motivo` varchar(255) NOT NULL,
+	 PRIMARY KEY (`id`),
+	FULLTEXT(`motivo`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `biblioteca`.`relacionAutorLibro` (
-`idAutor` bigint NOT NULL,
-`idLibro` bigint NOT NULL,
- PRIMARY KEY (`idLibro`,`idAutor`)
+	`idAutor` bigint NOT NULL,
+	`idLibro` bigint NOT NULL,
+	 PRIMARY KEY (`idLibro`,`idAutor`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `biblioteca`.`relacionEditorialDireccion` (
-`idEditorial` bigint NOT NULL,
-`idDireccion` bigint NOT NULL,
- PRIMARY KEY (`idEditorial`,`idDireccion`)
+	`idEditorial` bigint NOT NULL,
+	`idDireccion` bigint NOT NULL,
+	 PRIMARY KEY (`idEditorial`,`idDireccion`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `biblioteca`.`telefonosEditorial` (
-`id` bigint NOT NULL AUTO_INCREMENT,
-`idEditorial` bigint NOT NULL,
-`telefono` varchar(255) NOT NULL,
-FULLTEXT(`telefono`),
- PRIMARY KEY (`id`)
+	`id` bigint NOT NULL AUTO_INCREMENT,
+	`idEditorial` bigint NOT NULL,
+	`telefono` varchar(255) NOT NULL,
+	FULLTEXT(`telefono`),
+	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `biblioteca`.`movimiento` (
-`id` bigint NOT NULL AUTO_INCREMENT,
-`idPrestamo` bigint NOT NULL,
-`tipoMovimiento` varchar(255) NOT NULL,
-`idUsuario` bigint NOT NULL,
-FULLTEXT(`tipoMovimiento`),
- PRIMARY KEY (`id`)
+	`id` bigint NOT NULL AUTO_INCREMENT,
+	`idPrestamo` bigint NOT NULL,
+	`tipoMovimiento` varchar(255) NOT NULL,
+	`idUsuario` bigint NOT NULL,
+	FULLTEXT(`tipoMovimiento`),
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `biblioteca`.`etiquetasLibro` (
+	`id` bigint NOT NULL AUTO_INCREMENT,
+	`idLibro` bigint NOT NULL,
+	`etiqueta` varchar(255) NOT NULL,
+	INDEX `idLibro` (`idLibro` ASC),
+	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 INSERT INTO `biblioteca`.`usuario`

@@ -1,10 +1,14 @@
 package org.proyectoBiblioteca.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -29,10 +33,10 @@ import org.proyectoBiblioteca.utils.Utilidades;
 	@NamedQuery(name = "Libro.findAll", query = "Select l From Libro l"),
 	@NamedQuery(name = "Libro.findAllActive", query = "Select l From Libro l Where l.activo = true"),
 	@NamedQuery(name = "Libro.findByTitle", query = "Select l From Libro l Where l.titulo Like :titulo"),
-	//Corregir la de autor
-	@NamedQuery(name = "Libro.findByAuthor", query = "Select l From Libro l Where l.titulo Like :autor"), //TODO ver si se puede hacer un elem in list
+	@NamedQuery(name = "Libro.findByAuthor", query = "Select l From Libro l Where :autor Member Of l.autores"), 
 	@NamedQuery(name = "Libro.findByEditorial", query = "Select l From Libro l Where l.editorial.nombre Like :editorial"),
-	@NamedQuery(name = "Libro.findByIsbn", query = "Select l From Libro l Where l.isbn Like :isbn")
+	@NamedQuery(name = "Libro.findByIsbn", query = "Select l From Libro l Where l.isbn Like :isbn"),
+	@NamedQuery(name = "Libro.findByTag", query = "Select l From Libro l Where :etiqueta Member Of l.etiquetas")
 })
 public class Libro implements Serializable{
 	
@@ -52,13 +56,19 @@ public class Libro implements Serializable{
 	    }, inverseJoinColumns = {
 	        @JoinColumn(name = "idAutor", referencedColumnName = "id")
 	    })
-	private List<Autor> autores;
+	private List<Autor> autores = new ArrayList<Autor>();
 	
 	@ManyToOne
 	@JoinColumn(name = "idEditorial")
 	private Editorial editorial;
 
-	private String etiquetas;
+	@ElementCollection
+	  @CollectionTable(
+	        name="etiquetasLibro",
+	        joinColumns=@JoinColumn(name="idLibro")
+	  )
+	@Column(name="etiqueta")
+	private List<String> etiquetas = new ArrayList<String>();
 
 	private String isbn;
 
@@ -86,7 +96,7 @@ public class Libro implements Serializable{
 		
 	}
 	
-	public Libro(List<Autor> autores, Editorial editorial, String etiquetas,
+	public Libro(List<Autor> autores, Editorial editorial, List<String> etiquetas,
 			String isbn, String paisOrigen, int rango, String titulo) {
 		super();
 		this.autores = autores;
@@ -155,10 +165,10 @@ public class Libro implements Serializable{
 	public void setEditorial(Editorial editorial) {
 		this.editorial = editorial;
 	}
-	public String getEtiquetas() {
+	public List<String> getEtiquetas() {
 		return etiquetas;
 	}
-	public void setEtiquetas(String etiquetas) {
+	public void setEtiquetas(List<String> etiquetas) {
 		this.etiquetas = etiquetas;
 	}
 	public String getIsbn() {
@@ -234,8 +244,6 @@ public class Libro implements Serializable{
 		return ret;
 	}
 	
-	//TODO revisar si es correcto hacerlo de esta manera o hay una mejor
-	
 	public List<Ejemplar> getEjemplares(){
 		
 		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
@@ -261,6 +269,10 @@ public class Libro implements Serializable{
 		}
 		
 		return ejemplares;
+	}
+	
+	public String getListaEtiquetas(){
+		return Utilidades.stringListAsString(this.etiquetas);
 	}
 	
 }

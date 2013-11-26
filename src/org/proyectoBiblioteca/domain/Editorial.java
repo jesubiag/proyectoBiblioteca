@@ -144,22 +144,6 @@ public class Editorial implements Serializable{
 	}
 	
 	public String getListaDirecciones(){
-		
-/*		String ret = null;
-		
-		if(this.direcciones.size() > 1){
-			
-			for(Direccion direccion : this.direcciones){
-				ret = direccion + "; " + ret;
-			}	
-		}else{
-			if(this.direcciones.size()>0){
-				ret = this.direcciones.get(0).toString();
-			}
-		}
-		
-		return ret;*/
-		
 		return Utilidades.listAsString(this.direcciones);
 		
 	}

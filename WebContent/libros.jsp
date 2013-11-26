@@ -81,7 +81,7 @@
 					                <td><c:out value="${libro.editorial.nombre}" /></td>
 					                <td><c:out value="${libro.listaAutores}" /></td>
 					                <td><c:out value="${libro.isbn}" /></td>
-					                <td><c:out value="${libro.etiquetas}" /></td>
+					                <td><c:out value="${libro.listaEtiquetas}" /></td>
 					                <td><c:out value="${libro.rango}" /></td>
 					                <td><c:out value="${libro.paisOrigen}" /></td>
 					                <td><c:out value="${libro.stringFechaAlta}" /></td>

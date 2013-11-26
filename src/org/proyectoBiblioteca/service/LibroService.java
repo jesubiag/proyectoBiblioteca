@@ -1,6 +1,7 @@
 package org.proyectoBiblioteca.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -99,13 +100,17 @@ public class LibroService {
 		//seteo atributos con los parámetros
 
 		libro.setTitulo(request.getParameter("titulo"));
-		libro.setEtiquetas(request.getParameter("etiquetas"));
 		libro.setIsbn(request.getParameter("isbn"));
 		libro.setPaisOrigen(request.getParameter("paisOrigen"));
 		libro.setRango(Integer.parseInt(request.getParameter("rango")));
 		libro.setEditorial(EditorialDAO.find(Long.parseLong(request.getParameter("editorial"))));
 		libro.setDescripcion(request.getParameter("descripcion"));
 		libro.setLinkImagen(request.getParameter("linkImagen"));
+		
+		//recibo el campo etiquetas que es una cadena separada por , o por ; y lo parseo para armar una lista de etiquetas individuales 
+		String[] etiquetas = request.getParameter("etiquetas").split(",|;");
+		
+		libro.setEtiquetas(new ArrayList<String>(Arrays.asList(etiquetas)));
 		
 		//TODO cambiar para varios autores! También cambiar el jsp de nuevo libro
 		List<Autor> autores = new ArrayList<Autor>();
