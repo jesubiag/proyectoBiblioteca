@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
 import org.proyectoBiblioteca.dao.EditorialDAO;
@@ -18,8 +17,7 @@ public class EditorialService {
 		
 		//ejecuto una consulta para traer los editoriales activos y los mando como atributo en la request
 		
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager em = PersistenceManager.getEntityManager();
 		
 		List<Editorial> editoriales = null;
 		

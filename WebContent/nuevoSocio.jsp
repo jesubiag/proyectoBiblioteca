@@ -137,31 +137,36 @@
 					  <div class="form-group">
 				     	 Calle: 
 				     	   <span id="sprytextfield8">
-				     	   <input type="text" class="form-control" name="calle" value="${socio.direccion.calle}" onBlur="sacarclase('sprytextfield8')">
-		     	      <span class="textfieldRequiredMsg">Se necesita una calle.</span></span></div>
+                           <input type="text" class="form-control" name="calle" value="${socio.direccion.calle}" onBlur="sacarclase('sprytextfield8')">
+                      <span class="textfieldRequiredMsg">Se necesita una calle.</span><span class="textfieldMaxCharsMsg">Se ha superado el número máximo de caracteres (60).</span></span></div>
 				      
 				      <div class="form-group">
 				     	 Número: 
 				     	   <span id="sprytextfield9">
-	                       <input type="text" class="form-control" name="numero" value="${socio.direccion.numero}" onBlur="sacarclase('sprytextfield9')">
-	                  <span class="textfieldRequiredMsg">Se necesita un n&uacute;mero.</span><span class="textfieldInvalidFormatMsg">Formato no válido, debe ser un n&uacute;mero.</span></span></div>		  				  
+                           <input type="text" class="form-control" name="numero" value="${socio.direccion.numero}" onBlur="sacarclase('sprytextfield9')">
+                      <span class="textfieldRequiredMsg">Se necesita un n&uacute;mero.</span><span class="textfieldInvalidFormatMsg">Formato no válido, debe ser un n&uacute;mero.</span><span class="textfieldMaxCharsMsg">Se ha superado el número máximo de caracteres (6).</span></span></div>		  				  
 					  
 					  <div class="form-group">
 				     	 Código Postal: 
 				     	   <span id="sprytextfield10">
-				     	   <input type="text" class="form-control" name="codigoPostal" value="${socio.direccion.codigoPostal}" onBlur="sacarclase('sprytextfield10')">
-		     	      <span class="textfieldRequiredMsg">Se necesita un CP.</span></span></div>
+                           <input type="text" class="form-control" name="codigoPostal" value="${socio.direccion.codigoPostal}" onBlur="sacarclase('sprytextfield10')">
+                      <span class="textfieldRequiredMsg">Se necesita un CP.</span><span class="textfieldMaxCharsMsg">Se ha superado el número máximo de caracteres.</span></span></div>
 				      
 				      <div class="form-group">
 				     	 Piso: 
-				     	   
-				     	   <input type="text" class="form-control" name="piso" value="${socio.direccion.piso}">
-		     	      </div>
+				     	    <span id="sprytextfield11">
+                            <input type="text" class="form-control" name="piso" value="${socio.direccion.piso}" onBlur="sacarclase('sprytextfield11')">
+                         <span class="textfieldRequiredMsg">Se necesita un valor.</span><span class="textfieldMaxCharsMsg">Se ha superado el número máximo de caracteres.</span></span>
+                      </div>
+				     
+				     
+				     
 				      
 				      <div class="form-group">
 				     	 Departamento: 
-				     	 <input type="text" class="form-control" name="departamento" value="${socio.direccion.departamento}" >
-				      </div>
+				     	   <span id="sprytextfield12">
+				     	   <input type="text" class="form-control" name="departamento" value="${socio.direccion.departamento}" onBlur="sacarclase('sprytextfield12')" >
+		     	    <span class="textfieldMaxCharsMsg">Se ha superado el número máximo de caracteres.</span></span></div>
 			     			  		  
 				  </fieldset>
 				  
@@ -190,10 +195,12 @@ function sacarclase(id){
 	var spryselect1 = new Spry.Widget.ValidationSelect("spryselect1", {validateOn:["change"]});
 	var spryselect2 = new Spry.Widget.ValidationSelect("spryselect2", {validateOn:["change"]});
 	var sprytextfield7 = new Spry.Widget.ValidationTextField("sprytextfield7");
-	var sprytextfield8 = new Spry.Widget.ValidationTextField("sprytextfield8", "none", {validateOn:["change"]});
-	var sprytextfield9 = new Spry.Widget.ValidationTextField("sprytextfield9", "integer", {validateOn:["change"]});
-	var sprytextfield10 = new Spry.Widget.ValidationTextField("sprytextfield10", "none", {validateOn:["change"]});
+	var sprytextfield8 = new Spry.Widget.ValidationTextField("sprytextfield8", "none", {validateOn:["change"], maxChars:60});
+	var sprytextfield9 = new Spry.Widget.ValidationTextField("sprytextfield9", "integer", {validateOn:["change"], maxChars:6});
+	var sprytextfield10 = new Spry.Widget.ValidationTextField("sprytextfield10", "none", {validateOn:["change"], maxChars:8});
 var spryselect3 = new Spry.Widget.ValidationSelect("spryselect3", {validateOn:["change"]});
+var sprytextfield11 = new Spry.Widget.ValidationTextField("sprytextfield11", "none", {maxChars:3});
+var sprytextfield12 = new Spry.Widget.ValidationTextField("sprytextfield12", "none", {isRequired:false, validateOn:["change"], maxChars:4});
   </script>
   </body>
 </html>

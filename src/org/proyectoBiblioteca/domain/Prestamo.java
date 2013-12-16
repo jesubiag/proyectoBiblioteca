@@ -24,11 +24,11 @@ public class Prestamo implements Serializable {
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "idSocio")
 	private Socio socio;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "idEjemplar")
 	private Ejemplar ejemplar;
 	

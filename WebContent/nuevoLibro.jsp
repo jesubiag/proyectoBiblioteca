@@ -86,8 +86,8 @@
 			      <div class="form-group">
 				  	ISBN: 
 				  	  <span id="sprytextfield2">
-				  	  <input type="text" class="form-control" name="isbn" value="${libro.isbn}" onBlur="sacarclase('sprytextfield2');">
-			  	  <span class="textfieldRequiredMsg">Se necesita un ISBN.</span></span></div>
+                      <input type="text" class="form-control" name="isbn" value="${libro.isbn}" onBlur="sacarclase('sprytextfield2');">
+                  <span class="textfieldRequiredMsg">Se necesita un ISBN.</span><span class="textfieldInvalidFormatMsg">Formato no válido. (El ISBN es numérico).</span><span class="textfieldMinCharsMsg">No se cumple el mínimo de caracteres requerido (10).</span><span class="textfieldMaxCharsMsg">Se ha superado el número máximo de caracteres (13).</span></span></div>
 			      
 			      <div class="form-group">
 			      	Etiquetas: 
@@ -98,8 +98,8 @@
 				  <div class="form-group">
 			      	Rango: 
 			      	  <span id="sprytextfield4">
-			      	  <input type="text" class="form-control" name="rango" value="${libro.rango}" onBlur="sacarclase('sprytextfield4');">
-		      	  <span class="textfieldRequiredMsg">Se necesita darle un rango al libro.</span></span></div>
+                      <input type="text" class="form-control" name="rango" value="${libro.rango}" onBlur="sacarclase('sprytextfield4');">
+                  <span class="textfieldRequiredMsg">Se necesita darle un rango al libro.</span><span class="textfieldInvalidFormatMsg">Formato no válido (debe ser numérico).</span><span class="textfieldMinValueMsg">El valor introducido es inferior al mínimo permitido (1).</span><span class="textfieldMaxValueMsg">El valor introducido es superior al máximo permitido (10).</span></span></div>
 
 				  <div class="form-group">
 			      	País de Origen: 
@@ -116,8 +116,8 @@
 				  <div class="form-group">
 				  	Link a Imagen:
 				  	  <span id="sprytextfield6">
-				  	  <input type="text" class="form-control" name="linkImagen" value="${libro.linkImagen}" onBlur="sacarclase('sprytextfield6');">
-			  	  <span class="textfieldRequiredMsg">Se necesita un link a imagen.</span></span></div>
+                      <input type="text" class="form-control" name="linkImagen" value="${libro.linkImagen}" onBlur="sacarclase('sprytextfield6');">
+                  <span class="textfieldRequiredMsg">Se necesita un link a imagen.</span><span class="textfieldInvalidFormatMsg">Formato no válido, debe ser una URL (dirección web).</span></span></div>
 				  
 				  <p class="buttonGroup">
 			    	<button type="submit" class="btn btn-success">Aceptar</button>
@@ -138,11 +138,11 @@ function sacarclase(id){
 		var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "none", {validateOn:["change"]});
 		var spryselect1 = new Spry.Widget.ValidationSelect("spryselect1", {validateOn:["change"]});
 		var spryselect2 = new Spry.Widget.ValidationSelect("spryselect2", {validateOn:["change"]});
-		var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2", "none", {validateOn:["change"]});
+		var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2", "integer", {validateOn:["change"], minChars:10, maxChars:13});
 		var sprytextfield3 = new Spry.Widget.ValidationTextField("sprytextfield3", "none", {validateOn:["change"]});
-		var sprytextfield4 = new Spry.Widget.ValidationTextField("sprytextfield4", "none", {validateOn:["change"]});
+		var sprytextfield4 = new Spry.Widget.ValidationTextField("sprytextfield4", "integer", {validateOn:["change"], minValue:1, maxValue:10});
 		var sprytextfield5 = new Spry.Widget.ValidationTextField("sprytextfield5", "none", {validateOn:["change"]});
-		var sprytextfield6 = new Spry.Widget.ValidationTextField("sprytextfield6", "none", {validateOn:["change"]});
+		var sprytextfield6 = new Spry.Widget.ValidationTextField("sprytextfield6", "url", {validateOn:["change"]});
 		var sprytextfield7 = new Spry.Widget.ValidationTextField("sprytextfield7", "none", {validateOn:["change"]});
   </script>
   </body>

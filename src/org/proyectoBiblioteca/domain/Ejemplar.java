@@ -22,7 +22,8 @@ import org.proyectoBiblioteca.utils.Utilidades;
 @NamedQueries({
 	@NamedQuery(name = "Ejemplar.findAll", query = "Select e From Ejemplar e"),
 	@NamedQuery(name = "Ejemplar.findAllActive", query = "Select e From Ejemplar e Where e.estado <> org.proyectoBiblioteca.enums.EstadoEjemplar.inhabilitado"),
-	@NamedQuery(name = "Ejemplar.findByBookId", query = "Select e From Ejemplar e Where (e.estado <> org.proyectoBiblioteca.enums.EstadoEjemplar.inhabilitado) And (e.libro.id = :idLibro)")
+	@NamedQuery(name = "Ejemplar.findByBookId", query = "Select e From Ejemplar e Where (e.estado <> org.proyectoBiblioteca.enums.EstadoEjemplar.inhabilitado) And (e.libro.id = :idLibro)"),
+	@NamedQuery(name = "Ejemplar.findAvailableByBookId", query = "Select e From Ejemplar e Where (e.estado = org.proyectoBiblioteca.enums.EstadoEjemplar.disponible) And (e.libro.id = :idLibro)")
 })
 public class Ejemplar implements Serializable{
 
@@ -36,7 +37,7 @@ public class Ejemplar implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "idLibro")
-	private Libro libro; //AUTO sacar transient
+	private Libro libro;
 	
 	private int anio;
 	

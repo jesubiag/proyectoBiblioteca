@@ -54,6 +54,7 @@
 			    <table class="table">
 			    
 			    	<tr>
+			    		<th>Nro.Socio</th>
 			    		<th>Nombre</th>
 			    		<th>Apellido</th>
 			    		<th>Dni</th>
@@ -62,12 +63,12 @@
 			    		<th>Rango</th>
 			    		<th>Dirección</th>
 			    		<th>Estado</th>
-			    		<th>Fecha Alta</th>
 			    		<th colspan=2 >Acción</th>
 			    	</tr>
 			    	
 			    	<c:forEach var="socio" items="${socios}">
 				    	<tr>
+				    		<td><c:out value="${socio.id}" /></td>
 				    		<td><c:out value="${socio.nombre}" /></td>
 				    		<td><c:out value="${socio.apellido}" /></td>
 				    		<td><c:out value="${socio.dni}" /></td>
@@ -76,7 +77,6 @@
 				    		<td><c:out value="${socio.rango}" /></td>
 				    		<td><c:out value="${socio.direccion}" /></td>
 				    		<td><c:out value="${socio.estado}" /></td>
-				    		<!--  <td><c:out value="${socio.stringFechaAlta}" /></td> -->
 				    		<td><a href=${"Socios?action=edit&id="}${socio.id}><span class="glyphicon glyphicon-pencil"></span></a></td>
 				    		<td><a href=${"Socios?action=delete&id="}${socio.id}><span class="glyphicon glyphicon-remove"></span></a></td>
 				    	</tr>

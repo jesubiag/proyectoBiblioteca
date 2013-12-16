@@ -27,7 +27,7 @@ public class PrestamoDAO {
 		
 	}
 
-	public static void create(Prestamo prestamo){
+	public static Prestamo create(Prestamo prestamo){
 		
 		EntityManager entityManager = PersistenceManager.getEntityManager();
 		
@@ -49,6 +49,7 @@ public class PrestamoDAO {
 			entityManager.close();
 		}
 		
+		return prestamo;
 	}
 	
 	public static void update(Prestamo prestamo){

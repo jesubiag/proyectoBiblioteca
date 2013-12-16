@@ -1,7 +1,6 @@
 package org.proyectoBiblioteca.service;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,8 +18,7 @@ public class LoginService {
 		String usuario = request.getParameter("user");
 		String clave = request.getParameter("password");
 		
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager em = PersistenceManager.getEntityManager();
 		
 		try{
 			//query original : TypedQuery<Usuario> query = em.createQuery("Select usr From Usuario adm Where usr.usuario = '" + usuario + "'",Usuario.class);

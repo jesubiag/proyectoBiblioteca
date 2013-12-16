@@ -167,4 +167,8 @@ public class Socio implements Serializable {
 	public String getStringFechaBaja(){
 		return Utilidades.getSimpleDate(this.fechaBaja);
 	}
+	
+	public String getResumenSocio(){
+		return this.nombre + " " + this.apellido + " (dni:" + this.dni + ")";
+	}
 }

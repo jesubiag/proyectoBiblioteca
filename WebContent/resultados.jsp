@@ -70,8 +70,7 @@
 								            <th>Autores</th>
 								            <th>ISBN</th>      
 								            <th>Rango</th>
-								            <th>País de Origen</th> 
-								            <th colspan=2>Acción</th>
+								            <th>País de Origen</th>       
 								        </tr>
 								    </thead>
 								    <tbody>
@@ -88,17 +87,8 @@
 								                <td>${libro.listaAutores}</td>
 								                <td>${libro.isbn}</td>       
 								                <td>${libro.rango}</td>
-								                <td>${libro.paisOrigen}</td>
-								                
-								                <c:if test="${!empty user}"><!-- Si está logueado entonces habilito opciones para prestar y devolver -->  
-								                	<td><a href=${"Prestamos?action=new&id="}${libro.id}><span class="glyphicon glyphicon-log-out"></span></a></td>
-								                	<td><a href=${"Prestamos?action=return&id="}${libro.id}><span class="glyphicon glyphicon-log-in"></span></a></td>
-								                </c:if>
-								                
-								                <c:if test="${empty user}"><!-- Si no está logueado entonces habilito opción para reservar -->  
-								                	<td><a href=${"Prestamos?action=reserve&id="}${libro.id}><span class="glyphicon glyphicon-pushpin"></span></a></td>
-								                </c:if>
-								                
+								                <td>${libro.paisOrigen}</td>								                
+
 								            </tr>
 								        
 								        </c:forEach> <!-- Fin del for principal -->

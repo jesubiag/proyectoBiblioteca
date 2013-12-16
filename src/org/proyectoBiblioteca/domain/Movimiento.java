@@ -1,6 +1,7 @@
 package org.proyectoBiblioteca.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.proyectoBiblioteca.enums.TipoMovimiento;
 
@@ -41,6 +44,9 @@ public class Movimiento implements Serializable{
 	
 	@Enumerated (EnumType.STRING)
 	private TipoMovimiento tipoMovimiento;
+	
+	@Temporal(TemporalType.DATE)
+	private Date fecha = new Date();
 	
 	//Constructores
 	

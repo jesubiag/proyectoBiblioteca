@@ -111,7 +111,7 @@
 			      	Precio en Dólares: 
 			      	  <span id="sprytextfield6">
                       <input type="text" class="form-control" name="precioDolares" value="${ejemplar.precioDolares}" onBlur="sacarclase('sprytextfield6');">
-                  <span class="textfieldRequiredMsg">Se necesita un valor en d&oacute;lares.</span><span class="textfieldInvalidFormatMsg">Formato no válido. Debe ser 0000,00</span></span></div>  		  
+                  <span class="textfieldRequiredMsg">Se necesita un valor en d&oacute;lares.</span><span class="textfieldInvalidFormatMsg">Formato no válido. Debe ser 0000.00</span></span></div>  		  
 				  
 				  <p class="buttonGroup">
 			    	<button type="submit" class="btn btn-success">Aceptar</button>
@@ -136,7 +136,7 @@
 	var sprytextfield4 = new Spry.Widget.ValidationTextField("sprytextfield4");
 	var spryselect2 = new Spry.Widget.ValidationSelect("spryselect2");
 	var sprytextfield5 = new Spry.Widget.ValidationTextField("sprytextfield5", "integer", {validateOn:["change"], minChars:1, minValue:1, maxChars:3, maxValue:500});
-	var sprytextfield6 = new Spry.Widget.ValidationTextField("sprytextfield6", "currency", {format:"dot_comma", validateOn:["change"]});
+	var sprytextfield6 = new Spry.Widget.ValidationTextField("sprytextfield6", "currency", {validateOn:["change"]});
   </script>
   </body>
 </html>

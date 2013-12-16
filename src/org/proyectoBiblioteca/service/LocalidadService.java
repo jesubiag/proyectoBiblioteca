@@ -3,7 +3,6 @@ package org.proyectoBiblioteca.service;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
 import org.proyectoBiblioteca.dao.LocalidadDAO;
@@ -18,8 +17,7 @@ public class LocalidadService {
 		
 		//ejecuto una consulta para traer los localidades activas y los mando como atributo en la request
 		
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager em = PersistenceManager.getEntityManager();
 		
 		List<Localidad> localidades = null;
 		
@@ -111,8 +109,7 @@ public class LocalidadService {
 
 	public static void retrieveData(HttpServletRequest request) {
 		
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager em = PersistenceManager.getEntityManager();
 		
 		try{
 

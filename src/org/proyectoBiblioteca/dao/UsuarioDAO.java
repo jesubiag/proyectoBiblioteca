@@ -6,14 +6,14 @@ import org.proyectoBiblioteca.domain.Usuario;
 
 public class UsuarioDAO {
 	
-	public static Usuario find(String nombreUsuario){
+	public static Usuario find(long l){
 		
 		EntityManager entityManager = PersistenceManager.getEntityManager();
 		
 		Usuario usuario = null;
 		
 		try{
-			usuario = entityManager.find(Usuario.class, nombreUsuario);
+			usuario = entityManager.find(Usuario.class, l);
 		}
 		catch(Exception ex){
 			System.out.println("Error en find(usuario) de UsuarioDAO");
@@ -73,7 +73,7 @@ public class UsuarioDAO {
 		
 	}
 	
-	public static void delete(String nombreUsuario){
+	public static void delete(Long id){
 
 		EntityManager entityManager = PersistenceManager.getEntityManager();
 		
@@ -81,7 +81,7 @@ public class UsuarioDAO {
 		tr.begin();
 		
 		try{
-			entityManager.remove(UsuarioDAO.find(nombreUsuario));
+			entityManager.remove(UsuarioDAO.find(id));
 			tr.commit();
 			System.out.println("Eliminación de usuario exitosa");
 		}

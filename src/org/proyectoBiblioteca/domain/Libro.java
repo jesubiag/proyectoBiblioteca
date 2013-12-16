@@ -32,11 +32,11 @@ import org.proyectoBiblioteca.utils.Utilidades;
 @NamedQueries({
 	@NamedQuery(name = "Libro.findAll", query = "Select l From Libro l"),
 	@NamedQuery(name = "Libro.findAllActive", query = "Select l From Libro l Where l.activo = true"),
-	@NamedQuery(name = "Libro.findByTitle", query = "Select l From Libro l Where l.titulo Like :titulo"),
-	@NamedQuery(name = "Libro.findByAuthor", query = "Select l From Libro l Where :autor Member Of l.autores"), 
-	@NamedQuery(name = "Libro.findByEditorial", query = "Select l From Libro l Where l.editorial.nombre Like :editorial"),
-	@NamedQuery(name = "Libro.findByIsbn", query = "Select l From Libro l Where l.isbn Like :isbn"),
-	@NamedQuery(name = "Libro.findByTag", query = "Select l From Libro l Where :etiqueta Member Of l.etiquetas")
+	@NamedQuery(name = "Libro.findByTitle", query = "Select l From Libro l Where l.activo = true And l.titulo Like :titulo"),
+	@NamedQuery(name = "Libro.findByAuthor", query = "Select l From Libro l Where l.activo = true And :autor Member Of l.autores"), 
+	@NamedQuery(name = "Libro.findByEditorial", query = "Select l From Libro l Where l.activo = true And l.editorial.nombre Like :editorial"),
+	@NamedQuery(name = "Libro.findByIsbn", query = "Select l From Libro l Where l.activo = true And l.isbn Like :isbn"),
+	@NamedQuery(name = "Libro.findByTag", query = "Select l From Libro l Where l.activo = true And :etiqueta Member Of l.etiquetas")
 })
 public class Libro implements Serializable{
 	

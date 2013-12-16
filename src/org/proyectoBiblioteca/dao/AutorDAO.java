@@ -16,7 +16,7 @@ public class AutorDAO {
 			autor = entityManager.find(Autor.class, id);
 		}
 		catch(Exception ex){
-			System.err.println("Error en AutorDAO.create" + "(" + Thread.currentThread().getStackTrace()[1].getLineNumber() + "):" + ex.getLocalizedMessage());
+			System.err.println("Error en AutorDAO.find" + "(" + Thread.currentThread().getStackTrace()[1].getLineNumber() + "):" + ex.getLocalizedMessage());
 		}
 		finally {
 			entityManager.close();

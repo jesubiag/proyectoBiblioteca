@@ -3,7 +3,6 @@ package org.proyectoBiblioteca.service;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
 import org.proyectoBiblioteca.dao.EjemplarDAO;
@@ -19,8 +18,7 @@ public class EjemplarService {
 		
 		//ejecuto una consulta para traer los ejemplares activas y los mando como atributo en la request
 		
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager em = PersistenceManager.getEntityManager();
 		
 		List<Ejemplar> ejemplares = null;
 		
@@ -119,8 +117,7 @@ public class EjemplarService {
 
 	public static void retrieveData(HttpServletRequest request) {
 		
-		EntityManagerFactory emf = PersistenceManager.getInstance().getEntityManagerFactory();
-		EntityManager em = emf.createEntityManager();
+		EntityManager em = PersistenceManager.getEntityManager();
 		
 		request.setAttribute("estados", EstadoEjemplar.values());
 		

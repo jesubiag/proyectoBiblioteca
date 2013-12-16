@@ -107,7 +107,7 @@
 						                                <th>Pasillo</th>
 						                                <th>Precio (U$S)</th>
 						                                <th>Fecha Alta</th>
-						                                <th colspan=2>Acción</th>
+						                                <th colspan=4>Acción</th>
 					                            	</tr>
 					                            </thead>
 					                            <tbody>
@@ -125,6 +125,14 @@
 					                                    <td><c:out value="${ejemplar.stringFechaAlta}" /></td>
 					                                	<td><a href=${"Ejemplares?action=edit&id="}${ejemplar.id}><span class="glyphicon glyphicon-pencil"></span></a></td>
 				    									<td><a href=${"Ejemplares?action=delete&id="}${ejemplar.id}><span class="glyphicon glyphicon-remove"></span></a></td>
+									                    
+									                    <c:if test="${ejemplar.estado == 'disponible'}">
+															<td><a href=${"Prestamos?action=new&id="}${ejemplar.id}><span class="glyphicon glyphicon-log-out"></span></a></td>
+														</c:if>
+														
+														<c:if test="${ejemplar.estado == 'prestado'}">
+															<td><a href=${"Prestamos?action=return&id="}${ejemplar.id}><span class="glyphicon glyphicon-log-in"></span></a></td>
+													    </c:if>
 					                                </tr>
 					
 					                                </c:forEach> <!-- Fin del for secundario -->

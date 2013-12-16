@@ -190,6 +190,7 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`movimiento` (
 	`idPrestamo` bigint NOT NULL,
 	`tipoMovimiento` varchar(255) NOT NULL,
 	`idUsuario` bigint NOT NULL,
+	`fecha` date NOT NULL,
 	FULLTEXT(`tipoMovimiento`),
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;

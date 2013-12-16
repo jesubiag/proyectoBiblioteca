@@ -35,6 +35,11 @@
     <div class="jumbotron">
       	<div class="container">
         	
+        	<ol class="breadcrumb">
+		  		<li><a href="/proyectoBiblioteca">Inicio</a></li>
+		  		<li class="active">Detalle de Libro</li>
+			</ol>
+        	
         	<h1>"${libro.titulo}" por ${libro.listaAutores} </h1>
 			
 			<img src="${libro.linkImagen}" alt="Foto de Libro" class="imgLibro">
@@ -52,6 +57,12 @@
 		    		</ul>	
 	    		</div>	
 			</div>
+			
+			<!-- Si hay un mensaje lo muestro, luego lo borro -->
+			<c:if test="${!empty mensajePrestamo}">
+				<div class="alert alert-info">${mensajePrestamo}</div>
+				<c:remove var="mensajePrestamo" scope="session" />
+			</c:if>
 			
 	        <!--  Tabla de ejemplares -->
 	        
@@ -82,7 +93,15 @@
 		                        <td><c:out value="${ejemplar.estante}" /></td>
 		                        <td><c:out value="${ejemplar.mueble}" /></td>
 		                        <td><c:out value="${ejemplar.pasillo}" /></td>
-		                        <!--  hacer un if para poner botones de prestar o devolver en caso de ser bibliotecario y de resevar en caso de no estar logueado -->
+		                        <!--  hacer un if para poner botones de prestar o devolver en caso de ser bibliotecario -->
+		                        <c:if test="${!empty user}"><!-- Si está logueado entonces habilito opciones para prestar y devolver -->  
+									<c:if test="${ejemplar.estado == 'disponible'}">
+										<td><a href=${"Prestamos?action=new&id="}${ejemplar.id}><span class="glyphicon glyphicon-log-out"></span></a></td>
+									</c:if>
+									<c:if test="${ejemplar.estado == 'prestado'}">
+										<td><a href=${"Prestamos?action=return&id="}${ejemplar.id}><span class="glyphicon glyphicon-log-in"></span></a></td>
+									</c:if>
+								</c:if>
 		                    </tr>
 		
 		                    </c:forEach>
