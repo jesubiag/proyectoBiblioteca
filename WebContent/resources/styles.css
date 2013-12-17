@@ -52,21 +52,24 @@ footer {
 }
 
 .menuItems{
-	margin-bottom:50px;
+	margin-bottom:35px;
 }
 
 .menuItem{
 	/*border:1px dashed lightgray;*/
-	max-width:150px;
+	max-width:130px;
 	padding:5px;
 	margin:10px;
 	text-align:center;
 	float:left;
-	min-height:235px;
+	min-height:145px;
 }
 
+
+
 .menuItem img {
-	max-width:120px;
+	max-width:100px;
+	margin-bottom:10px;
 }
 
 .buttonGroup {
@@ -119,5 +122,17 @@ footer {
 .searchButton {
 	margin-left:10px;
 	float:left;
+}
+
+.vigente{
+	background-color:#C9FFDA;
+}
+
+.vencido{
+	background-color:#FAFFC9;
+}
+
+.irrecuperable{
+	background-color:#FFC9C9;
 }
 

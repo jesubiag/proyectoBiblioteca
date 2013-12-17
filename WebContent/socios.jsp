@@ -68,15 +68,15 @@
 			    	
 			    	<c:forEach var="socio" items="${socios}">
 				    	<tr>
-				    		<td><c:out value="${socio.id}" /></td>
-				    		<td><c:out value="${socio.nombre}" /></td>
-				    		<td><c:out value="${socio.apellido}" /></td>
-				    		<td><c:out value="${socio.dni}" /></td>
-				    		<td><c:out value="${socio.email}" /></td>
-				    		<td><c:out value="${socio.telefono}" /></td>
-				    		<td><c:out value="${socio.rango}" /></td>
-				    		<td><c:out value="${socio.direccion}" /></td>
-				    		<td><c:out value="${socio.estado}" /></td>
+				    		<td><a href=${"Prestamos?action=searchByMember&id="}${socio.id}>${socio.id}</a></td>
+				    		<td>${socio.nombre}</td>
+				    		<td>${socio.apellido}</td>
+				    		<td>${socio.dni}</td>
+				    		<td>${socio.email}</td>
+				    		<td>${socio.telefono}</td>
+				    		<td>${socio.rango}</td>
+				    		<td>${socio.direccion}"</td>
+				    		<td>${socio.estado}"</td>
 				    		<td><a href=${"Socios?action=edit&id="}${socio.id}><span class="glyphicon glyphicon-pencil"></span></a></td>
 				    		<td><a href=${"Socios?action=delete&id="}${socio.id}><span class="glyphicon glyphicon-remove"></span></a></td>
 				    	</tr>

@@ -30,7 +30,14 @@ public class PrestamoServlet extends HttpServlet {
 			//se pide la devolución de un ejemplar
 			PrestamoService.retrieveData(request);//llamo al serivico para que traiga los datos necesarios para la devolución
 			request.getRequestDispatcher("/devolucion.jsp").forward(request, response);
-		}	
+		}else if("searchByMember".equals(action)){
+			//se pide la lista de préstamos para un socio
+			PrestamoService.retrieveLoansForMemberId(Long.parseLong(request.getParameter("id")),request);
+			request.getRequestDispatcher("/prestamos.jsp").forward(request, response);
+		}else{
+			PrestamoService.retrieveLoans(request);
+			request.getRequestDispatcher("/prestamos.jsp").forward(request, response);
+		}
 		
 	}
 

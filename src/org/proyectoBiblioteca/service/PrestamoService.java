@@ -234,4 +234,50 @@ public class PrestamoService {
 		
 		return ret;
 	}
+
+	public static void retrieveLoans(HttpServletRequest request) {
+
+		EntityManager em = PersistenceManager.getEntityManager();
+		
+		List<Prestamo> prestamos = null;
+		
+		try{
+			TypedQuery<Prestamo> query = em.createNamedQuery("Prestamo.findAllActive",Prestamo.class);
+			
+			if(!query.getResultList().isEmpty()){
+				prestamos = query.getResultList();
+			}
+		
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}finally{
+			em.close();
+		}
+		
+		request.setAttribute("prestamos", prestamos);
+		
+	}
+
+	public static void retrieveLoansForMemberId(long idSocio, HttpServletRequest request) {
+
+		EntityManager em = PersistenceManager.getEntityManager();
+		
+		List<Prestamo> prestamos = null;
+		
+		try{
+			TypedQuery<Prestamo> query = em.createNamedQuery("Prestamo.findActiveByMemberId",Prestamo.class);
+			query.setParameter("idSocio", idSocio);
+			if(!query.getResultList().isEmpty()){
+				prestamos = query.getResultList();
+			}
+		
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}finally{
+			em.close();
+		}
+		
+		request.setAttribute("prestamos", prestamos);
+		
+	}
 }

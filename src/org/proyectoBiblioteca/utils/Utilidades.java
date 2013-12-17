@@ -155,4 +155,9 @@ public class Utilidades {
 		return ret;
 	}
 	
+	public static String getMonthName(int month){//para obtener el nombre del mes (empieza desde 0 para usar con Calendar)
+	    String[] monthNames = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+	    return monthNames[month];
+	}
+	
 }

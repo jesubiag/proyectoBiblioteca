@@ -12,7 +12,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="resources/bootstrap/assets/ico/favicon.png">
 
-    <title>Resultados para la Búsqueda: ${search}</title>
+    <title>Préstamos Pendientes</title>
 
     <!-- CSS -->
     <script src="resources/SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
@@ -46,18 +46,18 @@
 	      
 	      	<ol class="breadcrumb">
 			  <li><a href="/proyectoBiblioteca">Inicio</a></li>
-			  <li class="active">Búsqueda</li>
+			  <li class="active">Préstamos Pendientes</li>
 			</ol>
 	      
-	        <h1>Resultados para la Búsqueda: ${search}</h1>
+	        <h1>Préstamos</h1>
 	      
 			<section id="main">
 		    
-		    	<c:if test="${0 != (f:length(resultados))}"> 
+		    	<c:if test="${0 != (f:length(prestamos))}"> 
 		    
 					<div class="panel panel-primary">
 				  		<!-- Default panel contents -->
-				  		<div class="panel-heading">Libros Encontrados</div>	
+				  		<div class="panel-heading">Listado de Préstamos Pendientes</div>	
 						
 						<div class="table-responsive">
 			
@@ -65,29 +65,27 @@
 								<table class="table table-condensed">
 								    <thead>
 								        <tr>
-								            <th>Título de Libro</th>
-								            <th>Editorial</th>
-								            <th>Autores</th>
-								            <th>ISBN</th>      
-								            <th>Rango</th>
-								            <th>País de Origen</th>       
+								            <th>Fecha Acordada</th>
+								            <th>Fecha de Préstamo</th>
+								            <th>Estado</th>
+								            <th>Nro. de Socio</th>      
+								            <th>Nro. de Ejemplar</th>
+								            <th>Acción</th>      
 								        </tr>
 								    </thead>
 								    <tbody>
 								        <!-- Fila de la tabla principal (Datos de un libro) -->
-								            <c:set var="count" value="0" scope="page" /> <!--defino var para contar -->
-								
-								        <c:forEach var="libro" items="${resultados}"> <!-- For principal -->
-								
-								            <c:set var="count" value="${count + 1}" scope="page"/> <!--aumento en 1 el contador -->
-								            <tr>
+
+								        <c:forEach var="prestamo" items="${prestamos}"> <!-- For principal -->
+
+								            <tr class="${prestamo.estado}">
 								                
-								                <td><a href=${"Busqueda?type=detalleLibro&id="}${libro.id}>${libro.titulo}</a></td>
-								                <td><a href=${"Busqueda?type=editorial&search="}${libro.editorial.nombre}>${libro.editorial.nombre}</a></td>
-								                <td>${libro.listaAutores}</td>
-								                <td>${libro.isbn}</td>       
-								                <td>${libro.rango}</td>
-								                <td>${libro.paisOrigen}</td>								                
+								                <td>${prestamo.stringFechaAcordada}</td> 
+								                <td>${prestamo.stringFechaPrestamo}</td> 
+								                <td>${prestamo.estado}</td>  
+								                <td>${prestamo.socio.id} (${prestamo.socio.resumenSocio})</td> 
+								                <td>${prestamo.ejemplar.id} (Del libro <a href=${"Busqueda?type=detalleLibro&id="}${prestamo.ejemplar.libro.id}>${prestamo.ejemplar.libro.titulo})</a></td>
+								                <td><a href=${"Prestamos?action=return&id="}${prestamo.ejemplar.id}><span class="glyphicon glyphicon-log-in"></span></a></td>							                
 
 								            </tr>
 								        
@@ -102,8 +100,8 @@
 				
 				</c:if>
 				
-				<c:if test="${0 == (f:length(resultados))}"> 
-					<div class="alert alert-info">No se encontraron resultados. Por favor intente nuevamente.</div>
+				<c:if test="${0 == (f:length(prestamos))}"> 
+					<div class="alert alert-info">No hay préstamos pendientes.</div>
 				</c:if>
 				
 				<p class="buttonGroup">

@@ -50,42 +50,56 @@
 			    <a href="Libros">
         		<div class="menuItem">
 		          <img src="resources/images/book.png" alt="Imagen Libros">
-		          <h3>Libros y Ejemplares</h3>
+		          <h4>Libros y Ejemplares</h4>
 	        	</div>
 	        	</a>	
 	        	
 	        	<a href="Socios">
         		<div class="menuItem">
 		          <img src="resources/images/user.png" alt="Imagen Socios">
-		          <h3>Socios</h3>
+		          <h4>Socios</h4>
 	        	</div>
 	        	</a>
 	        	
 	        	<a href="Autores">
         		<div class="menuItem">
 		          <img src="resources/images/edit.png" alt="Imagen Autores">
-		          <h3>Autores</h3>
+		          <h4>Autores</h4>
 	        	</div>
 	        	</a>	        	
 
 	        	<a href="Editoriales">
         		<div class="menuItem">
 		          <img src="resources/images/books.png" alt="Imagen Editoriales">
-		          <h3>Editoriales</h3>
+		          <h4>Editoriales</h4>
 	        	</div>
 	        	</a>
 	        	
 	        	<a href="Localidades">
         		<div class="menuItem">
 		          <img src="resources/images/globe.png" alt="Imagen Localidades">
-		          <h3>Localidades</h3>
+		          <h4>Localidades</h4>
 	        	</div>
 	        	</a>	        	
 
 	        	<a href="DiasNoHabiles">
         		<div class="menuItem">
 		          <img src="resources/images/calendar.png" alt="Imagen Días No Hábiles">
-		          <h3>Días No Hábiles</h3>
+		          <h4>Días No Hábiles</h4>
+	        	</div>
+	        	</a>
+	        	
+	        	<a href="Prestamos">
+        		<div class="menuItem">
+		          <img src="resources/images/loans.png" alt="Imagen Préstamos Pendientes">
+		          <h4>Préstamos Pendientes</h4>
+	        	</div>
+	        	</a>	
+	        	
+	        	<a href="Reportes">
+        		<div class="menuItem">
+		          <img src="resources/images/reports.png" alt="Imagen Reportes">
+		          <h4>Reportes</h4>
 	        	</div>
 	        	</a>	
 	        		        		     
@@ -97,7 +111,7 @@
     
     	<section>
 		
-			<h2>Búsqueda de Libro:</h2>
+			<h2>Búsqueda de libros:</h2>
 		
 		    <!-- barra de búsqueda -->
 	      	<form action="Busqueda" method="get">
