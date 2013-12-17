@@ -22,6 +22,5 @@
 	        <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/biblioteca"/>
 	        <property name="javax.persistence.logging.level" value="INFO"/>
 	      </properties>
-		
-	</persistence-unit>
+	</persistence-unit> 
 </persistence>

@@ -233,6 +233,7 @@ INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('Santiago del Estero');
 INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('Tierra del Fuego');
 INSERT INTO `biblioteca`.`provincia` (`nombre`) VALUES ('Tucumán');
 
-
+CREATE USER root IDENTIFIED BY 'root';
+GRANT ALL PRIVILEGES ON biblioteca TO 'root'@'localhost' IDENTIFIED BY 'root';
 
 
