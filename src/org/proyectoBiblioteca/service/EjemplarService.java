@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.proyectoBiblioteca.dao.EjemplarDAO;
 import org.proyectoBiblioteca.dao.LibroDAO;
 import org.proyectoBiblioteca.dao.PersistenceManager;
@@ -43,22 +45,28 @@ public class EjemplarService {
 
 	public static void delete(HttpServletRequest request) {
 		//hago la baja lógica del ejemplar
+		HttpSession session = request.getSession();
 		Ejemplar ejemplar = null;
 		
 		try{
 			ejemplar = EjemplarDAO.find(Long.parseLong(request.getParameter("id")));
 			
-			ejemplar.setEstado(EstadoEjemplar.inhabilitado);
-			ejemplar.setFechaBaja(new Date());
-			
-			//TODO hacer el tema de motivo baja quizás en otra pantallita o popup
-			
-			EjemplarDAO.update(ejemplar);
-			
+			//veo que no esté prestado
+			if(ejemplar.getEstado() == EstadoEjemplar.prestado){
+				//está prestado, cancelo la baja
+				session.setAttribute("mensajeLibro", "Baja de ejemplar no realizada. El ejemplar figura como prestado, es necesaria su devolución para habilitar su baja.");
+			}else{
+				ejemplar.setEstado(EstadoEjemplar.inhabilitado);
+				ejemplar.setFechaBaja(new Date());
+				
+				EjemplarDAO.update(ejemplar);
+				session.setAttribute("mensajeLibro", "Baja de ejemplar realizada con éxito.");
+			}
+
 		}catch(Exception ex){
-			ex.printStackTrace();
+			session.setAttribute("mensajeLibro", "Baja de ejemplar no realizada. Hubo un error al intentar realizar la baja del ejemplar.");
 		}
-		//TODO revisar este método, ver si aviso o no cuando tengo éxito
+	
 	}
 	
 	public static void retrieveById(HttpServletRequest request){
@@ -77,7 +85,8 @@ public class EjemplarService {
 	}
 
 	public static void saveEjemplar(HttpServletRequest request) {
-
+		
+		HttpSession session = request.getSession();
 		Ejemplar ejemplar = null;
 		
 		//Si es nuevo lo creo, sino lo obtengo
@@ -107,9 +116,11 @@ public class EjemplarService {
 		
 		try{
 			EjemplarDAO.update(ejemplar);
+			session.setAttribute("mensajeLibro", "Alta/Mod. de ejemplar realizada con éxito.");
+			
 			
 		}catch(NumberFormatException ex){
-			ex.printStackTrace();
+			session.setAttribute("mensajeLibro", "Alta/Mod. de ejemplar no realizada. Hubo un error al intentar dar de alta/mod. el ejemplar.");
 		}
 
 		

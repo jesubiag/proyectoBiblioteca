@@ -37,6 +37,13 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
+      
+      	<!-- Si hay un mensaje lo muestro, luego lo borro -->
+		<c:if test="${!empty mensajeSocio}">
+			<div class="alert alert-info">${mensajeSocio}</div>
+			<c:remove var="mensajeSocio" scope="session" />
+		</c:if>
+      
         <h1>Administración de Socios</h1>
         
 		<p class="buttonGroup">
@@ -75,8 +82,8 @@
 				    		<td>${socio.email}</td>
 				    		<td>${socio.telefono}</td>
 				    		<td>${socio.rango}</td>
-				    		<td>${socio.direccion}"</td>
-				    		<td>${socio.estado}"</td>
+				    		<td>${socio.direccion}</td>
+				    		<td>${socio.estado}</td>
 				    		<td><a href=${"Socios?action=edit&id="}${socio.id}><span class="glyphicon glyphicon-pencil"></span></a></td>
 				    		<td><a href=${"Socios?action=delete&id="}${socio.id}><span class="glyphicon glyphicon-remove"></span></a></td>
 				    	</tr>

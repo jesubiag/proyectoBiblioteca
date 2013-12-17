@@ -38,6 +38,13 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
+        
+        <!-- Si hay un mensaje lo muestro, luego lo borro -->
+		<c:if test="${!empty mensajeLibro}">
+			<div class="alert alert-info">${mensajeLibro}</div>
+			<c:remove var="mensajeLibro" scope="session" />
+		</c:if>
+        
         <h1>Administración de Libros y Ejemplares</h1>
         
 		<p class="buttonGroup">
@@ -45,9 +52,7 @@
 			<a href="Ejemplares?action=new" class="btn btn-success btn-lg">Registrar Ejemplar  <span class="glyphicon glyphicon-plus"></span></a>
 			<a href="menu.jsp" class="btn btn-warning btn-lg">Volver al Menú  <span class="glyphicon glyphicon-backward"></span></a>
 		</p>	        
-        
-        <!--  Tabla de socios -->
-        
+
 		<div class="panel panel-primary">
 	  		<!-- Default panel contents -->
 	  		<div class="panel-heading">Libros y Ejemplares Registrados</div>	

@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.proyectoBiblioteca.dao.LocalidadDAO;
 import org.proyectoBiblioteca.dao.PersistenceManager;
 import org.proyectoBiblioteca.dao.SocioDAO;
@@ -47,19 +49,45 @@ public class SocioService {
 	public static void delete(HttpServletRequest request) {
 
 		Socio socio = null;
+		HttpSession session = request.getSession();
 		
 		try{
 			socio = SocioDAO.find(Long.parseLong(request.getParameter("id")));
 			
-			socio.setEstado(EstadoSocio.inhabilitado);
-			socio.setFechaBaja(new Date());
+			//verifico que el socio no posea ejemplares en préstamo.
+			EntityManager em = PersistenceManager.getEntityManager();
 			
-			SocioDAO.update(socio);
+			List<Prestamo> prestamos = null;
+			
+			try{
+				TypedQuery<Prestamo> query = em.createNamedQuery("Prestamo.findActiveByMemberId",Prestamo.class);
+				query.setParameter("idSocio", socio.getId());
+				if(!query.getResultList().isEmpty()){
+					prestamos = query.getResultList();
+				}
+			
+			}catch(Exception ex){
+				ex.printStackTrace();
+			}finally{
+				em.close();
+			}
+			
+			if(prestamos != null && prestamos.size() > 0){
+				//El socio posee préstamos pendientes, cancelo la baja
+				session.setAttribute("mensajeSocio", "Baja de socio no realizada. El socio posee préstamos sin devolver.");
+			}else{
+			
+				socio.setEstado(EstadoSocio.inhabilitado);
+				socio.setFechaBaja(new Date());
+				
+				SocioDAO.update(socio);
+				session.setAttribute("mensajeSocio", "Baja de socio realizada con éxito.");
+			}
 			
 		}catch(Exception ex){
-			ex.printStackTrace();
+			session.setAttribute("mensajeSocio", "Baja de socio no realizada. Hubo un error al intentar dar de baja el socio.");
 		}
-		//TODO revisar este método, ver si aviso o no cuando tengo éxito
+		
 	}
 	
 	public static void retrieveById(HttpServletRequest request){
@@ -108,6 +136,7 @@ public class SocioService {
 
 	public static void saveSocio(HttpServletRequest request) {
 
+		HttpSession session = request.getSession();
 		Socio socio = null;
 		
 		//Si es nuevo lo creo, sino lo obtengo
@@ -158,9 +187,10 @@ public class SocioService {
 		
 		try{
 			SocioDAO.update(socio);
+			session.setAttribute("mensajeSocio", "Alta/Mod. de socio realizada con éxito.");
 			
 		}catch(NumberFormatException ex){
-			ex.printStackTrace();
+			session.setAttribute("mensajeSocio", "Alta/Mod. de socio no realizada. Hubo un error al intentar dar de alta/mod. al socio.");
 		}
 
 		

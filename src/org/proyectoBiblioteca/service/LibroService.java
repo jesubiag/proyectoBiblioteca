@@ -7,13 +7,17 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.proyectoBiblioteca.dao.AutorDAO;
 import org.proyectoBiblioteca.dao.EditorialDAO;
 import org.proyectoBiblioteca.dao.LibroDAO;
 import org.proyectoBiblioteca.dao.PersistenceManager;
 import org.proyectoBiblioteca.domain.Autor;
 import org.proyectoBiblioteca.domain.Editorial;
+import org.proyectoBiblioteca.domain.Ejemplar;
 import org.proyectoBiblioteca.domain.Libro;
+import org.proyectoBiblioteca.enums.EstadoEjemplar;
 
 public class LibroService {
 
@@ -46,20 +50,40 @@ public class LibroService {
 
 	public static void delete(HttpServletRequest request) {
 		//hago la baja lógica del libro
+		HttpSession session = request.getSession();
 		Libro libro = null;
-		
+		int contador = 0;
 		try{
 			libro = LibroDAO.find(Long.parseLong(request.getParameter("id")));
 			
-			libro.setActivo(false);
-			libro.setFechaBaja(new Date());
-			//TODO implementar tema de motivo baja
-			LibroDAO.update(libro);
+			List<Ejemplar> ejemplares = libro.getEjemplares();
+			
+			//reviso que no haya ejemplares prestamos
+			for(Ejemplar ejemplar : ejemplares){
+			
+				if(ejemplar.getEstado() == EstadoEjemplar.prestado){
+					++contador;
+				}
+			}
+			
+			if(contador > 0){
+				//el libro posee ejemplares prestados, cancelo la baja
+				session.setAttribute("mensajeLibro", "Baja de libro no realizada. Este libro todavía posee ejemplares prestados.");
+			}else{
+				
+				libro.setActivo(false);
+				libro.setFechaBaja(new Date());
+				
+				LibroDAO.update(libro);
+				
+				session.setAttribute("mensajeLibro", "Baja de libro realizada con éxito.");	
+			}
+			
 			
 		}catch(NumberFormatException ex){
-			ex.printStackTrace();
+			session.setAttribute("mensajeLibro", "Baja de libro no realizada. Error al intentar realizar la baja. Intente nuevamente.");
 		}
-		//TODO revisar este método, ver si aviso o no cuando tengo éxito
+		
 	}
 	
 	public static void retrieveById(HttpServletRequest request){
@@ -79,6 +103,7 @@ public class LibroService {
 
 	public static void saveLibro(HttpServletRequest request) {
 
+		HttpSession session = request.getSession();
 		Libro libro = null;
 		
 		//Si es nuevo lo creo, sino lo obtengo
@@ -124,9 +149,10 @@ public class LibroService {
 		
 		try{
 			LibroDAO.update(libro);
+			session.setAttribute("mensajeLibro", "Alta/Mod. de libro realizada con éxito.");
 			
 		}catch(NumberFormatException ex){
-			ex.printStackTrace();
+			session.setAttribute("mensajeLibro", "Alta/Mod. de libro no realizada. Ha ocurrido un error al intentar dar de alta o modificar el libro. Intente nuevamente.");
 		}
 
 		
