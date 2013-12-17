@@ -8,10 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.proyectoBiblioteca.dao.LocalidadDAO;
 import org.proyectoBiblioteca.dao.PersistenceManager;
 import org.proyectoBiblioteca.dao.SocioDAO;
+import org.proyectoBiblioteca.dao.SuspensionDAO;
 import org.proyectoBiblioteca.domain.Direccion;
 import org.proyectoBiblioteca.domain.Localidad;
+import org.proyectoBiblioteca.domain.Prestamo;
 import org.proyectoBiblioteca.domain.Provincia;
 import org.proyectoBiblioteca.domain.Socio;
+import org.proyectoBiblioteca.domain.Suspension;
 import org.proyectoBiblioteca.enums.EstadoSocio;
 
 public class SocioService {
@@ -161,5 +164,15 @@ public class SocioService {
 		}
 
 		
+	}
+
+	public static void suspend(int diasVencidos,Prestamo prestamo) {
+		//suspendo al socio por 2 veces los dias vencidos (Parte de la consigna)
+		Socio socio = prestamo.getSocio();
+		socio.setEstado(EstadoSocio.suspendido);
+		
+		Suspension suspension = new Suspension(prestamo,socio,"Préstamo Vencido",diasVencidos*2);
+		
+		SuspensionDAO.create(suspension);
 	}
 }

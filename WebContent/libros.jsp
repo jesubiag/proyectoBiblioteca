@@ -107,7 +107,8 @@
 						                                <th>Pasillo</th>
 						                                <th>Precio (U$S)</th>
 						                                <th>Fecha Alta</th>
-						                                <th colspan=4>Acción</th>
+						                                <th>Datos Préstamo</th>
+						                                <th colspan=3>Acción</th>
 					                            	</tr>
 					                            </thead>
 					                            <tbody>
@@ -115,16 +116,17 @@
 					                                <c:forEach var="ejemplar" items="${libro.ejemplares}"> <!-- For secundario -->
 					
 					                                <tr>
-					                                    <td><c:out value="${ejemplar.numeroEjemplar}" /></td>
-					                                    <td><c:out value="${ejemplar.anio}" /></td>
-					                                    <td><c:out value="${ejemplar.estado}" /></td>
-					                                    <td><c:out value="${ejemplar.estante}" /></td>
-					                                    <td><c:out value="${ejemplar.mueble}" /></td>
-					                                    <td><c:out value="${ejemplar.pasillo}" /></td>
-					                                    <td><c:out value="${ejemplar.precioDolares}" /></td>
-					                                    <td><c:out value="${ejemplar.stringFechaAlta}" /></td>
+					                                    <td>${ejemplar.numeroEjemplar}</td>
+					                                    <td>${ejemplar.anio}</td>
+					                                    <td>${ejemplar.estado}</td>
+					                                    <td>${ejemplar.estante}</td>
+					                                    <td>${ejemplar.mueble}</td>
+					                                    <td>${ejemplar.pasillo}</td>
+					                                    <td>${ejemplar.precioDolares}</td>
+					                                    <td>${ejemplar.stringFechaAlta}</td>
+					                                    <td>${ejemplar.datosPrestamo}</td>
 					                                	<td><a href=${"Ejemplares?action=edit&id="}${ejemplar.id}><span class="glyphicon glyphicon-pencil"></span></a></td>
-				    									<td><a href=${"Ejemplares?action=delete&id="}${ejemplar.id}><span class="glyphicon glyphicon-remove"></span></a></td>
+				    									<td><a href=${"Ejemplares?action=delete&id="}${ejemplar.id}><span class="glyphicon glyphicon-remove"></span></a></td>   
 									                    
 									                    <c:if test="${ejemplar.estado == 'disponible'}">
 															<td><a href=${"Prestamos?action=new&id="}${ejemplar.id}><span class="glyphicon glyphicon-log-out"></span></a></td>

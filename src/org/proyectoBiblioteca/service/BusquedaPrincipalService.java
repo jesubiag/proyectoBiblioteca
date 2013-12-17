@@ -28,6 +28,8 @@ public class BusquedaPrincipalService {
 			
 		}catch(Exception ex){
 			ex.printStackTrace();
+		}finally{
+			entityManager.close();
 		}
 		
 		request.setAttribute("resultados", resultados);
@@ -51,6 +53,8 @@ public class BusquedaPrincipalService {
 			
 		}catch(Exception ex){
 			ex.printStackTrace();
+		}finally{
+			entityManager.close();
 		}
 		
 		request.setAttribute("resultados", resultados);		
@@ -89,6 +93,8 @@ public class BusquedaPrincipalService {
 				
 			}catch(Exception ex){
 				ex.printStackTrace();
+			}finally{
+				entityManager.close();
 			}
 			
 		}
@@ -115,6 +121,8 @@ public class BusquedaPrincipalService {
 			
 		}catch(Exception ex){
 			ex.printStackTrace();
+		}finally{
+			entityManager.close();
 		}
 		
 		request.setAttribute("resultados", resultados);
@@ -138,6 +146,8 @@ public class BusquedaPrincipalService {
 			
 		}catch(Exception ex){
 			ex.printStackTrace();
+		}finally{
+			entityManager.close();
 		}
 		
 		request.setAttribute("resultados", resultados);

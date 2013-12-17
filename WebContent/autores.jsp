@@ -62,8 +62,8 @@
 				    	</tr>
 				    	
 				    	<c:forEach var="autor" items="${autores}">
-					    	<tr>
-					    		<td><c:out value="${autor.nombre}" /></td>
+					    	<tr>			
+					    		<td><a href=${"Busqueda?type=autor&search="}${autor.nombre}>${autor.nombre}</a></td>
 					    		<td><c:out value="${autor.stringFechaAlta}" /></td>
 					    		<td><c:out value="${autor.paisOrigen}" /></td>				    		
 					    		<td><a href=${"Autores?action=edit&id="}${autor.id}><span class="glyphicon glyphicon-pencil"></span></a></td>

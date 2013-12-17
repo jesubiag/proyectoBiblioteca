@@ -16,6 +16,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.proyectoBiblioteca.enums.EstadoEjemplar;
+import org.proyectoBiblioteca.service.PrestamoService;
 import org.proyectoBiblioteca.utils.Utilidades;
 
 @Entity
@@ -186,5 +187,17 @@ public class Ejemplar implements Serializable{
 	
 	public String getStringFechaBaja(){
 		return Utilidades.getSimpleDate(this.fechaBaja);
+	}
+	
+	public String getDatosPrestamo(){
+		String ret = null;
+		
+		if(this.estado == EstadoEjemplar.prestado){
+			Prestamo prestamo = PrestamoService.getLoanForCopyId(this.id);
+		
+			ret = "Socio:" + prestamo.getSocio().getId() + " Fecha Acordada:" + prestamo.getStringFechaAcordada();
+		}
+		
+		return ret;
 	}
 }

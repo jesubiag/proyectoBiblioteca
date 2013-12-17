@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="resources/bootstrap/assets/ico/favicon.png">
 
-    <title>Creación de Préstamo - Biblioteca</title>
+    <title>Devolución - Biblioteca</title>
 
     <!-- CSS -->
     <link href="resources/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
@@ -45,15 +45,23 @@
         
         	<ol class="breadcrumb">
 		  		<li><a href="/proyectoBiblioteca">Inicio</a></li>
-		  		<li class="active">Creación de Préstamo</li>
+		  		<li class="active">Devolución</li>
 			</ol>
         
-	        <h1>Nuevo Préstamo</h1>
+	        <h1>Devolución</h1>
 	        
 			<form class="inputForm" action="Prestamos" method="post">
- 
+ 				
+ 				<div class="form-group">
+					<input type="hidden" readonly=readonly class="form-control" name="action" value="return">
+				</div>
+ 				
 				<div class="form-group">
-					<input type="hidden" readonly=readonly class="form-control" name="id" value="${ejemplar.id}">
+					<input type="hidden" readonly=readonly class="form-control" name="idEjemplar" value="${ejemplar.id}">
+				</div>
+				
+				<div class="form-group">
+					<input type="hidden" readonly=readonly class="form-control" name="idPrestamo" value="${prestamo.id}">
 				</div>
 				
 				<div class="form-group">
@@ -61,43 +69,40 @@
 				</div>
 				
 				<div class="form-group">
-					<input type="hidden" readonly=readonly class="form-control" name="action" value="lend">
-				</div>
-				
-				<div class="form-group">
-					<strong>Ejemplar:</strong> ${ejemplar.libro.titulo}(código: ${ejemplar.numeroEjemplar})
-			    </div>
-				
-				<!-- Meter más datos del ejemplar para identificarlo más fácil -->
-				
-				<!-- Falta combo socios y combo tipo de préstamo -->
-	  		  
-	  		  	<div class="form-group">
-					<strong>Préstamo Local:</strong> 
-					<span id="spryselect1">
-					    <select name="prestamoLocal" class="form-control" onBlur="sacarclase('spryselect1');">					   
-					        <option value="true">Si</option>
-							<option value="false" selected="selected">No</option>
-				        </select>
-			    		<span class="selectRequiredMsg">Seleccione una opción.</span>
-			    	</span>
+					<strong>Ejemplar:</strong> 
+					<br> ${ejemplar.libro.titulo} (código: ${ejemplar.numeroEjemplar})
 			    </div>
 			    
 			    <div class="form-group">
-					<strong>Número de Socio</strong> (receptor):
-					<input type="text" class="form-control" name="idSocio">
+					<strong>Número de Socio</strong> (receptor): 
+					<br> ${prestamo.socio.id} (${prestamo.socio.resumenSocio})
+			    </div>
+			    
+			    <div class="form-group">
+					<strong>Fecha de Préstamo:</strong> 
+					<br> ${prestamo.stringFechaPrestamo}
 			    </div>
 	  		  
 	  		  	<div class="form-group">
-					<strong>Fecha de Devolución</strong> (Estimada):
-					<span id="sprytextfield1">
-                    	<input id=fecha type="text" class="form-control" name="fecha" onBlur="sacarclase('sprytextfield1');">
-                		<span class="textfieldRequiredMsg">Se necesita una fecha.</span>
-                		<span class="textfieldInvalidFormatMsg">Formato no válido. Intente AAAA-MM-DD</span>
-                	</span>
-                
-                </div>
+					<strong>Fecha Acordada:</strong> 
+					<br> ${prestamo.stringFechaAcordada}
+			    </div>
+			    
+			    <div class="form-group">
+					<strong>Estado de Préstamo:</strong> 
+					<br> ${prestamo.estado}
+			    </div>
 	  		  
+	  		  	<div class="form-group">
+					<strong>Observaciones:</strong>
+                    <input type="text" class="form-control" name="nota">
+                </div>
+	  		 	
+	  		 	<c:if test="${prestamo.estado == 'vencido'}">
+	  				<br>
+	  				<div class="alert alert-danger">El socio será suspendido debido a que se ha vencido el plazo de devolución.</div>
+	  			</c:if>
+	  			
 				<p class="buttonGroup">
 			    <button type="submit" class="btn btn-success">Aceptar</button>
 			    <a href="javascript:history.back()" class="btn btn-danger">Cancelar</a>

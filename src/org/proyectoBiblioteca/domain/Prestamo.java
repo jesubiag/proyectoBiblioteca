@@ -11,8 +11,8 @@ import org.proyectoBiblioteca.utils.Utilidades;
 @NamedQueries({
 	@NamedQuery(name = "Prestamo.findAll", query = "Select p From Prestamo p"),
 	@NamedQuery(name = "Prestamo.findByState", query = "Select p From Prestamo p Where p.estado = :estado"),
-	@NamedQuery(name = "Prestamo.findByCopyId", query = "Select p From Prestamo p Where p.ejemplar.id = :idEjemplar"),
-	@NamedQuery(name = "Prestamo.findByMemberId", query = "Select p From Prestamo p Where p.socio.id = :idSocio")
+	@NamedQuery(name = "Prestamo.findActiveByCopyId", query = "Select p From Prestamo p Where p.ejemplar.id = :idEjemplar And ( p.estado = org.proyectoBiblioteca.enums.EstadoPrestamo.vigente Or p.estado = org.proyectoBiblioteca.enums.EstadoPrestamo.vencido)"),
+	@NamedQuery(name = "Prestamo.findActiveByMemberId", query = "Select p From Prestamo p Where p.socio.id = :idSocio And ( p.estado = org.proyectoBiblioteca.enums.EstadoPrestamo.vigente Or p.estado = org.proyectoBiblioteca.enums.EstadoPrestamo.vencido)")
 })
 public class Prestamo implements Serializable {
 
@@ -31,10 +31,6 @@ public class Prestamo implements Serializable {
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "idEjemplar")
 	private Ejemplar ejemplar;
-	
-//	@ManyToOne
-//	@JoinColumn(name = "usuario")
-//	private Usuario usuario; //Usuario que generó el préstamo
 	
 	@Temporal(TemporalType.DATE)
 	private Date fechaAcordada;
@@ -173,5 +169,5 @@ public class Prestamo implements Serializable {
 	public String getStringFechaDevolucion(){
 		return Utilidades.getSimpleDate(this.fechaDevolucion);
 	}
-	
+
 }

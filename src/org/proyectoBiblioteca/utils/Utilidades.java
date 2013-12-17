@@ -89,11 +89,12 @@ public class Utilidades {
 		return ret;
 	}
 	
-	public static int diasHabiles(Date fechaHasta){
+	public static int diasHabiles(Date fechaDesde, Date fechaHasta){
 		
 		int ret = 0;
 		
-		Calendar startCal = Calendar.getInstance();
+		Calendar startCal = new GregorianCalendar();
+		startCal.setTime(fechaDesde);
 		startCal.set(Calendar.HOUR_OF_DAY,0);
 		startCal.set(Calendar.MINUTE,0);
 		startCal.set(Calendar.SECOND,0);
