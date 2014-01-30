@@ -2,6 +2,7 @@ package org.proyectoBiblioteca.test;
 
 import static org.junit.Assert.*;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -40,6 +41,11 @@ public class AutorDAOTest {
 	@Test
 	public void testFind() {
 		assertEquals(autor1.getId(),AutorDAO.find(id1).getId());
+	}
+	
+	@AfterClass
+	public static void tearDown() throws Exception {
+		AutorDAO.delete(autor1.getId());
 	}
 
 }

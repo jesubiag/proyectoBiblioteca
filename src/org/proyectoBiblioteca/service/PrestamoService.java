@@ -95,28 +95,29 @@ public class PrestamoService {
 			ex.printStackTrace();
 		}
 		
-		//seteo url para redirijir al final
-		String ret = "Busqueda?type=detalleLibro&id=" + ejemplar.getLibro().getId();
+		//seteo url para redirigir al final
+		//String ret = "Busqueda?type=detalleLibro&id=" + ejemplar.getLibro().getId();
+		String ret = "index.jsp";
 		
 		//Verifico el estado del ejemplar, si es disponible entonces lo presto, sino no.
 		if(ejemplar.getEstado() != EstadoEjemplar.disponible){
 			//En este caso el ejemplar no está disponible para prestar, creo mensaje y redirijo sin crear
-			session.setAttribute("mensajePrestamo", "Préstamo no creado. El ejemplar no está disponible para ser prestado.");
+			session.setAttribute("mensajeAccion", "Préstamo no creado. El ejemplar no está disponible para ser prestado.");
 		}else if(Utilidades.diasHabiles(new Date(),fechaAcordada) > 10){//verifico días hábiles entre fecha actual y acordada no son mayores a 10
 			//más de 10 días hábiles, error!
-			session.setAttribute("mensajePrestamo","Préstamo no creado. La fecha de devolución ingresada incluye más de 10 días hábiles. Intente nuevamente con una fecha menor.");				
+			session.setAttribute("mensajeAccion","Préstamo no creado. La fecha de devolución ingresada incluye más de 10 días hábiles. Intente nuevamente con una fecha menor.");				
 		
 		}else if(socio == null){
 			//no se encontró el socio
-			session.setAttribute("mensajePrestamo", "Préstamo no creado. El nro. de socio ingresado no existe.");
+			session.setAttribute("mensajeAccion", "Préstamo no creado. El nro. de socio ingresado no existe.");
 	
 		}else if(socio.getRango() < ejemplar.getLibro().getRango()){
 			//socio de rango menor al necesario
-			session.setAttribute("mensajePrestamo", "Préstamo no creado. El socio ingresado no posee el rango suficiente para recibir un ejemplar de este libro.");
+			session.setAttribute("mensajeAccion", "Préstamo no creado. El socio ingresado no posee el rango suficiente para recibir un ejemplar de este libro.");
 		
 		}else if(socio.getEstado() != EstadoSocio.habilitado){
 			//socio no habilitado
-			session.setAttribute("mensajePrestamo", "Préstamo no creado. El socio ingresado no se encuentra habilitado para recibir préstamos.");
+			session.setAttribute("mensajeAccion", "Préstamo no creado. El socio ingresado no se encuentra habilitado para recibir préstamos.");
 		
 		}else{//por último chequeo si el usuario tiene o no menos de 2 préstamos activos
 			
@@ -141,7 +142,7 @@ public class PrestamoService {
 			if(prestamos != null && prestamos.size() >= 2){
 
 				//socio con 2 préstamos activos
-				session.setAttribute("mensajePrestamo", "Préstamo no creado. El socio ingresado ya posee demasiados préstamos activos.");
+				session.setAttribute("mensajeAccion", "Préstamo no creado. El socio ingresado ya posee demasiados préstamos activos.");
 				
 			}else{
 			
@@ -166,11 +167,11 @@ public class PrestamoService {
 					
 				}catch(Exception ex){
 					//ex.printStackTrace();
-					session.setAttribute("mensajePrestamo","Se ha producido un error al intentar crear el préstamo. Por favor intente nuevamente");
+					session.setAttribute("mensajeAccion","Se ha producido un error al intentar crear el préstamo. Por favor intente nuevamente");
 					return ret;
 				}
 		
-				session.setAttribute("mensajePrestamo", "Préstamo creado con éxito.");
+				session.setAttribute("mensajeAccion", "Préstamo creado con éxito.");
 				
 			}
 			
@@ -201,7 +202,8 @@ public class PrestamoService {
 		}
 		
 		//seteo url para redirijir al final
-		String ret = "Busqueda?type=detalleLibro&id=" + ejemplar.getLibro().getId();
+		//String ret = "Busqueda?type=detalleLibro&id=" + ejemplar.getLibro().getId();
+		String ret = "index.jsp";
 		
 		//Veo tema de suspensión del socio
 		if(prestamo.getEstado() == EstadoPrestamo.vencido){
@@ -219,14 +221,14 @@ public class PrestamoService {
 			//Actualizo estado de ejemplar
 			ejemplar.setEstado(EstadoEjemplar.disponible);
 			EjemplarDAO.update(ejemplar);
-			session.setAttribute("mensajePrestamo", "Ejemplar devuelto correctamente. " + mensajeSuspension);
+			session.setAttribute("mensajeAccion", "Ejemplar devuelto correctamente. " + mensajeSuspension);
 		
 			//genero un movimiento indicando la devolución
 			Movimiento movimiento = new Movimiento(prestamo,usuario,TipoMovimiento.devolucion);
 			MovimientoDAO.create(movimiento);
 			
 		}catch(Exception ex){
-			session.setAttribute("mensajePrestamo", "Devolución no realizada. Error al intentar registrar la devolución. Intente nuevamente.");
+			session.setAttribute("mensajeAccion", "Devolución no realizada. Error al intentar registrar la devolución. Intente nuevamente.");
 			
 			return ret;
 		}

@@ -44,6 +44,16 @@
     
     <section id="main">
 		      
+		<section> <!-- Mensajes -->
+    	
+    		<!-- Si hay un mensaje lo muestro, luego lo borro -->
+			<c:if test="${!empty mensajeAccion}">
+				<div class="alert alert-info">${mensajeAccion}</div>
+				<c:remove var="mensajeAccion" scope="session" />
+			</c:if>
+    	
+    	</section>
+		      
     	<section id="menuItems"> <!-- Menu Items -->
 			<div class="row">
 			
