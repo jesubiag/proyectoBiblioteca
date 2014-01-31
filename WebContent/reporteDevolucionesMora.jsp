@@ -17,6 +17,7 @@
 <body>
 	<h1>Reporte de Devoluciones en Mora</h1>
 	<p><strong>Fecha:</strong> ${fecha}</p>
+	<p><strong>Hora:</strong> ${hora}</p>
 	<p><strong>Usuario:</strong> ${user.nombre} ${user.apellido}</p>
 		
 	<c:if test="${0 != (f:length(prestamos))}"> 

@@ -17,6 +17,28 @@ import org.proyectoBiblioteca.domain.DiaNoHabil;
 
 public class Utilidades {
 
+	public static String getTime(Date fecha){
+		
+		final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss",new Locale("es","AR"));
+		String ret = null;
+		 
+		ret = dateFormat.format(fecha);
+		
+		return ret;
+			
+		}
+	
+	public static String getLongDate(Date fecha){
+		
+		final SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, dd MMM yyyy",new Locale("es","AR"));
+		String ret = null;
+		 
+		ret = dateFormat.format(fecha);
+		
+		return ret;
+			
+		}
+	
 	public static String getSimpleDate(Date fecha){
 			
 		final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd",new Locale("es","AR"));

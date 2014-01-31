@@ -25,7 +25,8 @@ import org.proyectoBiblioteca.utils.Utilidades;
 public class ReporteService {
 
 	public static void retirosMesAMes(HttpServletRequest request) {
-		request.setAttribute("fecha", Utilidades.getSimpleDate(new Date()));
+		request.setAttribute("fecha", Utilidades.getLongDate(new Date()));
+		request.setAttribute("hora", Utilidades.getTime(new Date()));
 		
 		Calendar hoy = Calendar.getInstance();
 		Calendar auxCal = Calendar.getInstance();
@@ -77,7 +78,8 @@ public class ReporteService {
 	}
 
 	public static void devolucionesEnMora(HttpServletRequest request) {
-		request.setAttribute("fecha", Utilidades.getSimpleDate(new Date()));
+		request.setAttribute("fecha", Utilidades.getLongDate(new Date()));
+		request.setAttribute("hora", Utilidades.getTime(new Date()));
 		
 		EntityManager em = PersistenceManager.getEntityManager();
 		
@@ -104,7 +106,8 @@ public class ReporteService {
 
 	public static void librosMasRetirados(HttpServletRequest request) {
 		
-		request.setAttribute("fecha", Utilidades.getSimpleDate(new Date()));
+		request.setAttribute("fecha", Utilidades.getLongDate(new Date()));
+		request.setAttribute("hora", Utilidades.getTime(new Date()));
 		int contador;
 		Map<Integer, Libro> resultados = new HashMap<>();
 		
