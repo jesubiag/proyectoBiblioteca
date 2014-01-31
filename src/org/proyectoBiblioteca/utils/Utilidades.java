@@ -177,6 +177,55 @@ public class Utilidades {
 		return ret;
 	}
 	
+	public static boolean esHabil(Date fecha){
+		Calendar startCal = new GregorianCalendar();
+		Calendar auxCal = Calendar.getInstance();
+		boolean ret = false;
+		
+		//seteo la fecha en un calendario para comparaciones	
+		startCal.setTime(fecha);
+		
+		//obtengo días no hábiles en un listado
+		
+		EntityManager em = PersistenceManager.getEntityManager();
+		
+		List<DiaNoHabil> resultado = null;
+		List<Integer> diasNoHabiles = new ArrayList<>();
+		
+		try{
+			
+			TypedQuery<DiaNoHabil> query = em.createNamedQuery("DiaNoHabil.findFollowing",DiaNoHabil.class);
+			
+			if(!query.getResultList().isEmpty()){
+	
+				resultado = query.getResultList();
+			}
+			
+	
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}finally{
+			em.close();
+			//lleno el array con las fechas no hábiles en formato Calendar
+			for(DiaNoHabil d : resultado){
+				
+				auxCal.setTime(d.getFecha());
+				diasNoHabiles.add(auxCal.get(Calendar.DAY_OF_YEAR));
+			}
+		}
+		
+		//Hago la comparación
+		if (startCal.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY
+		    && startCal.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY
+		    && !diasNoHabiles.contains((Integer)startCal.get(Calendar.DAY_OF_YEAR)))
+		{
+			ret = true;
+		}
+		
+		return ret;
+		
+	}
+	
 	public static String getMonthName(int month){//para obtener el nombre del mes (empieza desde 0 para usar con Calendar)
 	    String[] monthNames = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
 	    return monthNames[month];

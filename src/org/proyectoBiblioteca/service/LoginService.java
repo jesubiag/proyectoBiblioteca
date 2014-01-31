@@ -11,7 +11,7 @@ import org.proyectoBiblioteca.domain.Usuario;
 public class LoginService {
 
 	public static String validateLoginData(HttpServletRequest request, HttpSession session){
-		
+
 		String ret = null;
 		Usuario user = null;
 		

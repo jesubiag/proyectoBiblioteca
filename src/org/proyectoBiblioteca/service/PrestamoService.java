@@ -109,8 +109,9 @@ public class PrestamoService {
 			//En este caso el ejemplar no está disponible para prestar, creo mensaje y redirijo sin crear
 			session.setAttribute("mensajeAccion", "Préstamo no creado. El ejemplar no está disponible para ser prestado.");
 		
-		//TODO Verificar que la fecha acordada sea hábil!
-		//}else if(){
+		}else if(!Utilidades.esHabil(fechaAcordada)){
+			//La fecha acordada no es hábil
+			session.setAttribute("mensajeAccion", "Préstamo no creado. La fecha acordada no se corresponde a un día hábil.");
 		
 		}else if(Utilidades.diasHabiles(new Date(),fechaAcordada) > 10){//verifico días hábiles entre fecha actual y acordada no son mayores a 10
 			//más de 10 días hábiles, error!
