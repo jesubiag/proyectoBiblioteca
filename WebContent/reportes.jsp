@@ -48,9 +48,9 @@
 			<section id="main">
 		    
 		    	<ul>
-		    		<li><a href="Reportes?report=retirosMesAMes">Cantidad de retiros mes a mes</a></li>
-		    		<li><a href="Reportes?report=devolucionesEnMora">Devoluciones en Mora</a></li>
-		    		<li><a href="Reportes?report=librosMasRetirados">Libros más retirados</a></li>
+		    		<li><a href="Reportes?report=retirosMesAMes" target="_blank">Cantidad de retiros mes a mes</a></li>
+		    		<li><a href="Reportes?report=devolucionesEnMora" target="_blank">Devoluciones en Mora</a></li>
+		    		<li><a href="Reportes?report=librosMasRetirados" target="_blank">Libros más retirados</a></li>
 		    	</ul>
 		    	
 		    	<p class="buttonGroup">

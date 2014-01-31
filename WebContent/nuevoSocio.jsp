@@ -153,14 +153,11 @@
                       <span class="textfieldRequiredMsg">Se necesita un CP.</span><span class="textfieldMaxCharsMsg">Se ha superado el número máximo de caracteres.</span></span></div>
 				      
 				      <div class="form-group">
-				     	 Piso: 
-				     	    <span id="sprytextfield11">
+				     	 Piso:   
+				     	 <span id="sprytextfield11">  	    
                             <input type="text" class="form-control" name="piso" value="${socio.direccion.piso}" onBlur="sacarclase('sprytextfield11')">
-                         <span class="textfieldRequiredMsg">Se necesita un valor.</span><span class="textfieldMaxCharsMsg">Se ha superado el número máximo de caracteres.</span></span>
-                      </div>
-				     
-				     
-				     
+                         <span class="textfieldMaxCharsMsg">Se ha superado el número máximo de caracteres.</span></span>
+                      </div>			
 				      
 				      <div class="form-group">
 				     	 Departamento: 
@@ -199,7 +196,7 @@ function sacarclase(id){
 	var sprytextfield9 = new Spry.Widget.ValidationTextField("sprytextfield9", "integer", {validateOn:["change"], maxChars:6});
 	var sprytextfield10 = new Spry.Widget.ValidationTextField("sprytextfield10", "none", {validateOn:["change"], maxChars:8});
 var spryselect3 = new Spry.Widget.ValidationSelect("spryselect3", {validateOn:["change"]});
-var sprytextfield11 = new Spry.Widget.ValidationTextField("sprytextfield11", "none", {maxChars:3});
+var sprytextfield11 = new Spry.Widget.ValidationTextField("sprytextfield11", "none", {isRequired:false, validateOn:["change"], maxChars:4});
 var sprytextfield12 = new Spry.Widget.ValidationTextField("sprytextfield12", "none", {isRequired:false, validateOn:["change"], maxChars:4});
   </script>
   </body>

@@ -130,7 +130,7 @@
 		document.getElementById(id).className = "";
 		}
 	var spryselect1 = new Spry.Widget.ValidationSelect("spryselect1");
-	var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "integer", {validateOn:["change"], maxChars:4, minChars:4, minValue:1000, maxValue:2013});
+	var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "integer", {validateOn:["change"], maxChars:4, minChars:4, minValue:1000, maxValue:2014});
 	var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
 	var sprytextfield3 = new Spry.Widget.ValidationTextField("sprytextfield3");
 	var sprytextfield4 = new Spry.Widget.ValidationTextField("sprytextfield4");
