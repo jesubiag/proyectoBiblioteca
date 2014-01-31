@@ -23,8 +23,6 @@ public class EditorialServlet extends HttpServlet {
 	
 		if (null == action && null != request.getSession().getAttribute("user") ){
 			//voy a pantalla de editoriales
-			//TODO ver cómo implementar paginación para no traer todo de una
-			//TODO hacer una búsqueda de editoriales en el jsp
 			EditorialService.retrieveAll(request);
 			request.getRequestDispatcher("/editoriales.jsp").forward(request, response);
 			
@@ -35,7 +33,7 @@ public class EditorialServlet extends HttpServlet {
 		}else if("delete".equals(action)){
 			//intento eliminar el autor con el parámetro id
 			EditorialService.delete(request);
-			response.sendRedirect("/proyectoBiblioteca/Editoriales");
+			response.sendRedirect("/proyectoBiblioteca/");
 			
 		}else if("edit".equals(action)){
 			//tomo par. id y redirecciono a mod. socio con los datos de ese socio
@@ -50,7 +48,7 @@ public class EditorialServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		EditorialService.saveEditorial(request);
-		response.sendRedirect("/proyectoBiblioteca/Editoriales");
+		response.sendRedirect("/proyectoBiblioteca/");
 		
 	}
 

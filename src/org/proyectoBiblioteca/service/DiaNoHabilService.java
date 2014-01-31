@@ -4,6 +4,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.proyectoBiblioteca.dao.DiaNoHabilDAO;
 import org.proyectoBiblioteca.dao.PersistenceManager;
 import org.proyectoBiblioteca.domain.DiaNoHabil;
@@ -41,6 +43,7 @@ public class DiaNoHabilService {
 	public static void delete(HttpServletRequest request) {
 		//hago la baja lógica del diaNoHabil
 		DiaNoHabil diaNoHabil = null;
+		HttpSession session = request.getSession();
 		
 		try{
 			diaNoHabil = DiaNoHabilDAO.find(Long.parseLong(request.getParameter("id")));
@@ -49,10 +52,12 @@ public class DiaNoHabilService {
 			
 			DiaNoHabilDAO.update(diaNoHabil);
 			
+			session.setAttribute("mensajeAccion", "Baja de Día No Hábil realizada con éxito.");
+			
 		}catch(NumberFormatException ex){
-			ex.printStackTrace();
+			session.setAttribute("mensajeAccion", "Baja de Día No Hábil no realizada. Intente nuevamente.");
 		}
-		//TODO revisar este método, ver si aviso o no cuando tengo éxito
+		
 	}
 	
 	public static void retrieveById(HttpServletRequest request){
@@ -72,6 +77,7 @@ public class DiaNoHabilService {
 
 	public static void saveDiaNoHabil(HttpServletRequest request) {
 
+		HttpSession session = request.getSession();
 		DiaNoHabil diaNoHabil = null;
 		
 		//Si es nuevo lo creo, sino lo obtengo
@@ -100,9 +106,10 @@ public class DiaNoHabilService {
 		 
 		try{
 			DiaNoHabilDAO.update(diaNoHabil);
+			session.setAttribute("mensajeAccion", "Alta/Mod. de Día No Hábil realizada con éxito.");
 			
 		}catch(NumberFormatException ex){
-			ex.printStackTrace();
+			session.setAttribute("mensajeAccion", "Alta/Mod. de Día No Hábil no realizada. Intente nuevamente.");
 		}
 
 		

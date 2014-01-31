@@ -54,17 +54,17 @@ public class EjemplarService {
 			//veo que no esté prestado
 			if(ejemplar.getEstado() == EstadoEjemplar.prestado){
 				//está prestado, cancelo la baja
-				session.setAttribute("mensajeLibro", "Baja de ejemplar no realizada. El ejemplar figura como prestado, es necesaria su devolución para habilitar su baja.");
+				session.setAttribute("mensajeAccion", "Baja de ejemplar no realizada. El ejemplar figura como prestado, es necesaria su devolución para habilitar su baja.");
 			}else{
 				ejemplar.setEstado(EstadoEjemplar.inhabilitado);
 				ejemplar.setFechaBaja(new Date());
 				
 				EjemplarDAO.update(ejemplar);
-				session.setAttribute("mensajeLibro", "Baja de ejemplar realizada con éxito.");
+				session.setAttribute("mensajeAccion", "Baja de ejemplar realizada con éxito.");
 			}
 
 		}catch(Exception ex){
-			session.setAttribute("mensajeLibro", "Baja de ejemplar no realizada. Hubo un error al intentar realizar la baja del ejemplar.");
+			session.setAttribute("mensajeAccion", "Baja de ejemplar no realizada. Hubo un error al intentar realizar la baja del ejemplar.");
 		}
 	
 	}
@@ -116,11 +116,11 @@ public class EjemplarService {
 		
 		try{
 			EjemplarDAO.update(ejemplar);
-			session.setAttribute("mensajeLibro", "Alta/Mod. de ejemplar realizada con éxito.");
+			session.setAttribute("mensajeAccion", "Alta/Mod. de ejemplar realizada con éxito.");
 			
 			
 		}catch(NumberFormatException ex){
-			session.setAttribute("mensajeLibro", "Alta/Mod. de ejemplar no realizada. Hubo un error al intentar dar de alta/mod. el ejemplar.");
+			session.setAttribute("mensajeAccion", "Alta/Mod. de ejemplar no realizada. Hubo un error al intentar dar de alta/mod. el ejemplar.");
 		}
 
 		

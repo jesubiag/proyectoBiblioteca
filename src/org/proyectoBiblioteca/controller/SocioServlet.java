@@ -36,8 +36,7 @@ public class SocioServlet extends HttpServlet {
 			
 		}else if("delete".equals(action)){
 			//intento eliminar el socio con el parámetro id
-			SocioService.delete(request);
-			response.sendRedirect("/proyectoBiblioteca/Socios");
+			response.sendRedirect(SocioService.delete(request));
 			
 		}else if("edit".equals(action)){
 			//tomo par. id y redirecciono a mod. socio con los datos de ese socio
@@ -53,7 +52,7 @@ public class SocioServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		SocioService.saveSocio(request);
-		response.sendRedirect("/proyectoBiblioteca/Socios");
+		response.sendRedirect("/proyectoBiblioteca/");
 		
 	}
 

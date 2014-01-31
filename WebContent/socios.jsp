@@ -39,9 +39,9 @@
       <div class="container">
       
       	<!-- Si hay un mensaje lo muestro, luego lo borro -->
-		<c:if test="${!empty mensajeSocio}">
-			<div class="alert alert-info">${mensajeSocio}</div>
-			<c:remove var="mensajeSocio" scope="session" />
+		<c:if test="${!empty mensajeAccion}">
+			<div class="alert alert-info">${mensajeAccion}</div>
+			<c:remove var="mensajeAccion" scope="session" />
 		</c:if>
       
         <h1>Administración de Socios</h1>

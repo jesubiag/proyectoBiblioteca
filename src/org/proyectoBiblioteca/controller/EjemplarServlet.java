@@ -38,7 +38,7 @@ public class EjemplarServlet extends HttpServlet {
 		}else if("delete".equals(action)){
 			//intento eliminar el libro con el parámetro id
 			EjemplarService.delete(request);
-			response.sendRedirect("Libros");
+			response.sendRedirect("/proyectoBiblioteca/");
 			
 		}else if("edit".equals(action)){
 			//tomo par. id y redirecciono a mod. libro con los datos de ese socio
@@ -55,7 +55,7 @@ public class EjemplarServlet extends HttpServlet {
 		
 		
 		EjemplarService.saveEjemplar(request);
-		response.sendRedirect("/proyectoBiblioteca/Libros");
+		response.sendRedirect("/proyectoBiblioteca");
 		
 	}
 

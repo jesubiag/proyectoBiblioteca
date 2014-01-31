@@ -56,19 +56,26 @@ public class LibroService {
 		try{
 			libro = LibroDAO.find(Long.parseLong(request.getParameter("id")));
 			
+
 			List<Ejemplar> ejemplares = libro.getEjemplares();
 			
 			//reviso que no haya ejemplares prestamos
-			for(Ejemplar ejemplar : ejemplares){
 			
-				if(ejemplar.getEstado() == EstadoEjemplar.prestado){
-					++contador;
+			if(ejemplares != null){
+
+				for(Ejemplar ejemplar : ejemplares){
+				
+					if(ejemplar.getEstado() == EstadoEjemplar.prestado){
+						++contador;
+					}
 				}
+			}else{
+				contador = 0;
 			}
 			
 			if(contador > 0){
 				//el libro posee ejemplares prestados, cancelo la baja
-				session.setAttribute("mensajeLibro", "Baja de libro no realizada. Este libro todavía posee ejemplares prestados.");
+				session.setAttribute("mensajeAccion", "Baja de libro no realizada. Este libro todavía posee ejemplares prestados.");
 			}else{
 				
 				libro.setActivo(false);
@@ -76,12 +83,12 @@ public class LibroService {
 				
 				LibroDAO.update(libro);
 				
-				session.setAttribute("mensajeLibro", "Baja de libro realizada con éxito.");	
+				session.setAttribute("mensajeAccion", "Baja de libro realizada con éxito.");	
 			}
 			
 			
 		}catch(NumberFormatException ex){
-			session.setAttribute("mensajeLibro", "Baja de libro no realizada. Error al intentar realizar la baja. Intente nuevamente.");
+			session.setAttribute("mensajeAccion", "Baja de libro no realizada. Error al intentar realizar la baja. Intente nuevamente.");
 		}
 		
 	}
@@ -149,10 +156,10 @@ public class LibroService {
 		
 		try{
 			LibroDAO.update(libro);
-			session.setAttribute("mensajeLibro", "Alta/Mod. de libro realizada con éxito.");
+			session.setAttribute("mensajeAccion", "Alta/Mod. de libro realizada con éxito.");
 			
 		}catch(NumberFormatException ex){
-			session.setAttribute("mensajeLibro", "Alta/Mod. de libro no realizada. Ha ocurrido un error al intentar dar de alta o modificar el libro. Intente nuevamente.");
+			session.setAttribute("mensajeAccion", "Alta/Mod. de libro no realizada. Ha ocurrido un error al intentar dar de alta o modificar el libro. Intente nuevamente.");
 		}
 
 		

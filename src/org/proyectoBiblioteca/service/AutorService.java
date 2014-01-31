@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.proyectoBiblioteca.dao.AutorDAO;
 import org.proyectoBiblioteca.dao.PersistenceManager;
 import org.proyectoBiblioteca.domain.Autor;
@@ -40,6 +42,7 @@ public class AutorService {
 
 	public static void delete(HttpServletRequest request) {
 		//hago la baja lógica del autor
+		HttpSession session = request.getSession();
 		Autor autor = null;
 		
 		try{
@@ -50,10 +53,12 @@ public class AutorService {
 			
 			AutorDAO.update(autor);
 			
+			session.setAttribute("mensajeAccion", "Baja de autor realizada con éxito.");
+			
 		}catch(NumberFormatException ex){
-			ex.printStackTrace();
+			session.setAttribute("mensajeAccion", "Baja de autor no realizada. Intente nuevamente.");
 		}
-		//TODO revisar este método, ver si aviso o no cuando tengo éxito
+		
 	}
 	
 	public static void retrieveById(HttpServletRequest request){
@@ -74,6 +79,8 @@ public class AutorService {
 	public static void saveAutor(HttpServletRequest request) {
 
 		Autor autor = null;
+		
+		HttpSession session = request.getSession();
 		
 		//Si es nuevo lo creo, sino lo obtengo
 		
@@ -98,8 +105,10 @@ public class AutorService {
 		try{
 			AutorDAO.update(autor);
 			
+			session.setAttribute("mensajeAccion", "Alta/Mod. de autor realizada con éxito.");
+			
 		}catch(NumberFormatException ex){
-			ex.printStackTrace();
+			session.setAttribute("mensajeAccion", "Alta/Mod. de autor no realizada. Intente nuevamente.");
 		}
 
 		

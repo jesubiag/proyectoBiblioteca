@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.proyectoBiblioteca.dao.EditorialDAO;
 import org.proyectoBiblioteca.dao.PersistenceManager;
 import org.proyectoBiblioteca.domain.Editorial;
@@ -43,6 +45,7 @@ public class EditorialService {
 	public static void delete(HttpServletRequest request) {
 		//hago la baja lógica del editorial
 		Editorial editorial = null;
+		HttpSession session = request.getSession();
 		
 		try{
 			editorial = EditorialDAO.find(Long.parseLong(request.getParameter("id")));
@@ -51,11 +54,12 @@ public class EditorialService {
 			editorial.setFechaBaja(new Date());
 			
 			EditorialDAO.update(editorial);
+			session.setAttribute("mensajeAccion", "Baja de editorial realizada con éxito.");
 			
 		}catch(NumberFormatException ex){
-			ex.printStackTrace();
+			session.setAttribute("mensajeAccion", "Baja de editorial no realizada. Intente nuevamente.");
 		}
-		//TODO revisar este método, ver si aviso o no cuando tengo éxito
+		
 	}
 	
 	public static void retrieveById(HttpServletRequest request){
@@ -75,6 +79,7 @@ public class EditorialService {
 
 	public static void saveEditorial(HttpServletRequest request) {
 
+		HttpSession session = request.getSession();
 		Editorial editorial = null;
 		
 		//Si es nuevo lo creo, sino lo obtengo
@@ -105,9 +110,11 @@ public class EditorialService {
 		
 		try{
 			EditorialDAO.update(editorial);
+			
+			session.setAttribute("mensajeAccion", "Alta/Mod. de editorial realizada con éxito.");
 
 		}catch(NumberFormatException ex){
-			ex.printStackTrace();
+			session.setAttribute("mensajeAccion", "Alta/Mod. de editorial no realizada. Intente nuevamente.");
 		}
 
 		

@@ -48,6 +48,12 @@
 		  		<li class="active">Creación de Préstamo</li>
 			</ol>
         
+        	<!-- Si hay un mensaje lo muestro, luego lo borro -->
+			<c:if test="${!empty mensajeAccion}">
+				<div class="alert alert-info">${mensajeAccion}</div>
+				<c:remove var="mensajeAccion" scope="session" />
+			</c:if>
+        
 	        <h1>Nuevo Préstamo</h1>
 	        
 			<form class="inputForm" action="Prestamos" method="post">

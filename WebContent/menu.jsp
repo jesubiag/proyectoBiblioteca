@@ -51,7 +51,7 @@
 				<div class="alert alert-info">${mensajeAccion}</div>
 				<c:remove var="mensajeAccion" scope="session" />
 			</c:if>
-    	
+
     	</section>
 		      
     	<section id="menuItems"> <!-- Menu Items -->

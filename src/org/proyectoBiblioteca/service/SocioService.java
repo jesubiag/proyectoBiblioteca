@@ -46,9 +46,10 @@ public class SocioService {
 		
 	}
 
-	public static void delete(HttpServletRequest request) {
+	public static String delete(HttpServletRequest request) {
 
 		Socio socio = null;
+		String ret = "/proyectoBiblioteca/";
 		HttpSession session = request.getSession();
 		
 		try{
@@ -74,20 +75,21 @@ public class SocioService {
 			
 			if(prestamos != null && prestamos.size() > 0){
 				//El socio posee préstamos pendientes, cancelo la baja
-				session.setAttribute("mensajeSocio", "Baja de socio no realizada. El socio posee préstamos sin devolver.");
+				session.setAttribute("mensajeAccion", "Baja de socio no realizada. El socio posee préstamos sin devolver.");
 			}else{
 			
 				socio.setEstado(EstadoSocio.inhabilitado);
 				socio.setFechaBaja(new Date());
 				
 				SocioDAO.update(socio);
-				session.setAttribute("mensajeSocio", "Baja de socio realizada con éxito.");
+				session.setAttribute("mensajeAccion", "Baja de socio realizada con éxito.");
 			}
 			
 		}catch(Exception ex){
-			session.setAttribute("mensajeSocio", "Baja de socio no realizada. Hubo un error al intentar dar de baja el socio.");
+			session.setAttribute("mensajeAccion", "Baja de socio no realizada. Hubo un error al intentar dar de baja el socio.");
+			ret = "proyectoBiblioteca/Socios";
 		}
-		
+			return ret;
 	}
 	
 	public static void retrieveById(HttpServletRequest request){
@@ -187,10 +189,10 @@ public class SocioService {
 		
 		try{
 			SocioDAO.update(socio);
-			session.setAttribute("mensajeSocio", "Alta/Mod. de socio realizada con éxito.");
+			session.setAttribute("mensajeAccion", "Alta/Mod. de socio realizada con éxito.");
 			
 		}catch(NumberFormatException ex){
-			session.setAttribute("mensajeSocio", "Alta/Mod. de socio no realizada. Hubo un error al intentar dar de alta/mod. al socio.");
+			session.setAttribute("mensajeAccion", "Alta/Mod. de socio no realizada. Hubo un error al intentar dar de alta/mod. al socio.");
 		}
 
 		

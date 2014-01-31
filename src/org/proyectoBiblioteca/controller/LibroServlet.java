@@ -24,8 +24,6 @@ public class LibroServlet extends HttpServlet {
 	
 		if (null == action && null != request.getSession().getAttribute("user")){
 			//voy a pantalla de libros y ejemplares
-			//TODO ver cómo implementar paginación para no traer todo de una
-			//TODO hacer una búsqueda de libros en el jsp
 			LibroService.retrieveAll(request);
 			request.getRequestDispatcher("/libros.jsp").forward(request, response);
 			
@@ -37,7 +35,7 @@ public class LibroServlet extends HttpServlet {
 		}else if("delete".equals(action)){
 			//intento eliminar el libro con el parámetro id
 			LibroService.delete(request);
-			response.sendRedirect("/proyectoBiblioteca/Libros");
+			response.sendRedirect("/proyectoBiblioteca/");
 			
 		}else if("edit".equals(action)){
 			//tomo par. id y redirecciono a mod. libro con los datos de ese socio

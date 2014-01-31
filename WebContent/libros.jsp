@@ -40,10 +40,10 @@
       <div class="container">
         
         <!-- Si hay un mensaje lo muestro, luego lo borro -->
-                <c:if test="${!empty mensajeLibro}">
-                        <div class="alert alert-info">${mensajeLibro}</div>
-                        <c:remove var="mensajeLibro" scope="session" />
-                </c:if>
+        <c:if test="${!empty mensajeAccion}">
+                <div class="alert alert-info">${mensajeAccion}</div>
+                <c:remove var="mensajeAccion" scope="session" />
+        </c:if>
         
         <h1>Administración de Libros y Ejemplares</h1>
         
@@ -80,7 +80,7 @@
                                                 <c:forEach var="libro" items="${libros}"> <!-- For principal -->
 
                                                     <tr  class="clickable">
-                                                        <td  colspan="2"><a href=${"Busqueda?type=detalleLibro&id="}${libro.id}>${libro.titulo}</a></td>
+                                                        <td><a href=${"Busqueda?type=detalleLibro&id="}${libro.id}>${libro.titulo}</a></td>
                                                         <td><c:out value="${libro.editorial.nombre}" /></td>
                                                         <td><c:out value="${libro.listaAutores}" /></td>
                                                         <td><c:out value="${libro.isbn}" /></td>

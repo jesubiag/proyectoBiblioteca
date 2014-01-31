@@ -37,7 +37,7 @@ public class LocalidadServlet extends HttpServlet {
 		}else if("delete".equals(action)){
 			//intento eliminar el socio con el parámetro id
 			LocalidadService.delete(request);
-			response.sendRedirect("/proyectoBiblioteca/Localidades");
+			response.sendRedirect("/proyectoBiblioteca/");
 			
 		}else if("edit".equals(action)){
 			//tomo par. id y redirecciono a mod. socio con los datos de ese socio
@@ -53,7 +53,7 @@ public class LocalidadServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		LocalidadService.saveLocalidad(request);
-		response.sendRedirect("/proyectoBiblioteca/Localidades");
+		response.sendRedirect("/proyectoBiblioteca/");
 		
 	}
 

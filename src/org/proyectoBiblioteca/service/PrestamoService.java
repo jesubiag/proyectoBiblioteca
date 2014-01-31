@@ -97,12 +97,21 @@ public class PrestamoService {
 		
 		//seteo url para redirigir al final
 		//String ret = "Busqueda?type=detalleLibro&id=" + ejemplar.getLibro().getId();
-		String ret = "index.jsp";
+		String ret = "/proyectoBiblioteca/Prestamos?action=new&id=" + idEjemplar;
+		
+		//Verifico si es local o no
+		if(Boolean.parseBoolean(prestamoLocal)){
+				fechaAcordada = new Date();
+		}
 		
 		//Verifico el estado del ejemplar, si es disponible entonces lo presto, sino no.
 		if(ejemplar.getEstado() != EstadoEjemplar.disponible){
 			//En este caso el ejemplar no está disponible para prestar, creo mensaje y redirijo sin crear
 			session.setAttribute("mensajeAccion", "Préstamo no creado. El ejemplar no está disponible para ser prestado.");
+		
+		//TODO Verificar que la fecha acordada sea hábil!
+		//}else if(){
+		
 		}else if(Utilidades.diasHabiles(new Date(),fechaAcordada) > 10){//verifico días hábiles entre fecha actual y acordada no son mayores a 10
 			//más de 10 días hábiles, error!
 			session.setAttribute("mensajeAccion","Préstamo no creado. La fecha de devolución ingresada incluye más de 10 días hábiles. Intente nuevamente con una fecha menor.");				
@@ -120,6 +129,8 @@ public class PrestamoService {
 			session.setAttribute("mensajeAccion", "Préstamo no creado. El socio ingresado no se encuentra habilitado para recibir préstamos.");
 		
 		}else{//por último chequeo si el usuario tiene o no menos de 2 préstamos activos
+			
+			ret = "index.jsp"; //lo devuelvo al index ya que pasé los errores que se pueden corregir
 			
 			EntityManager em = PersistenceManager.getEntityManager();
 			

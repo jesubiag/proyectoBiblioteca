@@ -23,8 +23,6 @@ public class AutorServlet extends HttpServlet {
 	
 		if (null == action && null != request.getSession().getAttribute("user") ){
 			//voy a pantalla de autores
-			//TODO ver cómo implementar paginación para no traer todo de una
-			//TODO hacer una búsqueda de autores en el jsp
 			AutorService.retrieveAll(request);
 			request.getRequestDispatcher("/autores.jsp").forward(request, response);
 			
@@ -35,7 +33,7 @@ public class AutorServlet extends HttpServlet {
 		}else if("delete".equals(action)){
 			//intento eliminar el autor con el parámetro id
 			AutorService.delete(request);
-			response.sendRedirect("/proyectoBiblioteca/Autores");
+			response.sendRedirect("/proyectoBiblioteca/");
 			
 		}else if("edit".equals(action)){
 			//tomo par. id y redirecciono a mod. socio con los datos de ese socio
@@ -50,7 +48,7 @@ public class AutorServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		AutorService.saveAutor(request);
-		response.sendRedirect("/proyectoBiblioteca/Autores");
+		response.sendRedirect("/proyectoBiblioteca/");
 		
 	}
 
