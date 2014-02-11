@@ -73,7 +73,7 @@
 					    		<td><c:out value="${autor.stringFechaAlta}" /></td>
 					    		<td><c:out value="${autor.paisOrigen}" /></td>				    		
 					    		<td><a href=${"Autores?action=edit&id="}${autor.id}><span class="glyphicon glyphicon-pencil"></span></a></td>
-					    		<td><a href=${"Autores?action=delete&id="}${autor.id}><span class="glyphicon glyphicon-remove"></span></a></td>
+					    		<td><a href=${"Autores?action=delete&id="}${autor.id} onclick="return confirm('¿Está seguro de que desea dar de baja al autor?')"><span class="glyphicon glyphicon-remove"></span></a></td>
 					    	</tr>
 				    	</c:forEach>
 				    

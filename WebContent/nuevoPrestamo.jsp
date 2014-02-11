@@ -54,16 +54,16 @@
 				<c:remove var="mensajeAccion" scope="session" />
 			</c:if>
         
-	        <h1>Nuevo Préstamo</h1>
+			<h1>Nuevo Préstamo</h1>
 	        
 			<form class="inputForm" action="Prestamos" method="post">
  
 				<div class="form-group">
-					<input type="hidden" readonly=readonly class="form-control" name="id" value="${ejemplar.id}">
+					<input type="hidden" readonly=readonly class="form-control" name="id" value="2">
 				</div>
 				
 				<div class="form-group">
-					<input type="hidden" readonly=readonly class="form-control" name="idUsuario" value="${user.id}">
+					<input type="hidden" readonly=readonly class="form-control" name="idUsuario" value="1">
 				</div>
 				
 				<div class="form-group">
@@ -71,7 +71,7 @@
 				</div>
 				
 				<div class="form-group">
-					<strong>Ejemplar:</strong> ${ejemplar.libro.titulo}(código: ${ejemplar.numeroEjemplar})
+					<strong>Ejemplar:</strong> Harry Potter y el Cáliz de Fuego(código: 2)
 			    </div>
 				
 				<!-- Meter más datos del ejemplar para identificarlo más fácil -->
@@ -81,19 +81,20 @@
 	  		  	<div class="form-group">
 					<strong>Préstamo Local:</strong> 
 					<span id="spryselect1">
-					    <select name="prestamoLocal" class="form-control" onBlur="sacarclase('spryselect1');">					   
-					        <option value="true">Si</option>
-							<option value="false" selected="selected">No</option>
+					    <select name="prestamoLocal" class="select1" class="form-control" onBlur="sacarclase('spryselect1');">					   
+					        <option value="0">-- Seleccione una opción --</option>
+                            <option value="1">Si</option>
+							<option value="2">No</option>
 				        </select>
-			    		<span class="selectRequiredMsg">Seleccione una opción.</span>
-			    	</span>
-			    </div>
+				    </span>    
+    		    </div>
 			    
 			    <div class="form-group">
 					<strong>Número de Socio</strong> (receptor):
 					<input type="text" class="form-control" name="idSocio">
 			    </div>
 	  		  
+                <div id="changeBox">    
 	  		  	<div class="form-group">
 					<strong>Fecha de Devolución</strong> (Estimada):
 					<span id="sprytextfield1">
@@ -101,7 +102,7 @@
                 		<span class="textfieldRequiredMsg">Se necesita una fecha.</span>
                 		<span class="textfieldInvalidFormatMsg">Formato no válido. Intente AAAA-MM-DD</span>
                 	</span>
-                
+                </div>
                 </div>
 	  		  
 				<p class="buttonGroup">
@@ -119,6 +120,7 @@
 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 	<script src="resources/SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
 	<script src="resources/SpryAssets/SpryValidationSelect.js" type="text/javascript"></script>
+	<script src="resources/changeBox.js" type="text/javascript"></script>
 	<script>
 	function sacarclase(id){
 			document.getElementById(id).className = "";

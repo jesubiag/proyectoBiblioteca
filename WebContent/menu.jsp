@@ -121,13 +121,13 @@
     
     	<section>
 		
-			<h2>Búsqueda de libros:</h2>
+			<h2><span class="glyphicon glyphicon-book"></span> Búsqueda de libros:</h2>
 		
 		    <!-- barra de búsqueda -->
 	      	<form action="Busqueda" method="get">
 					
 				<select name=type class="form-control searchSelect">
-					<option value="libro">Libro</option>
+					<option value="libro">Título</option>
 					<option value="autor">Autor</option>
 					<option value="temas">Temas</option>
 					<option value="editorial">Editorial</option>

@@ -73,7 +73,7 @@
 				    		<td><c:out value="${localidad.provincia.nombre}" /></td>
 				    		<td><c:out value="${localidad.stringFechaAlta}" /></td>
 				    		<td><a href=${"Localidades?action=edit&id="}${localidad.id}><span class="glyphicon glyphicon-pencil"></span></a></td>
-				    		<td><a href=${"Localidades?action=delete&id="}${localidad.id}><span class="glyphicon glyphicon-remove"></span></a></td>
+				    		<td><a href=${"Localidades?action=delete&id="}${localidad.id} onclick="return confirm('¿Está seguro de que desea dar de baja la localidad?')"><span class="glyphicon glyphicon-remove"></span></a></td>
 				    	</tr>
 			    	</c:forEach>
 			    

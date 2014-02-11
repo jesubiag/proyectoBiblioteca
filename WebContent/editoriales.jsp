@@ -77,7 +77,7 @@
 				    		<td><c:out value="${editorial.listaTelefonos}" /></td>
 				    		<td><c:out value="${editorial.listaDirecciones}" /></td>
 				    		<td><a href=${"Editoriales?action=edit&id="}${editorial.id}><span class="glyphicon glyphicon-pencil"></span></a></td>
-				    		<td><a href=${"Editoriales?action=delete&id="}${editorial.id}><span class="glyphicon glyphicon-remove"></span></a></td>
+				    		<td><a href=${"Editoriales?action=delete&id="}${editorial.id} onclick="return confirm('¿Está seguro de que desea dar de baja la editorial?')"><span class="glyphicon glyphicon-remove"></span></a></td>
 				    	</tr>
 			    	</c:forEach>
 			    

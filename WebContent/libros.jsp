@@ -89,7 +89,7 @@
                                                         <td><c:out value="${libro.paisOrigen}" /></td>
                                                         <td><c:out value="${libro.stringFechaAlta}" /></td>
                                                         <td><a href=${"Libros?action=edit&id="}${libro.id}><span class="glyphicon glyphicon-pencil"></span></a></td>
-                                                        <td><a href=${"Libros?action=delete&id="}${libro.id}><span class="glyphicon glyphicon-remove"></span></a></td>
+                                                        <td><a href=${"Libros?action=delete&id="}${libro.id} onclick="return confirm('¿Está seguro de que desea dar de baja el libro?')"><span class="glyphicon glyphicon-remove"></span></a></td>
                                                     </tr>
                                                     <!-- Fila que colapsa de la tabla principal (Datos de los ejemplares del libro anterior) -->
                                         
@@ -129,7 +129,7 @@
                                                                             <td>${ejemplar.stringFechaAlta}</td>
                                                                             <td>${ejemplar.datosPrestamo}</td>
                                                                             <td><a href=${"Ejemplares?action=edit&id="}${ejemplar.id}><span class="glyphicon glyphicon-pencil"></span></a></td>
-                                                                            <td><a href=${"Ejemplares?action=delete&id="}${ejemplar.id}><span class="glyphicon glyphicon-remove"></span></a></td>   
+                                                                            <td><a href=${"Ejemplares?action=delete&id="}${ejemplar.id} onclick="return confirm('¿Está seguro de que desea dar de baja el ejemplar?')"><span class="glyphicon glyphicon-remove"></span></a></td>   
                                                                             
                                                                             <c:if test="${ejemplar.estado == 'disponible'}">
                                                                             	<td><a href=${"Prestamos?action=new&id="}${ejemplar.id}><span class="glyphicon glyphicon-log-out"></span></a></td>

@@ -85,7 +85,7 @@
 				    		<td>${socio.direccion}</td>
 				    		<td>${socio.estado}</td>
 				    		<td><a href=${"Socios?action=edit&id="}${socio.id}><span class="glyphicon glyphicon-pencil"></span></a></td>
-				    		<td><a href=${"Socios?action=delete&id="}${socio.id}><span class="glyphicon glyphicon-remove"></span></a></td>
+				    		<td><a href=${"Socios?action=delete&id="}${socio.id} onclick="return confirm('¿Está seguro de que desea dar de baja al socio?')"><span class="glyphicon glyphicon-remove"></span></a></td>
 				    	</tr>
 			    	</c:forEach>
 			    

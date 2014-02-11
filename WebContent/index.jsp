@@ -59,7 +59,7 @@
       	<form action="Busqueda" method="get">	
       	
 				<select name=type class="form-control searchSelect">
-					<option value="libro">Libro</option>
+					<option value="libro">Título</option>
 					<option value="autor">Autor</option>
 					<option value="temas">Temas</option>
 					<option value="editorial">Editorial</option>

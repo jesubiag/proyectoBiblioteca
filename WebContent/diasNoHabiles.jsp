@@ -73,7 +73,7 @@
 				    		<td><c:out value="${dia.stringFechaSiguiente}" /></td>
 				    		<td><c:out value="${dia.motivo}" /></td>				    		
 				    		<td><a href=${"DiasNoHabiles?action=edit&id="}${dia.id}><span class="glyphicon glyphicon-pencil"></span></a></td>
-				    		<td><a href=${"DiasNoHabiles?action=delete&id="}${dia.id}><span class="glyphicon glyphicon-remove"></span></a></td>
+				    		<td><a href=${"DiasNoHabiles?action=delete&id="}${dia.id} onclick="return confirm('¿Está seguro de que desea dar de baja el día no hábil?')"><span class="glyphicon glyphicon-remove"></span></a></td>
 				    	</tr>
 			    	</c:forEach>
 			    

@@ -12,6 +12,8 @@ import java.util.Locale;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.proyectoBiblioteca.dao.PersistenceManager;
 import org.proyectoBiblioteca.domain.DiaNoHabil;
 
@@ -145,6 +147,8 @@ public class Utilidades {
 			if(!query.getResultList().isEmpty()){
 	
 				resultado = query.getResultList();
+			}else{
+				resultado = new ArrayList<>();
 			}
 			
 
@@ -156,10 +160,6 @@ public class Utilidades {
 			for(DiaNoHabil d : resultado){
 				
 				auxCal.setTime(d.getFecha());
-				/*auxCal.set(Calendar.HOUR_OF_DAY,0);
-				auxCal.set(Calendar.MINUTE,0);
-				auxCal.set(Calendar.SECOND,0);
-				auxCal.set(Calendar.MILLISECOND,0);*/
 				diasNoHabiles.add(auxCal.get(Calendar.DAY_OF_YEAR));
 			}
 		}
@@ -199,9 +199,10 @@ public class Utilidades {
 			if(!query.getResultList().isEmpty()){
 	
 				resultado = query.getResultList();
+			}else{//TODO revisar esto
+				resultado = new ArrayList<>();
 			}
 			
-	
 		}catch(Exception ex){
 			ex.printStackTrace();
 		}finally{
@@ -230,5 +231,14 @@ public class Utilidades {
 	    String[] monthNames = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
 	    return monthNames[month];
 	}
+	
+	public static void seleniumLogin(WebDriver driver,String baseUrl){
+	    driver.get(baseUrl + "/proyectoBiblioteca/");
+	    driver.findElement(By.name("user")).clear();
+	    driver.findElement(By.name("user")).sendKeys("admin");
+	    driver.findElement(By.name("password")).clear();
+	    driver.findElement(By.name("password")).sendKeys("admin");
+	    driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
+	  }
 	
 }
