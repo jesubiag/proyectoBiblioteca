@@ -13,7 +13,8 @@ import org.proyectoBiblioteca.utils.Utilidades;
 	@NamedQuery(name = "Prestamo.findByState", query = "Select p From Prestamo p Where p.estado = :estado Order By p.fechaAcordada Desc"),
 	@NamedQuery(name = "Prestamo.findAllActive", query = "Select p From Prestamo p Where ( p.estado = org.proyectoBiblioteca.enums.EstadoPrestamo.vigente Or p.estado = org.proyectoBiblioteca.enums.EstadoPrestamo.vencido ) Order By p.fechaAcordada Desc"),
 	@NamedQuery(name = "Prestamo.findActiveByCopyId", query = "Select p From Prestamo p Where p.ejemplar.id = :idEjemplar And ( p.estado = org.proyectoBiblioteca.enums.EstadoPrestamo.vigente Or p.estado = org.proyectoBiblioteca.enums.EstadoPrestamo.vencido) Order By p.fechaAcordada Desc"),
-	@NamedQuery(name = "Prestamo.findActiveByMemberId", query = "Select p From Prestamo p Where p.socio.id = :idSocio And ( p.estado = org.proyectoBiblioteca.enums.EstadoPrestamo.vigente Or p.estado = org.proyectoBiblioteca.enums.EstadoPrestamo.vencido) Order By p.fechaAcordada Desc")
+	@NamedQuery(name = "Prestamo.findActiveByMemberId", query = "Select p From Prestamo p Where p.socio.id = :idSocio And ( p.estado = org.proyectoBiblioteca.enums.EstadoPrestamo.vigente Or p.estado = org.proyectoBiblioteca.enums.EstadoPrestamo.vencido) Order By p.fechaAcordada Desc"),
+	@NamedQuery(name = "Prestamo.findHomeActiveByMemberId", query = "Select p From Prestamo p Where p.socio.id = :idSocio And p.prestamoLocal = FALSE And ( p.estado = org.proyectoBiblioteca.enums.EstadoPrestamo.vigente Or p.estado = org.proyectoBiblioteca.enums.EstadoPrestamo.vencido) Order By p.fechaAcordada Desc")
 })
 public class Prestamo implements Serializable {
 

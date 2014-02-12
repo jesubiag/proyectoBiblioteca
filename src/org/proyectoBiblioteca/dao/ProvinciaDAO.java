@@ -84,7 +84,7 @@ public class ProvinciaDAO {
 		tr.begin();
 		
 		try{
-			entityManager.remove(ProvinciaDAO.find(nombre));
+			entityManager.remove(entityManager.merge(ProvinciaDAO.find(nombre)));
 			tr.commit();
 			System.out.println("Eliminación de provincia exitosa");
 		}

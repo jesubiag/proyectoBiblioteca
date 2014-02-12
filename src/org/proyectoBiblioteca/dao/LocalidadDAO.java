@@ -83,13 +83,13 @@ public class LocalidadDAO {
 		tr.begin();
 		
 		try{
-			entityManager.remove(LocalidadDAO.find(id));
+			entityManager.remove(entityManager.merge(LocalidadDAO.find(id)));
 			tr.commit();
 			System.out.println("Eliminación de localidad exitosa");
 		}
 		catch(Exception ex){
 			tr.rollback();
-			System.err.println("Error en LibroDAO.delete" + "(" + Thread.currentThread().getStackTrace()[1].getLineNumber() + "):" + ex.getLocalizedMessage());
+			System.err.println("Error en LocalidadDAO.delete" + "(" + Thread.currentThread().getStackTrace()[1].getLineNumber() + "):" + ex.getLocalizedMessage());
 		}
 		finally {
 			entityManager.close();
@@ -112,11 +112,11 @@ public class LocalidadDAO {
 			
 			if( !query.getResultList().isEmpty() && query.getResultList().size()<2){
 	
-				localidad = query.getResultList().get(1);
+				localidad = query.getResultList().get(0);
 			}
 			
 		}catch(Exception ex){
-			System.err.println("Error en LibroDAO.findByFields" + "(" + Thread.currentThread().getStackTrace()[1].getLineNumber() + "):" + ex.getLocalizedMessage());
+			ex.printStackTrace();
 			
 		}finally{
 			entityManager.close();

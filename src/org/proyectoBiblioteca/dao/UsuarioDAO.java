@@ -81,7 +81,7 @@ public class UsuarioDAO {
 		tr.begin();
 		
 		try{
-			entityManager.remove(UsuarioDAO.find(id));
+			entityManager.remove(entityManager.merge(UsuarioDAO.find(id)));
 			tr.commit();
 			System.out.println("Eliminación de usuario exitosa");
 		}

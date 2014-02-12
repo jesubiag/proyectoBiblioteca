@@ -81,7 +81,7 @@ public class EjemplarDAO {
 		tr.begin();
 		
 		try{
-			entityManager.remove(EjemplarDAO.find(id));
+			entityManager.remove(entityManager.merge(EjemplarDAO.find(id)));
 			tr.commit();
 			System.out.println("Eliminación de ejemplar exitosa");
 		}

@@ -97,7 +97,7 @@ public class Libro implements Serializable{
 	}
 	
 	public Libro(List<Autor> autores, Editorial editorial, List<String> etiquetas,
-			String isbn, String paisOrigen, int rango, String titulo) {
+			String isbn, String paisOrigen, int rango, String titulo, String descripcion, String linkImagen) {
 		super();
 		this.autores = autores;
 		this.editorial = editorial;
@@ -106,6 +106,8 @@ public class Libro implements Serializable{
 		this.paisOrigen = paisOrigen;
 		this.rango = rango;
 		this.titulo = titulo;
+		this.descripcion = descripcion;
+		this.linkImagen = linkImagen;
 		this.fechaAlta = new Date();
 	}
 

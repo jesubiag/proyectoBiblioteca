@@ -59,20 +59,20 @@
 			<form class="inputForm" action="Prestamos" method="post">
  
 				<div class="form-group">
-					<input type="hidden" readonly=readonly class="form-control" name="id" value="2">
+					<input type="hidden" readonly=readonly class="form-control" name="id" value="${ejemplar.id}">
 				</div>
-				
+
 				<div class="form-group">
-					<input type="hidden" readonly=readonly class="form-control" name="idUsuario" value="1">
+					<input type="hidden" readonly=readonly class="form-control" name="idUsuario" value="${user.id}">
 				</div>
-				
+
 				<div class="form-group">
 					<input type="hidden" readonly=readonly class="form-control" name="action" value="lend">
 				</div>
-				
+
 				<div class="form-group">
-					<strong>Ejemplar:</strong> Harry Potter y el Cáliz de Fuego(código: 2)
-			    </div>
+					<strong>Ejemplar:</strong> ${ejemplar.libro.titulo}(código: ${ejemplar.numeroEjemplar})
+				</div>
 				
 				<!-- Meter más datos del ejemplar para identificarlo más fácil -->
 				
@@ -81,7 +81,7 @@
 	  		  	<div class="form-group">
 					<strong>Préstamo Local:</strong> 
 					<span id="spryselect1">
-					    <select name="prestamoLocal" class="select1" class="form-control" onBlur="sacarclase('spryselect1');">					   
+					    <select id="prestamito" name="prestamoLocal" class="select1" class="form-control" onBlur="sacarclase('spryselect1');">					   
 					        <option value="0">-- Seleccione una opción --</option>
                             <option value="1">Si</option>
 							<option value="2">No</option>
@@ -91,7 +91,9 @@
 			    
 			    <div class="form-group">
 					<strong>Número de Socio</strong> (receptor):
-					<input type="text" class="form-control" name="idSocio">
+					<span id="sprytextfield2">
+					<input type="text" class="form-control" name="idSocio" onBlur="sacarclase('sprytextfield2');">
+					<span class="textfieldRequiredMsg">Se necesita un número de socio.</span><span class="textfieldInvalidFormatMsg">Formato no válido (debe ser numérico).</span><span class="textfieldMinValueMsg">El valor introducido es inferior al mínimo permitido (1).</span><span class="textfieldMaxValueMsg">El valor introducido es superior al máximo permitido (10000).</span></span>
 			    </div>
 	  		  
                 <div id="changeBox">    
@@ -124,13 +126,17 @@
 	<script>
 	function sacarclase(id){
 			document.getElementById(id).className = "";
+			
 			}
+	
 	$(function() {
 			$( "#fecha" ).datepicker({ dateFormat: "yy-mm-dd" });
 			});
 	var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "date", {format:"yyyy-mm-dd", validateOn:["change"]});
 	var spryselect1 = new Spry.Widget.ValidationSelect("spryselect1");
+	var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2", "integer", {validateOn:["change"], minValue:1, maxValue:10000});
 	</script>	
     
   </body>
 </html>
+

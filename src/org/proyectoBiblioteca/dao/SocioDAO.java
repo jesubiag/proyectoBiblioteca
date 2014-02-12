@@ -86,7 +86,7 @@ public class SocioDAO {
 		
 		
 		try{
-			entityManager.remove(entityManager.find(Socio.class, id)); //TODO problema al intentar borrar la entidad, la encuentra bien pero no puede borrarla. Revisar relaciones!
+			entityManager.remove(entityManager.merge(SocioDAO.find(id))); 
 			tr.commit();
 			System.out.println("Eliminación de socio exitosa");
 		}

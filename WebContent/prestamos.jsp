@@ -70,6 +70,7 @@
 								            <th>Estado</th>
 								            <th>Nro. de Socio</th>      
 								            <th>Nro. de Ejemplar</th>
+								            <th>Tipo</th>
 								            <th>Acción</th>      
 								        </tr>
 								    </thead>
@@ -85,7 +86,15 @@
 								                <td>${prestamo.estado}</td>  
 								                <td>${prestamo.socio.id} (${prestamo.socio.resumenSocio})</td> 
 								                <td>${prestamo.ejemplar.id} (Del libro <a href=${"Busqueda?type=detalleLibro&id="}${prestamo.ejemplar.libro.id}>${prestamo.ejemplar.libro.titulo})</a></td>
-								                <td><a href=${"Prestamos?action=return&id="}${prestamo.ejemplar.id}><span class="glyphicon glyphicon-log-in"></span></a></td>							                
+								                <td>
+								                	<c:if test="${prestamo.prestamoLocal}"> 
+														Local
+													</c:if>
+													<c:if test="${!prestamo.prestamoLocal}"> 
+														Domiciliario
+													</c:if>
+								                </td>
+								                <td><a href=${"Prestamos?action=return&id="}${prestamo.ejemplar.id}><span title="Devolver" class="glyphicon glyphicon-log-in"></span></a></td>							                
 
 								            </tr>
 								        

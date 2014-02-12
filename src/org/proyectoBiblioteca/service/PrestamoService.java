@@ -80,7 +80,15 @@ public class PrestamoService {
 		
 		String idEjemplar = request.getParameter("id");
 		String idSocio = request.getParameter("idSocio");
-		String prestamoLocal = request.getParameter("tipoPrestamo");
+		
+		String prestamoLocal = request.getParameter("prestamoLocal");
+		if("1".equals((prestamoLocal).trim())){
+			//Si es 1 entonces es Local. Sino es domiciliario
+			prestamoLocal = "true";
+		}else{
+			prestamoLocal = "false";
+		}
+		
 		String fecha = request.getParameter("fecha");
 		Date fechaAcordada = Utilidades.getSimpleDate(fecha);
 		
@@ -138,7 +146,7 @@ public class PrestamoService {
 			List<Prestamo> prestamos = null;
 			
 			try{
-				TypedQuery<Prestamo> query = em.createNamedQuery("Prestamo.findActiveByMemberId",Prestamo.class);
+				TypedQuery<Prestamo> query = em.createNamedQuery("Prestamo.findHomeActiveByMemberId",Prestamo.class);
 				query.setParameter("idSocio", socio.getId());
 				
 				if(!query.getResultList().isEmpty()){
@@ -151,7 +159,7 @@ public class PrestamoService {
 				em.close();
 			}
 			
-			if(prestamos != null && prestamos.size() >= 2){
+			if(prestamos != null && prestamos.size() >= 2 && !Boolean.parseBoolean(prestamoLocal)){
 
 				//socio con 2 préstamos activos
 				session.setAttribute("mensajeAccion", "Préstamo no creado. El socio ingresado ya posee demasiados préstamos activos.");

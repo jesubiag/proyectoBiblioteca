@@ -81,7 +81,7 @@ public class LibroDAO {
 		tr.begin();
 		
 		try{
-			entityManager.remove(LibroDAO.find(id));
+			entityManager.remove(entityManager.merge(LibroDAO.find(id)));
 			tr.commit();
 			System.out.println("Eliminación de libro exitosa");
 		}

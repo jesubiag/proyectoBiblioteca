@@ -80,7 +80,7 @@ public class MovimientoDAO {
 		tr.begin();
 		
 		try{
-			entityManager.remove(MovimientoDAO.find(id));
+			entityManager.remove(entityManager.merge(MovimientoDAO.find(id)));
 			tr.commit();
 			System.out.println("Eliminación de movimiento exitosa");
 		}

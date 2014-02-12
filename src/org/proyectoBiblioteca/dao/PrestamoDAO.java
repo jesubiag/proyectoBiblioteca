@@ -85,7 +85,7 @@ public class PrestamoDAO {
 		tr.begin();
 		
 		try{
-			entityManager.remove(PrestamoDAO.find(id));
+			entityManager.remove(entityManager.merge(PrestamoDAO.find(id)));
 			tr.commit();
 			System.out.println("Eliminación de prestamo exitosa");
 		}

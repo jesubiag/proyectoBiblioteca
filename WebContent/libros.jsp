@@ -88,8 +88,8 @@
                                                         <td><c:out value="${libro.rango}" /></td>
                                                         <td><c:out value="${libro.paisOrigen}" /></td>
                                                         <td><c:out value="${libro.stringFechaAlta}" /></td>
-                                                        <td><a href=${"Libros?action=edit&id="}${libro.id}><span class="glyphicon glyphicon-pencil"></span></a></td>
-                                                        <td><a href=${"Libros?action=delete&id="}${libro.id} onclick="return confirm('¿Está seguro de que desea dar de baja el libro?')"><span class="glyphicon glyphicon-remove"></span></a></td>
+                                                        <td><a href=${"Libros?action=edit&id="}${libro.id}><span title="Editar" class="glyphicon glyphicon-pencil"></span></a></td>
+                                                        <td><a href=${"Libros?action=delete&id="}${libro.id} onclick="return confirm('¿Está seguro de que desea dar de baja el libro?')"><span title="Dar de Baja" class="glyphicon glyphicon-remove"></span></a></td>
                                                     </tr>
                                                     <!-- Fila que colapsa de la tabla principal (Datos de los ejemplares del libro anterior) -->
                                         
@@ -128,15 +128,15 @@
                                                                             <td>${ejemplar.precioDolares}</td>
                                                                             <td>${ejemplar.stringFechaAlta}</td>
                                                                             <td>${ejemplar.datosPrestamo}</td>
-                                                                            <td><a href=${"Ejemplares?action=edit&id="}${ejemplar.id}><span class="glyphicon glyphicon-pencil"></span></a></td>
-                                                                            <td><a href=${"Ejemplares?action=delete&id="}${ejemplar.id} onclick="return confirm('¿Está seguro de que desea dar de baja el ejemplar?')"><span class="glyphicon glyphicon-remove"></span></a></td>   
+                                                                            <td><a href=${"Ejemplares?action=edit&id="}${ejemplar.id}><span title="Editar" class="glyphicon glyphicon-pencil"></span></a></td>
+                                                                            <td><a href=${"Ejemplares?action=delete&id="}${ejemplar.id} onclick="return confirm('¿Está seguro de que desea dar de baja el ejemplar?')"><span title="Dar de Baja" class="glyphicon glyphicon-remove"></span></a></td>   
                                                                             
                                                                             <c:if test="${ejemplar.estado == 'disponible'}">
-                                                                            	<td><a href=${"Prestamos?action=new&id="}${ejemplar.id}><span class="glyphicon glyphicon-log-out"></span></a></td>
+                                                                            	<td><a href=${"Prestamos?action=new&id="}${ejemplar.id}><span title="Prestar" class="glyphicon glyphicon-log-out"></span></a></td>
                                                                             </c:if>
                                                                                                 
                                                                             <c:if test="${ejemplar.estado == 'prestado'}">
-                                                                            	<td><a href=${"Prestamos?action=return&id="}${ejemplar.id}><span class="glyphicon glyphicon-log-in"></span></a></td>
+                                                                            	<td><a href=${"Prestamos?action=return&id="}${ejemplar.id}><span title="Devolver" class="glyphicon glyphicon-log-in"></span></a></td>
                                                                             </c:if>
                                                                         </tr>
                                         

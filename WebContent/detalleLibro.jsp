@@ -96,10 +96,10 @@
 		                        <!--  hacer un if para poner botones de prestar o devolver en caso de ser bibliotecario -->
 		                        <c:if test="${!empty user}"><!-- Si está logueado entonces habilito opciones para prestar y devolver -->  
 									<c:if test="${ejemplar.estado == 'disponible'}">
-										<td><a href=${"Prestamos?action=new&id="}${ejemplar.id}><span class="glyphicon glyphicon-log-out"></span></a></td>
+										<td><a href=${"Prestamos?action=new&id="}${ejemplar.id}><span title="Prestar" class="glyphicon glyphicon-log-out"></span></a></td>
 									</c:if>
 									<c:if test="${ejemplar.estado == 'prestado'}">
-										<td><a href=${"Prestamos?action=return&id="}${ejemplar.id}><span class="glyphicon glyphicon-log-in"></span></a></td>
+										<td><a href=${"Prestamos?action=return&id="}${ejemplar.id}><span title="Devolver" class="glyphicon glyphicon-log-in"></span></a></td>
 									</c:if>
 								</c:if>
 		                    </tr>

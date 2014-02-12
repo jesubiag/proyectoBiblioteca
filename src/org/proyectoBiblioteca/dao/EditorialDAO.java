@@ -81,7 +81,7 @@ public class EditorialDAO {
 		tr.begin();
 		
 		try{
-			entityManager.remove(EditorialDAO.find(id));
+			entityManager.remove(entityManager.merge(EditorialDAO.find(id)));
 			tr.commit();
 			System.out.println("Eliminación de editorial exitosa");
 		}

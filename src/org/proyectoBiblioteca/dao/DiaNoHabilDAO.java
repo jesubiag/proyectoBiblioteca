@@ -77,7 +77,7 @@ public class DiaNoHabilDAO {
 		tr.begin();
 		
 		try{
-			entityManager.remove(DiaNoHabilDAO.find(id));
+			entityManager.remove(entityManager.merge(DiaNoHabilDAO.find(id)));
 			tr.commit();
 			System.out.println("Eliminación de diaNoHabil exitosa");
 		}

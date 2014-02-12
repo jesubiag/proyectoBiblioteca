@@ -80,7 +80,7 @@ public class AutorDAO {
 		tr.begin();
 		
 		try{
-			entityManager.remove(AutorDAO.find(id));
+			entityManager.remove(entityManager.merge(AutorDAO.find(id)));
 			tr.commit();
 			System.out.println("Eliminación de autor exitosa");
 		}

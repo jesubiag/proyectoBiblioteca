@@ -84,7 +84,7 @@ public class SuspensionDAO {
 		tr.begin();
 		
 		try{
-			entityManager.remove(SuspensionDAO.find(id));
+			entityManager.remove(entityManager.merge(SuspensionDAO.find(id)));
 			tr.commit();
 			System.out.println("Eliminación de suspension exitosa");
 		}

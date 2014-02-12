@@ -24,7 +24,7 @@ public class Suspension implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private String id;
+	private long id;
 
 	@Temporal(TemporalType.DATE)
 	private Date fechaAlta;
@@ -32,7 +32,7 @@ public class Suspension implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date fechaVencimiento;
 
-	@OneToOne (cascade = CascadeType.MERGE) //TODO revisar relación
+	@OneToOne (cascade = CascadeType.MERGE)
 	@JoinColumn(name = "idPrestamo")
 	private Prestamo prestamo;
 
@@ -62,11 +62,11 @@ public class Suspension implements Serializable {
 	
 	//Getters y setters
 
-	public String getId() {
+	public long getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
