@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `biblioteca`.`direccion` (
 	`id` bigint NOT NULL AUTO_INCREMENT,
 	`calle` varchar(255) NOT NULL,
 	`numero` int NOT NULL,
-	`piso` int,
+	`piso` varchar(255),
 	`departamento` varchar(255),
 	`codigoPostal` varchar(255) NOT NULL,
 	`idLocalidad` bigint NOT NULL,

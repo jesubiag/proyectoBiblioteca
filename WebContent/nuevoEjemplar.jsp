@@ -71,25 +71,25 @@
 				  	Año: 
 				  	  <span id="sprytextfield1">
                       <input type="text" class="form-control" name="anio" value="${ejemplar.anio}" onBlur="sacarclase('sprytextfield1');">
-                  <span class="textfieldRequiredMsg">Se necesita un a&ntilde;o.</span><span class="textfieldInvalidFormatMsg">A&ntilde;o no v&aacute;lido.</span><span class="textfieldMaxCharsMsg">Incluya un a&ntilde;o v&aacute;lido. (M&aacute;ximo 2013.)</span><span class="textfieldMinCharsMsg">Incluya un a&ntilde;o v&aacute;lido. (M&iacute;nimo 1000)</span><span class="textfieldMinValueMsg">El valor introducido es inferior al mínimo permitido. (1000).</span><span class="textfieldMaxValueMsg">El valor introducido es superior al máximo permitido. (2013).</span></span></div>
+                  <span class="textfieldRequiredMsg">Se necesita un a&ntilde;o.</span><span class="textfieldInvalidFormatMsg">A&ntilde;o no v&aacute;lido.</span><span class="textfieldMaxCharsMsg">Incluya un a&ntilde;o v&aacute;lido. (M&aacute;ximo 2014.)</span><span class="textfieldMinCharsMsg">Incluya un a&ntilde;o v&aacute;lido. (M&iacute;nimo 1800)</span><span class="textfieldMinValueMsg">El valor introducido es inferior al mínimo permitido. (1800).</span><span class="textfieldMaxValueMsg">El valor introducido es superior al máximo permitido. (2014).</span></span></div>
 			      
 			      <div class="form-group">
 				  	Pasillo: 
 				  	  <span id="sprytextfield2">
-				  	  <input type="text" class="form-control" name="pasillo" value="${ejemplar.pasillo}" onBlur="sacarclase('sprytextfield2');">
-			  	  <span class="textfieldRequiredMsg">Se necesita un pasillo.</span></span></div>
+                      <input type="text" class="form-control" name="pasillo" value="${ejemplar.pasillo}" onBlur="sacarclase('sprytextfield2');">
+                  <span class="textfieldRequiredMsg">Se necesita un pasillo.</span><span class="textfieldInvalidFormatMsg">Formato no válido.</span><span class="textfieldMinCharsMsg">No se cumple el mínimo de caracteres requerido.</span><span class="textfieldMaxCharsMsg">Se ha superado el número máximo de caracteres.</span><span class="textfieldMinValueMsg">El valor introducido es inferior al mínimo permitido.</span></span></div>
 			      
 			      <div class="form-group">
 				  	Mueble: 
 				  	  <span id="sprytextfield3">
-				  	  <input type="text" class="form-control" name="mueble" value="${ejemplar.mueble}" onBlur="sacarclase('sprytextfield3');">
-			  	  <span class="textfieldRequiredMsg">Se necesita un mueble.</span></span></div>
+                      <input type="text" class="form-control" name="mueble" value="${ejemplar.mueble}" onBlur="sacarclase('sprytextfield3');">
+                  <span class="textfieldRequiredMsg">Se necesita un mueble.</span><span class="textfieldInvalidFormatMsg">Formato no válido.</span><span class="textfieldMinCharsMsg">No se cumple el mínimo de caracteres requerido.</span><span class="textfieldMaxCharsMsg">Se ha superado el número máximo de caracteres.</span></span></div>
 			      
 			      <div class="form-group">
 			      	Estante: 
 			      	  <span id="sprytextfield4">
-			      	  <input type="text" class="form-control" name="estante" value="${ejemplar.estante}" onBlur="sacarclase('sprytextfield4');">
-		      	  <span class="textfieldRequiredMsg">Se necesita un estante.</span></span></div>
+                      <input type="text" class="form-control" name="estante" value="${ejemplar.estante}" onBlur="sacarclase('sprytextfield4');">
+                  <span class="textfieldRequiredMsg">Se necesita un estante.</span><span class="textfieldInvalidFormatMsg">Formato no válido.</span><span class="textfieldMinCharsMsg">No se cumple el mínimo de caracteres requerido.</span><span class="textfieldMaxCharsMsg">Se ha superado el número máximo de caracteres.</span></span></div>
 
 			      <div class="form-group">
 					  Estado: 
@@ -130,10 +130,10 @@
 		document.getElementById(id).className = "";
 		}
 	var spryselect1 = new Spry.Widget.ValidationSelect("spryselect1");
-	var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "integer", {validateOn:["change"], maxChars:4, minChars:4, minValue:1000, maxValue:2014});
-	var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
-	var sprytextfield3 = new Spry.Widget.ValidationTextField("sprytextfield3");
-	var sprytextfield4 = new Spry.Widget.ValidationTextField("sprytextfield4");
+	var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "integer", {validateOn:["change"], maxChars:4, minChars:4, minValue:1800, maxValue:2014});
+	var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2", "integer", {minChars:1, maxChars:2, minValue:1});
+	var sprytextfield3 = new Spry.Widget.ValidationTextField("sprytextfield3", "integer", {minChars:1, maxChars:2});
+	var sprytextfield4 = new Spry.Widget.ValidationTextField("sprytextfield4", "integer", {minChars:1, maxChars:2});
 	var spryselect2 = new Spry.Widget.ValidationSelect("spryselect2");
 	var sprytextfield5 = new Spry.Widget.ValidationTextField("sprytextfield5", "integer", {validateOn:["change"], minChars:1, minValue:1, maxChars:3, maxValue:500});
 	var sprytextfield6 = new Spry.Widget.ValidationTextField("sprytextfield6", "currency", {validateOn:["change"]});

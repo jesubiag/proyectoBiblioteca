@@ -70,6 +70,7 @@
 			    		<th>Rango</th>
 			    		<th>Dirección</th>
 			    		<th>Estado</th>
+			    		<th>Fecha Alta</th>
 			    		<th colspan=2 >Acción</th>
 			    	</tr>
 			    	
@@ -84,6 +85,7 @@
 				    		<td>${socio.rango}</td>
 				    		<td>${socio.direccion}</td>
 				    		<td>${socio.estado}</td>
+				    		<td>${socio.stringFechaAlta}</td>
 				    		<td><a href=${"Socios?action=edit&id="}${socio.id}><span title="Editar" class="glyphicon glyphicon-pencil"></span></a></td>
 				    		<td><a href=${"Socios?action=delete&id="}${socio.id} onclick="return confirm('¿Está seguro de que desea dar de baja al socio?')"><span title="Dar de Baja" class="glyphicon glyphicon-remove"></span></a></td>
 				    	</tr>

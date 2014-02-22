@@ -22,7 +22,7 @@ public class Direccion implements Serializable {
 
 	private int numero;
 
-	private int piso;
+	private String piso;
 
 	@ManyToOne (cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name = "idLocalidad")
@@ -34,7 +34,7 @@ public class Direccion implements Serializable {
 	}
 
 	public Direccion(String calle, String codigoPostal, String departamento,
-			int numero, int piso, Localidad localidad) {
+			int numero, String piso, Localidad localidad) {
 		this.calle = calle;
 		this.codigoPostal = codigoPostal;
 		this.departamento = departamento;
@@ -92,11 +92,11 @@ public class Direccion implements Serializable {
 		this.numero = numero;
 	}
 
-	public int getPiso() {
+	public String getPiso() {
 		return this.piso;
 	}
 
-	public void setPiso(int piso) {
+	public void setPiso(String piso) {
 		this.piso = piso;
 	}
 

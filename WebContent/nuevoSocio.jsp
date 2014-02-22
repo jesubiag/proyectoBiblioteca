@@ -84,14 +84,14 @@
 			      <div class="form-group">
 			     	 Teléfono: 
 			     	   <span id="sprytextfield5">
-			     	   <input type="text" class="form-control" name="telefono" value="${socio.telefono}" onBlur="sacarclase('sprytextfield5')">
-	     	      <span class="textfieldRequiredMsg">Se necesita un tel&eacute;fono.</span></span></div>
+                       <input type="text" class="form-control" name="telefono" value="${socio.telefono}" onBlur="sacarclase('sprytextfield5')">
+                  <span class="textfieldRequiredMsg">Se necesita un tel&eacute;fono.</span><span class="textfieldInvalidFormatMsg">Formato no válido.</span><span class="textfieldMinCharsMsg">No se cumple el mínimo de caracteres requerido.</span><span class="textfieldMaxCharsMsg">Se ha superado el número máximo de caracteres.</span></span></div>
 			      
 			      <div class="form-group">
 				      Rango: 
 				        <span id="sprytextfield6">
-				        <input type="text" class="form-control" name="rango" value="${socio.rango}" onBlur="sacarclase('sprytextfield6')">
-		          <span class="textfieldRequiredMsg">Se necesita un valor.</span></span></div>		
+                        <input type="text" class="form-control" name="rango" value="${socio.rango}" onBlur="sacarclase('sprytextfield6')">
+                  <span class="textfieldRequiredMsg">Se necesita un rango.</span><span class="textfieldMinCharsMsg">No se cumple el mínimo de caracteres requerido, intente un número del 1 al 10.</span><span class="textfieldMinValueMsg">El valor introducido es inferior al mínimo permitido. Intente un número del 1 al 10.</span><span class="textfieldMaxValueMsg">El valor introducido es superior al máximo permitido. Intente un número del 1 al 10.</span><span class="textfieldMaxCharsMsg">Se ha superado el número máximo de caracteres. Intente un número del 1 al 10.</span></span></div>		
 			      
 			      <div class="form-group">
 					  Estado: 
@@ -155,7 +155,7 @@
 				      <div class="form-group">
 				     	 Piso:   
 				     	 <span id="sprytextfield11">  	    
-                            <input type="text" class="form-control" name="piso" value="${socio.direccion.piso}" onBlur="sacarclase('sprytextfield11')">
+                            <input type="text" class="form-control" name="piso" value="${socio.direccnever so}" onBlur="sacarclase('sprytextfield11')">
                          <span class="textfieldMaxCharsMsg">Se ha superado el número máximo de caracteres.</span></span>
                       </div>			
 				      
@@ -187,8 +187,8 @@ function sacarclase(id){
 	var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2", "none", {validateOn:["change"]});
 	var sprytextfield3 = new Spry.Widget.ValidationTextField("sprytextfield3", "integer", {validateOn:["change"], minChars:6, maxChars:8});
 	var sprytextfield4 = new Spry.Widget.ValidationTextField("sprytextfield4", "email", {validateOn:["change"]});
-	var sprytextfield5 = new Spry.Widget.ValidationTextField("sprytextfield5", "none", {validateOn:["change"]});
-	var sprytextfield6 = new Spry.Widget.ValidationTextField("sprytextfield6", "none", {validateOn:["change"]});
+	var sprytextfield5 = new Spry.Widget.ValidationTextField("sprytextfield5", "integer", {validateOn:["change"], minChars:6, maxChars:14});
+	var sprytextfield6 = new Spry.Widget.ValidationTextField("sprytextfield6", "integer", {validateOn:["change"], minChars:1, minValue:1, maxValue:10, maxChars:2});
 	var spryselect1 = new Spry.Widget.ValidationSelect("spryselect1", {validateOn:["change"]});
 	var spryselect2 = new Spry.Widget.ValidationSelect("spryselect2", {validateOn:["change"]});
 	var sprytextfield7 = new Spry.Widget.ValidationTextField("sprytextfield7");

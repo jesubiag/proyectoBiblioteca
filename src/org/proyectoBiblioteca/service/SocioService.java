@@ -175,7 +175,7 @@ public class SocioService {
 		String parameterDepartamento = request.getParameter("departamento");
 		 
 		if(!"".equals(parameterPiso)){
-			socio.getDireccion().setPiso(Integer.parseInt(parameterPiso));
+			socio.getDireccion().setPiso(parameterPiso);
 		}
 		
 		if(!"".equals(parameterDepartamento)){
