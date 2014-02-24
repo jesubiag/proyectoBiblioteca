@@ -155,7 +155,7 @@
 				      <div class="form-group">
 				     	 Piso:   
 				     	 <span id="sprytextfield11">  	    
-                            <input type="text" class="form-control" name="piso" value="${socio.direccnever so}" onBlur="sacarclase('sprytextfield11')">
+                            <input type="text" class="form-control" name="piso" value="${socio.direccion.piso}" onBlur="sacarclase('sprytextfield11')">
                          <span class="textfieldMaxCharsMsg">Se ha superado el número máximo de caracteres.</span></span>
                       </div>			
 				      
